@@ -16,7 +16,6 @@
       --text-muted: #666;
     }
 
-    /* Page background */
     * {
       box-sizing: border-box;
       margin: 0;
@@ -25,14 +24,53 @@
         "Segoe UI", sans-serif;
     }
 
+    /* Page background + base layout */
     body {
       background: var(--beige);
       min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 24px 16px;
+      padding: 0 16px 40px;
       color: var(--text-main);
+    }
+
+    /* HERO HEADER */
+    .hero-header {
+      text-align: center;
+      padding: 60px 20px 40px;
+      background: linear-gradient(
+        180deg,
+        #faf7f2 0%,
+        #f5f2ea 100%
+      );
+      border-bottom: 2px solid rgba(212,175,55,0.35); /* softer gold line */
+      margin: 0 -16px 50px; /* stretch full-width while body keeps padding */
+      box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+    }
+
+    .hero-title {
+      font-size: 3rem;
+      font-weight: 700;
+      color: #2b2b2b;
+      letter-spacing: -0.5px;
+    }
+
+    .hero-subtitle {
+      margin-top: 12px;
+      font-size: 1.15rem;
+      color: #5a5a5a;
+      max-width: 620px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 640px) {
+      .hero-title {
+        font-size: 2.3rem;
+      }
+
+      .hero-subtitle {
+        font-size: 1rem;
+      }
     }
 
     /* Main container */
@@ -44,6 +82,7 @@
       border: 1px solid rgba(212,175,55,0.25); /* GOLD TINT FRAME */
       max-width: 980px;
       width: 100%;
+      margin: 0 auto;
     }
 
     /* Two-column layout */
@@ -80,33 +119,6 @@
       gap: 16px;
     }
 
-    /* Headline */
-    h1 {
-      font-size: 34px;
-      font-weight: 700;
-      color: var(--navy);
-      letter-spacing: -0.5px;
-      margin-bottom: 6px;
-    }
-
-    /* Subtle gold underline */
-    h1::after {
-      content: "";
-      display: block;
-      width: 60px;
-      height: 3px;
-      background: var(--gold);
-      margin-top: 6px;
-      border-radius: 2px;
-    }
-
-    .subtitle {
-      font-size: 14px;
-      color: var(--text-muted);
-      line-height: 1.55;
-      margin-bottom: 6px;
-    }
-
     .badge {
       display: inline-flex;
       align-items: center;
@@ -126,6 +138,13 @@
       border-radius: 50%;
       background: #22c55e;
       box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.25);
+    }
+
+    .subtitle {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.55;
+      margin-bottom: 6px;
     }
 
     form {
@@ -332,6 +351,15 @@
   </style>
 </head>
 <body>
+  <!-- HERO -->
+  <header class="hero-header">
+    <h1 class="hero-title">Gift Concierge</h1>
+    <p class="hero-subtitle">
+      Thoughtful, tailored gifting — without the endless scrolling.
+    </p>
+  </header>
+
+  <!-- MAIN CARD -->
   <div class="card">
     <div class="layout">
       <!-- LEFT: Form -->
@@ -341,7 +369,6 @@
           Smart gift ideas, no scrolling
         </div>
 
-        <h1>Gift Concierge</h1>
         <p class="subtitle">
           Tell me who you’re buying for, what it’s for, and your budget. I’ll curate
           thoughtful ideas that actually fit.
@@ -392,9 +419,9 @@
       <!-- RIGHT: Explainer + Result -->
       <div class="right">
         <div>
-          <div class="right-title">Designed to feel like a safe, luxe sales assistant.</div>
+          <div class="right-title">Designed to feel like a calm, luxe sales assistant.</div>
           <div class="right-copy">
-            Palette is calm and trustworthy so people feel comfortable spending – with gold accents
+            Palette is soft and trustworthy so people feel comfortable spending – with gold accents
             that whisper “considered treat” instead of “cheap deal”.
           </div>
 
@@ -407,12 +434,12 @@
           <div class="preview-card">
             <div class="preview-label">Example output</div>
             <div>
-              “A cosy night-in hamper with a luxe paperback from her favourite genre, a gold-foiled
-              bookmark, artisanal hot chocolate, and a soft throw blanket…”
+              “A cosy night-in bundle with a beautiful paperback from her favourite genre,
+              a gold-foiled bookmark, small-batch hot chocolate, and a soft throw blanket…”
             </div>
             <div>
-              “Add a handwritten card with three things you love about her – that’s the part she’ll
-              keep.”
+              “Finish it with a handwritten card sharing three things you adore about her –
+              that’s the bit she’ll remember.”
             </div>
             <div class="preview-pill">
               <span class="preview-dot"></span> 3–5 ideas · tailored to your spend
