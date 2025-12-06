@@ -1,502 +1,164 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Effortless Gift Co – Gift Concierge</title>
-    <style>
-        :root {
-            --bg: #f7f5f2;
-            --card: #ffffff;
-            --accent: #d8a96e;
-            --accent-dark: #b48342;
-            --text-main: #2b2622;
-            --text-muted: #7a716a;
-            --border-soft: #e1ddd7;
-            --error: #c94b4b;
-        }
-
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            margin: 0;
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
-            background: var(--bg);
-            color: var(--text-main);
-            padding: 24px 16px 48px;
-        }
-
-        .page {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        header {
-            text-align: center;
-            margin-bottom: 32px;
-        }
-
-        header h1 {
-            font-size: 2rem;
-            letter-spacing: 0.04em;
-            text-transform: uppercase;
-            margin: 0 0 8px;
-        }
-
-        header p {
-            margin: 0;
-            color: var(--text-muted);
-        }
-
-        .pill {
-            display: inline-block;
-            padding: 4px 10px;
-            border-radius: 999px;
-            border: 1px solid var(--border-soft);
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-bottom: 12px;
-            color: var(--text-muted);
-        }
-
-        .card {
-            background: var(--card);
-            border-radius: 16px;
-            padding: 20px 18px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.03);
-            border: 1px solid var(--border-soft);
-            margin-bottom: 20px;
-        }
-
-        @media (min-width: 768px) {
-            .card {
-                padding: 24px 28px;
-            }
-        }
-
-        h2 {
-            margin-top: 0;
-            font-size: 1.15rem;
-        }
-
-        form {
-            display: grid;
-            gap: 14px;
-        }
-
-        label {
-            font-size: 0.85rem;
-            font-weight: 500;
-            color: var(--text-muted);
-            display: block;
-            margin-bottom: 4px;
-        }
-
-        input[type="text"],
-        input[type="number"] {
-            width: 100%;
-            padding: 10px 12px;
-            border-radius: 10px;
-            border: 1px solid var(--border-soft);
-            font-size: 0.95rem;
-            outline: none;
-            transition: border-color 0.15s ease, box-shadow 0.15s ease;
-            background: #fdfcfb;
-        }
-
-        input:focus {
-            border-color: var(--accent);
-            box-shadow: 0 0 0 2px rgba(216,169,110,0.18);
-        }
-
-        .helper {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-        }
-
-        .row {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        @media (min-width: 640px) {
-            .row {
-                flex-direction: row;
-            }
-            .row > div {
-                flex: 1;
-            }
-        }
-
-        button.primary {
-            border: none;
-            border-radius: 999px;
-            padding: 10px 22px;
-            font-size: 0.95rem;
-            font-weight: 500;
-            cursor: pointer;
-            background: var(--accent);
-            color: #ffffff;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            margin-top: 4px;
-        }
-
-        button.primary:hover {
-            background: var(--accent-dark);
-        }
-
-        button.primary:disabled {
-            opacity: 0.6;
-            cursor: default;
-        }
-
-        button.text-btn {
-            border: none;
-            background: none;
-            color: var(--text-muted);
-            font-size: 0.85rem;
-            cursor: pointer;
-            padding: 0;
-        }
-
-        #error {
-            margin-top: 4px;
-            font-size: 0.8rem;
-            color: var(--error);
-        }
-
-        #results {
-            display: none;
-        }
-
-        #gift-list {
-            list-style: none;
-            padding: 0;
-            margin: 10px 0 0;
-        }
-
-        #gift-list li {
-            display: flex;
-            align-items: flex-start;
-            justify-content: space-between;
-            padding: 10px 0;
-            border-bottom: 1px solid #f0ece6;
-            gap: 12px;
-        }
-
-        .gift-main {
-            flex: 1;
-        }
-
-        .gift-name {
-            font-weight: 500;
-        }
-
-        .gift-meta {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-        }
-
-        .gift-actions {
-            text-align: right;
-            min-width: 80px;
-        }
-
-        .remove-btn {
-            border: none;
-            border-radius: 999px;
-            padding: 5px 10px;
-            font-size: 0.75rem;
-            cursor: pointer;
-            background: #f3e5e5;
-            color: #7a3d3d;
-        }
-
-        #summary {
-            margin-top: 12px;
-            font-size: 0.9rem;
-        }
-
-        #summary strong {
-            font-weight: 600;
-        }
-
-        #checkout {
-            margin-top: 16px;
-            display: none;
-        }
-
-        #checkout button {
-            width: 100%;
-            justify-content: center;
-        }
-
-        .tagline {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            margin-top: 8px;
-        }
-
-        footer {
-            margin-top: 24px;
-            text-align: center;
-            font-size: 0.75rem;
-            color: var(--text-muted);
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <title>Gift Concierge</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #f7f7fb;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+    }
+    .wrapper {
+      max-width: 480px;
+      width: 100%;
+      margin: 40px 16px;
+      padding: 24px 20px 28px;
+      background: #ffffff;
+      border-radius: 14px;
+      box-shadow: 0 14px 30px rgba(15, 23, 42, 0.12);
+    }
+    h1 {
+      margin: 0 0 4px;
+      font-size: 24px;
+    }
+    p.subtitle {
+      margin: 0 0 20px;
+      color: #6b7280;
+      font-size: 14px;
+    }
+    label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      margin: 14px 0 4px;
+      color: #374151;
+    }
+    input, textarea, select {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 9px 10px;
+      border-radius: 8px;
+      border: 1px solid #d1d5db;
+      font: inherit;
+      resize: vertical;
+    }
+    input:focus, textarea:focus, select:focus {
+      outline: 2px solid #6366f1;
+      outline-offset: 1px;
+      border-color: transparent;
+    }
+    button {
+      margin-top: 18px;
+      width: 100%;
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 15px;
+      background: #4f46e5;
+      color: #fff;
+    }
+    button[disabled] {
+      opacity: 0.6;
+      cursor: default;
+    }
+    .status {
+      margin-top: 10px;
+      font-size: 13px;
+      color: #6b7280;
+    }
+    .error {
+      color: #b91c1c;
+    }
+    .results {
+      margin-top: 20px;
+      padding-top: 16px;
+      border-top: 1px solid #e5e7eb;
+      font-size: 14px;
+      white-space: pre-wrap;
+    }
+  </style>
 </head>
 <body>
-    <div class="page">
-        <header>
-            <div class="pill">The Effortless Gift Co</div>
-            <h1>Gift Concierge</h1>
-            <p>Tell us who you’re shopping for and your budget. We’ll do the legwork.</p>
-        </header>
+  <div class="wrapper">
+    <h1>Gift Concierge</h1>
+    <p class="subtitle">Tell me who you’re buying for, what it’s for, and your budget. I’ll curate ideas.</p>
 
-        <main>
-            <section class="card">
-                <h2>Who are we shopping for?</h2>
-                <form id="gift-form">
-                    <div>
-                        <label for="demographic">Age & relationship</label>
-                        <input id="demographic" type="text" required placeholder="e.g. 7-year-old daughter who loves art">
-                        <p class="helper">You can be chatty here – hobbies, vibes, personality all help.</p>
-                    </div>
+    <label for="person">Who is this for?</label>
+    <input id="person" placeholder="e.g. my sister, 32, new mum, loves books" />
 
-                    <div class="row">
-                        <div>
-                            <label for="occasion">Occasion (optional)</label>
-                            <input id="occasion" type="text" placeholder="e.g. birthday, Christmas, graduation">
-                        </div>
-                        <div>
-                            <label for="budget">Budget (AUD)</label>
-                            <input id="budget" type="number" required min="1" step="1" placeholder="e.g. 120">
-                        </div>
-                    </div>
+    <label for="occasion">Occasion</label>
+    <input id="occasion" placeholder="e.g. birthday, Christmas, baby shower" />
 
-                    <div>
-                        <button type="submit" class="primary" id="curate-btn">
-                            ✨ Curate gifts
-                        </button>
-                        <span id="error"></span>
-                        <p class="tagline">No doom-scrolling, no guesswork – just considered options.</p>
-                    </div>
-                </form>
-            </section>
+    <label for="budget">Budget</label>
+    <input id="budget" placeholder="e.g. $80–$120" />
 
-            <section class="card" id="results">
-                <h2>Your curated shortlist</h2>
-                <ul id="gift-list"></ul>
-                <p id="summary"></p>
-                <div id="checkout">
-                    <button class="primary" id="checkout-btn">Proceed to stores</button>
-                    <p class="helper">You’ll be taken to each store’s website in a new tab to complete checkout.</p>
-                </div>
-            </section>
-        </main>
+    <button id="goBtn">Curate ideas</button>
 
-        <footer>
-            Prototype only – links and prices are for demo purposes.
-        </footer>
-    </div>
+    <div id="status" class="status"></div>
+    <div id="results" class="results"></div>
+  </div>
 
-    <script>
-        const form = document.getElementById('gift-form');
-        const curateBtn = document.getElementById('curate-btn');
-        const errorEl = document.getElementById('error');
-        const resultsSection = document.getElementById('results');
-        const list = document.getElementById('gift-list');
-        const summaryEl = document.getElementById('summary');
-        const checkoutDiv = document.getElementById('checkout');
-        const checkoutBtn = document.getElementById('checkout-btn');
+  <script>
+    const API_URL = "https://gift-concierge-hub.onrender.com/curate";
 
-        let gifts = [];
-        let budget = 0;
+    const personInput = document.getElementById("person");
+    const occasionInput = document.getElementById("occasion");
+    const budgetInput = document.getElementById("budget");
+    const goBtn = document.getElementById("goBtn");
+    const statusEl = document.getElementById("status");
+    const resultsEl = document.getElementById("results");
 
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            errorEl.textContent = '';
+    async function curate() {
+      const demographic = personInput.value.trim();
+      const occasion = occasionInput.value.trim();
+      const budget = budgetInput.value.trim();
 
-            const demographic = document.getElementById('demographic').value.trim();
-            const occasion = document.getElementById('occasion').value.trim();
-            const budgetInput = document.getElementById('budget').value;
+      if (!demographic || !occasion || !budget) {
+        statusEl.textContent = "Fill in all three boxes first.";
+        statusEl.classList.remove("error");
+        return;
+      }
 
-            budget = Number(budgetInput);
+      goBtn.disabled = true;
+      statusEl.textContent = "Thinking up ideas…";
+      statusEl.classList.remove("error");
+      resultsEl.textContent = "";
 
-            if (!demographic) {
-                errorEl.textContent = 'Please tell us who the gift is for.';
-                return;
-            }
-
-            if (!budget || budget <= 0) {
-                errorEl.textContent = 'Please enter a valid budget.';
-                return;
-            }
-
-            curateBtn.disabled = true;
-            curateBtn.textContent = 'Curating…';
-
-            try {
-                // TODO: replace this mock with a real API call later
-                gifts = await mockAICuration({ demographic, occasion, budget });
-                renderList();
-                resultsSection.style.display = gifts.length ? 'block' : 'none';
-            } catch (err) {
-                console.error(err);
-                errorEl.textContent = 'Something went wrong. Please try again.';
-            } finally {
-                curateBtn.disabled = false;
-                curateBtn.textContent = '✨ Curate gifts';
-            }
+      try {
+        const res = await fetch(API_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ demographic, occasion, budget }),
         });
 
-        function renderList() {
-            list.innerHTML = '';
-
-            if (!gifts.length) {
-                summaryEl.textContent = 'No suggestions yet – adjust the budget or details and try again.';
-                checkoutDiv.style.display = 'none';
-                return;
-            }
-
-            let total = 0;
-            gifts.forEach((gift, index) => {
-                total += gift.price;
-
-                const li = document.createElement('li');
-
-                const main = document.createElement('div');
-                main.className = 'gift-main';
-
-                const name = document.createElement('div');
-                name.className = 'gift-name';
-                name.textContent = gift.name;
-
-                const meta = document.createElement('div');
-                meta.className = 'gift-meta';
-                meta.textContent = `Approx. $${gift.price.toFixed(2)} AUD · ${gift.note}`;
-
-                main.appendChild(name);
-                main.appendChild(meta);
-
-                const actions = document.createElement('div');
-                actions.className = 'gift-actions';
-
-                const price = document.createElement('div');
-                price.className = 'gift-meta';
-                price.textContent = `$${gift.price.toFixed(2)}`;
-
-                const btn = document.createElement('button');
-                btn.type = 'button';
-                btn.className = 'remove-btn';
-                btn.textContent = 'Remove';
-                btn.onclick = () => removeItem(index);
-
-                actions.appendChild(price);
-                actions.appendChild(btn);
-
-                li.appendChild(main);
-                li.appendChild(actions);
-
-                list.appendChild(li);
-            });
-
-            const remaining = budget - total;
-            const withinBudget = remaining >= 0;
-
-            summaryEl.innerHTML = `
-                <strong>Total:</strong> $${total.toFixed(2)} of $${budget.toFixed(2)} budget
-                ${withinBudget
-                    ? remaining > 0
-                        ? ` · You still have ~$${remaining.toFixed(2)} to play with.`
-                        : ' · You’re right on budget.'
-                    : ` · <span style="color: var(--error);">You’re over budget by $${Math.abs(remaining).toFixed(2)}.</span>`
-                }
-            `;
-
-            checkoutDiv.style.display = gifts.length ? 'block' : 'none';
+        if (!res.ok) {
+          throw new Error("Server returned " + res.status);
         }
 
-        async function removeItem(index) {
-            const removed = gifts.splice(index, 1)[0];
+        const data = await res.json();
+        // assuming your API returns { ideas: "..." } or { text: "..." }
+        const text = data.ideas || data.text || JSON.stringify(data, null, 2);
+        resultsEl.textContent = text;
+        statusEl.textContent = "Done ✅";
+      } catch (err) {
+        statusEl.textContent = "Something went wrong.";
+        statusEl.classList.add("error");
+        resultsEl.textContent = err.message;
+      } finally {
+        goBtn.disabled = false;
+      }
+    }
 
-            // Remaining budget if we want to be strict
-            const spent = gifts.reduce((sum, g) => sum + g.price, 0);
-            const remainingBudget = budget - spent;
-
-            // Get a replacement suggestion (still mock)
-            const replacement = await mockReplacement(removed, remainingBudget);
-            if (replacement) {
-                gifts.push(replacement);
-            }
-
-            renderList();
-        }
-
-        checkoutBtn.addEventListener('click', () => {
-            if (!gifts.length) return;
-
-            alert('This is a demo. In a real version, you’d be taken to each store to finish checkout.');
-            gifts.forEach(gift => {
-                if (gift.affiliateLink) {
-                    window.open(gift.affiliateLink, '_blank');
-                }
-            });
-        });
-
-        // -------------------------
-        // Mock "AI" functions
-        // -------------------------
-        async function mockAICuration({ demographic, occasion, budget }) {
-            // In a real version, this is where you’d call an API:
-            // const response = await fetch('/api/curate', {
-            //   method: 'POST',
-            //   headers: { 'Content-Type': 'application/json' },
-            //   body: JSON.stringify({ demographic, occasion, budget })
-            // });
-            // return await response.json();
-
-            const baseSuggestions = [
-                {
-                    name: 'Beautifully Curated Activity Box',
-                    price: Math.min(budget * 0.5, 130),
-                    note: 'A mix of hands-on activities tailored to their interests.',
-                    affiliateLink: 'https://example.com/box'
-                },
-                {
-                    name: 'Experience Voucher',
-                    price: Math.min(budget * 0.35, 100),
-                    note: 'Tickets, classes or experiences rather than more “stuff”.',
-                    affiliateLink: 'https://example.com/experience'
-                },
-                {
-                    name: 'Personalised Keepsake',
-                    price: Math.min(budget * 0.25, 80),
-                    note: 'Something they can keep and remember the moment by.',
-                    affiliateLink: 'https://example.com/keepsake'
-                }
-            ];
-
-            // Filter out anything that accidentally ends up above budget
-            return baseSuggestions.filter(g => g.price <= budget && g.price >= 10);
-        }
-
-        async function mockReplacement(removed, remainingBudget) {
-            if (remainingBudget < 20) return null;
-
-            return {
-                name: 'Thoughtful Add-On',
-                price: Math.min(remainingBudget, 40),
-                note: 'A small extra to round out the gift without blowing the budget.',
-                affiliateLink: 'https://example.com/addon'
-            };
-        }
-    </script>
+    goBtn.addEventListener("click", curate);
+  </script>
 </body>
 </html>
