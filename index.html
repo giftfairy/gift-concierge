@@ -5,160 +5,488 @@
   <title>Gift Concierge</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
-    body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: #f7f7fb;
+    :root {
+      --navy: #1f3c88;
+      --navy-dark: #16295c;
+      --sky: #e5f0ff;
+      --gold: #f5a623;
+      --bg: #f5f5f7;
+      --text-main: #333333;
+      --text-muted: #666666;
+      --white: #ffffff;
+      --error: #c0392b;
+      --radius-lg: 18px;
+      --radius-md: 12px;
+      --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.09);
+    }
+
+    * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Segoe UI", sans-serif;
+    }
+
+    body {
       min-height: 100vh;
+      background: radial-gradient(circle at top left, #e9f0ff 0, var(--bg) 45%)
+        fixed;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 32px 16px;
     }
-    .wrapper {
-      max-width: 480px;
+
+    .shell {
       width: 100%;
-      margin: 40px 16px;
-      padding: 24px 20px 28px;
-      background: #ffffff;
-      border-radius: 14px;
-      box-shadow: 0 14px 30px rgba(15, 23, 42, 0.12);
+      max-width: 900px;
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-dark) 50%, #111827 100%);
+      border-radius: 28px;
+      padding: 1px;
+      box-shadow: var(--shadow-soft);
     }
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+      background: var(--white);
+      border-radius: 27px;
+      overflow: hidden;
+    }
+
+    @media (max-width: 768px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+
+      .left {
+        padding: 24px 20px 20px;
+      }
+
+      .right {
+        padding: 24px 20px;
+      }
+    }
+
+    .left {
+      padding: 32px 32px 28px;
+    }
+
+    .right {
+      background: radial-gradient(circle at top left, var(--sky), #dde7ff);
+      padding: 32px 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(31, 60, 136, 0.06);
+      color: var(--navy);
+      font-size: 12px;
+      font-weight: 500;
+      margin-bottom: 14px;
+    }
+
+    .badge-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #22c55e;
+      box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.25);
+    }
+
     h1 {
-      margin: 0 0 4px;
-      font-size: 24px;
+      font-size: 28px;
+      letter-spacing: -0.03em;
+      margin-bottom: 8px;
     }
-    p.subtitle {
-      margin: 0 0 20px;
-      color: #6b7280;
+
+    .subtitle {
       font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 26px;
+      line-height: 1.5;
     }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
     label {
-      display: block;
       font-size: 13px;
       font-weight: 600;
-      margin: 14px 0 4px;
-      color: #374151;
+      color: #111827;
+      margin-bottom: 4px;
     }
-    input, textarea, select {
+
+    .field-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    input[type="text"],
+    input[type="number"] {
       width: 100%;
-      box-sizing: border-box;
-      padding: 9px 10px;
-      border-radius: 8px;
+      padding: 11px 12px;
+      border-radius: 11px;
       border: 1px solid #d1d5db;
-      font: inherit;
-      resize: vertical;
+      font-size: 14px;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease,
+        background-color 0.15s ease;
+      background: #f9fafb;
     }
-    input:focus, textarea:focus, select:focus {
-      outline: 2px solid #6366f1;
-      outline-offset: 1px;
-      border-color: transparent;
+
+    input::placeholder {
+      color: #9ca3af;
     }
+
+    input:focus {
+      outline: none;
+      border-color: var(--navy);
+      box-shadow: 0 0 0 1px rgba(31, 60, 136, 0.18);
+      background: #ffffff;
+    }
+
+    .helper {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
     button {
-      margin-top: 18px;
+      margin-top: 4px;
       width: 100%;
-      padding: 10px 14px;
-      border-radius: 999px;
       border: none;
-      cursor: pointer;
-      font-weight: 600;
+      border-radius: 999px;
+      padding: 11px 18px;
       font-size: 15px;
-      background: #4f46e5;
-      color: #fff;
+      font-weight: 600;
+      cursor: pointer;
+      color: #ffffff;
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-dark) 60%, #020617 100%);
+      box-shadow: 0 16px 30px rgba(15, 23, 42, 0.35);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      transition: transform 0.12s ease, box-shadow 0.12s ease,
+        background 0.12s ease, opacity 0.12s ease;
     }
-    button[disabled] {
-      opacity: 0.6;
-      cursor: default;
+
+    button span.pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 3px 9px;
+      border-radius: 999px;
+      background: rgba(245, 166, 35, 0.2);
+      color: #fefce8;
+      font-size: 11px;
     }
+
+    button:hover:not(:disabled) {
+      transform: translateY(-1px);
+      box-shadow: 0 18px 36px rgba(15, 23, 42, 0.4);
+      background: linear-gradient(135deg, var(--navy-dark) 0%, #020617 70%);
+    }
+
+    button:active:not(:disabled) {
+      transform: translateY(0);
+      box-shadow: 0 10px 20px rgba(15, 23, 42, 0.3);
+    }
+
+    button:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: 0 10px 20px rgba(15, 23, 42, 0.25);
+    }
+
     .status {
       margin-top: 10px;
+      font-size: 12px;
+      color: var(--text-muted);
+      min-height: 1em;
+    }
+
+    .status.error {
+      color: var(--error);
+    }
+
+    .right-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--navy-dark);
+      margin-bottom: 8px;
+      letter-spacing: -0.01em;
+    }
+
+    .right-copy {
       font-size: 13px;
-      color: #6b7280;
+      color: #4b5563;
+      margin-bottom: 18px;
+      line-height: 1.5;
     }
-    .error {
-      color: #b91c1c;
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 22px;
     }
+
+    .chip {
+      font-size: 11px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.9);
+      color: #1f2933;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+    }
+
+    .preview-card {
+      background: rgba(15, 23, 42, 0.93);
+      color: #e5e7eb;
+      border-radius: var(--radius-lg);
+      padding: 14px 14px 12px;
+      box-shadow: 0 14px 30px rgba(15, 23, 42, 0.45);
+      max-height: 190px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .preview-card::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0;
+      height: 40px;
+      background: linear-gradient(to bottom, transparent, rgba(15, 23, 42, 0.96));
+      pointer-events: none;
+    }
+
+    .preview-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #9ca3af;
+      margin-bottom: 6px;
+    }
+
+    .preview-line {
+      font-size: 13px;
+      line-height: 1.4;
+      margin-bottom: 2px;
+    }
+
+    .preview-pill {
+      margin-top: 6px;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 11px;
+      color: #e5e7eb;
+      background: rgba(37, 99, 235, 0.35);
+      padding: 3px 8px;
+      border-radius: 999px;
+    }
+
+    .preview-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #22c55e;
+    }
+
     .results {
-      margin-top: 20px;
-      padding-top: 16px;
-      border-top: 1px solid #e5e7eb;
-      font-size: 14px;
+      margin-top: 22px;
+      padding-top: 18px;
+      border-top: 1px dashed #e5e7eb;
+      font-size: 13px;
+      color: #0f172a;
+    }
+
+    .result-title {
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .result-text {
       white-space: pre-wrap;
+      line-height: 1.5;
+      color: #374151;
+      background: #f9fafb;
+      border-radius: 12px;
+      padding: 10px 12px;
+      border: 1px solid #e5e7eb;
+      max-height: 180px;
+      overflow: auto;
     }
   </style>
 </head>
 <body>
-  <div class="wrapper">
-    <h1>Gift Concierge</h1>
-    <p class="subtitle">Tell me who you’re buying for, what it’s for, and your budget. I’ll curate ideas.</p>
+  <div class="shell">
+    <div class="layout">
+      <div class="left">
+        <div class="badge">
+          <span class="badge-dot"></span>
+          Smart gift ideas, no scrolling
+        </div>
+        <h1>Gift Concierge</h1>
+        <p class="subtitle">
+          Tell me who you’re buying for, what it’s for, and your budget. I’ll curate
+          thoughtful ideas that actually fit.
+        </p>
 
-    <label for="person">Who is this for?</label>
-    <input id="person" placeholder="e.g. my sister, 32, new mum, loves books" />
+        <form id="gift-form">
+          <div class="field-group">
+            <label for="demographic">Who is this for?</label>
+            <input
+              id="demographic"
+              type="text"
+              required
+              placeholder="e.g. my sister, 32, new mum, loves books"
+            />
+            <div class="helper">Be specific – age, vibe, interests, relationship.</div>
+          </div>
 
-    <label for="occasion">Occasion</label>
-    <input id="occasion" placeholder="e.g. birthday, Christmas, baby shower" />
+          <div class="field-group">
+            <label for="occasion">Occasion</label>
+            <input
+              id="occasion"
+              type="text"
+              required
+              placeholder="e.g. birthday, Christmas, baby shower"
+            />
+          </div>
 
-    <label for="budget">Budget</label>
-    <input id="budget" placeholder="e.g. $80–$120" />
+          <div class="field-group">
+            <label for="budget">Budget</label>
+            <input
+              id="budget"
+              type="text"
+              required
+              placeholder="e.g. $80–$120"
+            />
+            <div class="helper">Approximate is totally fine.</div>
+          </div>
 
-    <button id="goBtn">Curate ideas</button>
+          <button type="submit">
+            Curate ideas
+            <span class="pill">powered by AI</span>
+          </button>
 
-    <div id="status" class="status"></div>
-    <div id="results" class="results"></div>
+          <div id="status" class="status"></div>
+        </form>
+      </div>
+
+      <div class="right">
+        <div>
+          <div class="right-title">Designed to feel like a safe, luxe sales assistant.</div>
+          <div class="right-copy">
+            Colour palette is calm and trustworthy so people feel comfortable
+            spending – with little gold accents that say “special treat” not “cheap deal”.
+          </div>
+
+          <div class="chips">
+            <div class="chip">No endless scrolling</div>
+            <div class="chip">Curated to your budget</div>
+            <div class="chip">Gifting feels easy again</div>
+          </div>
+
+          <div class="preview-card">
+            <div class="preview-label">Live example</div>
+            <div class="preview-line">
+              “A creative kit that lets her make music at home, complete with a
+              mini keyboard and percussion set…”
+            </div>
+            <div class="preview-line">
+              “Pair it with colourful headphones so she can practise without
+              waking the whole house.”
+            </div>
+            <div class="preview-pill">
+              <span class="preview-dot"></span> 3 ideas · budget-friendly
+            </div>
+          </div>
+        </div>
+
+        <div class="results" id="results" style="display:none;">
+          <div class="result-title">Your curated gift ideas</div>
+          <div class="result-text" id="result-text"></div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <script>
-    const API_URL = "https://gift-concierge-hub.onrender.com/curate";
-
-    const personInput = document.getElementById("person");
-    const occasionInput = document.getElementById("occasion");
-    const budgetInput = document.getElementById("budget");
-    const goBtn = document.getElementById("goBtn");
+    const form = document.getElementById("gift-form");
     const statusEl = document.getElementById("status");
-    const resultsEl = document.getElementById("results");
+    const resultsBlock = document.getElementById("results");
+    const resultText = document.getElementById("result-text");
+    const submitButton = form.querySelector("button[type='submit']");
 
-    async function curate() {
-      const demographic = personInput.value.trim();
-      const occasion = occasionInput.value.trim();
-      const budget = budgetInput.value.trim();
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      // Prevent double-submit if already loading
+      if (form.dataset.loading === "true") return;
+
+      statusEl.classList.remove("error");
+      statusEl.textContent = "Curating ideas…";
+      resultsBlock.style.display = "none";
+      resultText.textContent = "";
+
+      const demographic = document.getElementById("demographic").value.trim();
+      const occasion = document.getElementById("occasion").value.trim();
+      const budget = document.getElementById("budget").value.trim();
 
       if (!demographic || !occasion || !budget) {
-        statusEl.textContent = "Fill in all three boxes first.";
-        statusEl.classList.remove("error");
+        statusEl.textContent = "Please fill in all fields.";
+        statusEl.classList.add("error");
         return;
       }
 
-      goBtn.disabled = true;
-      statusEl.textContent = "Thinking up ideas…";
-      statusEl.classList.remove("error");
-      resultsEl.textContent = "";
+      form.dataset.loading = "true";
+      submitButton.disabled = true;
 
       try {
-        const res = await fetch(API_URL, {
+        const response = await fetch("https://gift-concierge-hub.onrender.com/curate", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ demographic, occasion, budget }),
+          body: JSON.stringify({ demographic, occasion, budget })
         });
 
-        if (!res.ok) {
-          throw new Error("Server returned " + res.status);
+        if (!response.ok) {
+          throw new Error("Server error");
         }
 
-        const data = await res.json();
-        // assuming your API returns { ideas: "..." } or { text: "..." }
-        const text = data.ideas || data.text || JSON.stringify(data, null, 2);
-        resultsEl.textContent = text;
-        statusEl.textContent = "Done ✅";
-      } catch (err) {
-        statusEl.textContent = "Something went wrong.";
-        statusEl.classList.add("error");
-        resultsEl.textContent = err.message;
-      } finally {
-        goBtn.disabled = false;
-      }
-    }
+        const data = await response.json();
 
-    goBtn.addEventListener("click", curate);
+        const text = typeof data.suggestions === "string"
+          ? data.suggestions
+          : JSON.stringify(data, null, 2);
+
+        statusEl.textContent = "";
+        resultText.textContent = text.replace(/\\n/g, "\n");
+        resultsBlock.style.display = "block";
+      } catch (err) {
+        console.error(err);
+        statusEl.textContent = "Something went wrong. Please try again in a moment.";
+        statusEl.classList.add("error");
+      } finally {
+        form.dataset.loading = "false";
+        submitButton.disabled = false;
+      }
+    });
   </script>
 </body>
 </html>
