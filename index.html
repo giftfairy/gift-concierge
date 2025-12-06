@@ -4,22 +4,19 @@
   <meta charset="UTF-8" />
   <title>Gift Concierge</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <style>
+    /* ===== Colours ===== */
     :root {
-      --navy: #1f3c88;
-      --navy-dark: #16295c;
-      --sky: #e5f0ff;
-      --gold: #f5a623;
-      --bg: #f5f5f7;
-      --text-main: #333333;
-      --text-muted: #666666;
-      --white: #ffffff;
-      --error: #c0392b;
-      --radius-lg: 18px;
-      --radius-md: 12px;
-      --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.09);
+      --gold: #d4af37;
+      --navy: #1a1d2e;
+      --beige: #faf7f2;
+
+      --text-main: #222;
+      --text-muted: #666;
     }
 
+    /* Page background */
     * {
       box-sizing: border-box;
       margin: 0;
@@ -29,31 +26,32 @@
     }
 
     body {
+      background: var(--beige);
       min-height: 100vh;
-      background: radial-gradient(circle at top left, #e9f0ff 0, var(--bg) 45%)
-        fixed;
-      color: var(--text-main);
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 32px 16px;
+      padding: 24px 16px;
+      color: var(--text-main);
     }
 
-    .shell {
+    /* Main container */
+    .card {
+      background: white;
+      padding: 32px;
+      border-radius: 18px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+      border: 1px solid rgba(212,175,55,0.25); /* GOLD TINT FRAME */
+      max-width: 980px;
       width: 100%;
-      max-width: 900px;
-      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-dark) 50%, #111827 100%);
-      border-radius: 28px;
-      padding: 1px;
-      box-shadow: var(--shadow-soft);
     }
 
+    /* Two-column layout */
     .layout {
       display: grid;
       grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
-      background: var(--white);
-      border-radius: 27px;
-      overflow: hidden;
+      gap: 32px;
+      align-items: flex-start;
     }
 
     @media (max-width: 768px) {
@@ -61,25 +59,52 @@
         grid-template-columns: 1fr;
       }
 
-      .left {
-        padding: 24px 20px 20px;
-      }
-
-      .right {
+      .card {
         padding: 24px 20px;
       }
     }
 
     .left {
-      padding: 32px 32px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
     }
 
     .right {
-      background: radial-gradient(circle at top left, var(--sky), #dde7ff);
-      padding: 32px 28px;
+      background: #fdfbf7;
+      border-radius: 16px;
+      padding: 18px 18px 16px;
+      border: 1px solid rgba(0,0,0,0.05);
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
+      gap: 16px;
+    }
+
+    /* Headline */
+    h1 {
+      font-size: 34px;
+      font-weight: 700;
+      color: var(--navy);
+      letter-spacing: -0.5px;
+      margin-bottom: 6px;
+    }
+
+    /* Subtle gold underline */
+    h1::after {
+      content: "";
+      display: block;
+      width: 60px;
+      height: 3px;
+      background: var(--gold);
+      margin-top: 6px;
+      border-radius: 2px;
+    }
+
+    .subtitle {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.55;
+      margin-bottom: 6px;
     }
 
     .badge {
@@ -88,11 +113,11 @@
       gap: 8px;
       padding: 4px 10px;
       border-radius: 999px;
-      background: rgba(31, 60, 136, 0.06);
+      background: rgba(26, 29, 46, 0.05);
       color: var(--navy);
       font-size: 12px;
       font-weight: 500;
-      margin-bottom: 14px;
+      margin-bottom: 4px;
     }
 
     .badge-dot {
@@ -103,30 +128,11 @@
       box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.25);
     }
 
-    h1 {
-      font-size: 28px;
-      letter-spacing: -0.03em;
-      margin-bottom: 8px;
-    }
-
-    .subtitle {
-      font-size: 14px;
-      color: var(--text-muted);
-      margin-bottom: 26px;
-      line-height: 1.5;
-    }
-
     form {
       display: flex;
       flex-direction: column;
       gap: 18px;
-    }
-
-    label {
-      font-size: 13px;
-      font-weight: 600;
-      color: #111827;
-      margin-bottom: 4px;
+      margin-top: 8px;
     }
 
     .field-group {
@@ -135,16 +141,26 @@
       gap: 6px;
     }
 
-    input[type="text"],
-    input[type="number"] {
-      width: 100%;
-      padding: 11px 12px;
-      border-radius: 11px;
-      border: 1px solid #d1d5db;
-      font-size: 14px;
-      transition: border-color 0.15s ease, box-shadow 0.15s ease,
-        background-color 0.15s ease;
-      background: #f9fafb;
+    /* Labels */
+    label {
+      font-weight: 600;
+      color: var(--navy);
+      font-size: 13px;
+    }
+
+    .helper {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    /* Input boxes */
+    input {
+      border: 1px solid rgba(0,0,0,0.15);
+      border-radius: 10px;
+      padding: 14px;
+      font-size: 15px;
+      background: #fdfdfd;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
     }
 
     input::placeholder {
@@ -154,124 +170,109 @@
     input:focus {
       outline: none;
       border-color: var(--navy);
-      box-shadow: 0 0 0 1px rgba(31, 60, 136, 0.18);
+      box-shadow: 0 0 0 1px rgba(26, 29, 46, 0.15);
       background: #ffffff;
     }
 
-    .helper {
-      font-size: 12px;
-      color: var(--text-muted);
-    }
-
+    /* CTA BUTTON */
     button {
+      background: var(--navy);
+      color: white;
+      border-radius: 12px;
+      padding: 14px 16px;
+      font-size: 16px;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: 0.25s ease;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
       margin-top: 4px;
       width: 100%;
-      border: none;
-      border-radius: 999px;
-      padding: 11px 18px;
-      font-size: 15px;
-      font-weight: 600;
-      cursor: pointer;
-      color: #ffffff;
-      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-dark) 60%, #020617 100%);
-      box-shadow: 0 16px 30px rgba(15, 23, 42, 0.35);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      transition: transform 0.12s ease, box-shadow 0.12s ease,
-        background 0.12s ease, opacity 0.12s ease;
     }
 
-    button span.pill {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 3px 9px;
-      border-radius: 999px;
-      background: rgba(245, 166, 35, 0.2);
-      color: #fefce8;
+    .pill {
       font-size: 11px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: rgba(212, 175, 55, 0.15);
+      color: #4b4b4b;
     }
 
+    /* Gold glow hover */
     button:hover:not(:disabled) {
-      transform: translateY(-1px);
-      box-shadow: 0 18px 36px rgba(15, 23, 42, 0.4);
-      background: linear-gradient(135deg, var(--navy-dark) 0%, #020617 70%);
+      background: var(--navy);
+      box-shadow: 0 0 18px var(--gold);
+      transform: translateY(-2px);
     }
 
     button:active:not(:disabled) {
       transform: translateY(0);
-      box-shadow: 0 10px 20px rgba(15, 23, 42, 0.3);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
     }
 
     button:disabled {
       opacity: 0.7;
       cursor: not-allowed;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.15);
       transform: none;
-      box-shadow: 0 10px 20px rgba(15, 23, 42, 0.25);
     }
 
     .status {
-      margin-top: 10px;
+      margin-top: 6px;
       font-size: 12px;
       color: var(--text-muted);
       min-height: 1em;
     }
 
     .status.error {
-      color: var(--error);
+      color: #c0392b;
     }
 
+    /* Right side copy + chips */
     .right-title {
       font-size: 15px;
       font-weight: 600;
-      color: var(--navy-dark);
-      margin-bottom: 8px;
-      letter-spacing: -0.01em;
+      color: var(--navy);
+      margin-bottom: 4px;
     }
 
     .right-copy {
       font-size: 13px;
       color: #4b5563;
-      margin-bottom: 18px;
-      line-height: 1.5;
+      line-height: 1.55;
+      margin-bottom: 8px;
     }
 
     .chips {
       display: flex;
       flex-wrap: wrap;
       gap: 6px;
-      margin-bottom: 22px;
+      margin-bottom: 10px;
     }
 
     .chip {
       font-size: 11px;
-      padding: 4px 10px;
+      padding: 4px 9px;
       border-radius: 999px;
-      background: rgba(255, 255, 255, 0.9);
-      color: #1f2933;
-      border: 1px solid rgba(148, 163, 184, 0.5);
+      background: #ffffff;
+      border: 1px solid rgba(0,0,0,0.08);
+      color: #374151;
     }
 
     .preview-card {
-      background: rgba(15, 23, 42, 0.93);
+      background: #111827;
       color: #e5e7eb;
-      border-radius: var(--radius-lg);
-      padding: 14px 14px 12px;
-      box-shadow: 0 14px 30px rgba(15, 23, 42, 0.45);
-      max-height: 190px;
-      overflow: hidden;
+      border-radius: 12px;
+      padding: 12px 12px 10px;
+      box-shadow: 0 10px 22px rgba(15, 23, 42, 0.4);
       position: relative;
-    }
-
-    .preview-card::after {
-      content: "";
-      position: absolute;
-      inset: auto 0 0;
-      height: 40px;
-      background: linear-gradient(to bottom, transparent, rgba(15, 23, 42, 0.96));
-      pointer-events: none;
+      font-size: 13px;
+      line-height: 1.5;
+      margin-bottom: 4px;
     }
 
     .preview-label {
@@ -279,13 +280,7 @@
       text-transform: uppercase;
       letter-spacing: 0.12em;
       color: #9ca3af;
-      margin-bottom: 6px;
-    }
-
-    .preview-line {
-      font-size: 13px;
-      line-height: 1.4;
-      margin-bottom: 2px;
+      margin-bottom: 4px;
     }
 
     .preview-pill {
@@ -307,40 +302,45 @@
       background: #22c55e;
     }
 
-    .results {
-      margin-top: 22px;
-      padding-top: 18px;
-      border-top: 1px dashed #e5e7eb;
-      font-size: 13px;
-      color: #0f172a;
+    /* ===== Response box ===== */
+    #result {
+      margin-top: 10px;
+      padding: 24px;
+      background: white;
+      border-radius: 16px;
+      min-height: 280px; /* MUCH BIGGER */
+      max-height: none;
+      border: 1px solid rgba(0,0,0,0.12);
+      font-size: 15px;
+      line-height: 1.55;
+      color: #222;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+      overflow-y: auto;
+      display: none; /* hidden until we have a response */
     }
 
-    .result-title {
-      font-weight: 600;
-      margin-bottom: 8px;
+    /* Gold title inside result */
+    #result h2 {
+      color: var(--gold);
+      font-size: 18px;
+      margin-bottom: 10px;
     }
 
-    .result-text {
+    #result-content {
       white-space: pre-wrap;
-      line-height: 1.5;
-      color: #374151;
-      background: #f9fafb;
-      border-radius: 12px;
-      padding: 10px 12px;
-      border: 1px solid #e5e7eb;
-      max-height: 180px;
-      overflow: auto;
     }
   </style>
 </head>
 <body>
-  <div class="shell">
+  <div class="card">
     <div class="layout">
+      <!-- LEFT: Form -->
       <div class="left">
         <div class="badge">
           <span class="badge-dot"></span>
           Smart gift ideas, no scrolling
         </div>
+
         <h1>Gift Concierge</h1>
         <p class="subtitle">
           Tell me who you’re buying for, what it’s for, and your budget. I’ll curate
@@ -389,12 +389,13 @@
         </form>
       </div>
 
+      <!-- RIGHT: Explainer + Result -->
       <div class="right">
         <div>
           <div class="right-title">Designed to feel like a safe, luxe sales assistant.</div>
           <div class="right-copy">
-            Colour palette is calm and trustworthy so people feel comfortable
-            spending – with little gold accents that say “special treat” not “cheap deal”.
+            Palette is calm and trustworthy so people feel comfortable spending – with gold accents
+            that whisper “considered treat” instead of “cheap deal”.
           </div>
 
           <div class="chips">
@@ -404,24 +405,24 @@
           </div>
 
           <div class="preview-card">
-            <div class="preview-label">Live example</div>
-            <div class="preview-line">
-              “A creative kit that lets her make music at home, complete with a
-              mini keyboard and percussion set…”
+            <div class="preview-label">Example output</div>
+            <div>
+              “A cosy night-in hamper with a luxe paperback from her favourite genre, a gold-foiled
+              bookmark, artisanal hot chocolate, and a soft throw blanket…”
             </div>
-            <div class="preview-line">
-              “Pair it with colourful headphones so she can practise without
-              waking the whole house.”
+            <div>
+              “Add a handwritten card with three things you love about her – that’s the part she’ll
+              keep.”
             </div>
             <div class="preview-pill">
-              <span class="preview-dot"></span> 3 ideas · budget-friendly
+              <span class="preview-dot"></span> 3–5 ideas · tailored to your spend
             </div>
           </div>
         </div>
 
-        <div class="results" id="results" style="display:none;">
-          <div class="result-title">Your curated gift ideas</div>
-          <div class="result-text" id="result-text"></div>
+        <div id="result">
+          <h2>Your curated gift ideas</h2>
+          <div id="result-content"></div>
         </div>
       </div>
     </div>
@@ -430,8 +431,8 @@
   <script>
     const form = document.getElementById("gift-form");
     const statusEl = document.getElementById("status");
-    const resultsBlock = document.getElementById("results");
-    const resultText = document.getElementById("result-text");
+    const resultBox = document.getElementById("result");
+    const resultContent = document.getElementById("result-content");
     const submitButton = form.querySelector("button[type='submit']");
 
     form.addEventListener("submit", async (e) => {
@@ -442,8 +443,8 @@
 
       statusEl.classList.remove("error");
       statusEl.textContent = "Curating ideas…";
-      resultsBlock.style.display = "none";
-      resultText.textContent = "";
+      resultBox.style.display = "none";
+      resultContent.textContent = "";
 
       const demographic = document.getElementById("demographic").value.trim();
       const occasion = document.getElementById("occasion").value.trim();
@@ -476,8 +477,8 @@
           : JSON.stringify(data, null, 2);
 
         statusEl.textContent = "";
-        resultText.textContent = text.replace(/\\n/g, "\n");
-        resultsBlock.style.display = "block";
+        resultContent.textContent = text.replace(/\\n/g, "\n");
+        resultBox.style.display = "block";
       } catch (err) {
         console.error(err);
         statusEl.textContent = "Something went wrong. Please try again in a moment.";
