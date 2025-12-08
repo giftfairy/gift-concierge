@@ -327,7 +327,7 @@
       padding: 24px;
       background: white;
       border-radius: 16px;
-      min-height: 280px; /* MUCH BIGGER */
+      min-height: 280px; /* BIGGER VIEW */
       max-height: none;
       border: 1px solid rgba(0,0,0,0.12);
       font-size: 15px;
@@ -464,11 +464,11 @@
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
 
-      // Prevent double-submit if already loading
+      // prevent double submit
       if (form.dataset.loading === "true") return;
 
       statusEl.classList.remove("error");
-      statusEl.textContent = "Curating ideas…";
+      statusEl.textContent = "";
       resultBox.style.display = "none";
       resultContent.textContent = "";
 
@@ -482,8 +482,12 @@
         return;
       }
 
+      const originalButtonHTML = submitButton.innerHTML;
+
       form.dataset.loading = "true";
       submitButton.disabled = true;
+      submitButton.textContent = "Curating ideas…";
+      statusEl.textContent = "Curating ideas just for you…";
 
       try {
         const response = await fetch("https://gift-concierge-hub.onrender.com/curate", {
@@ -505,6 +509,7 @@
         statusEl.textContent = "";
         resultContent.textContent = text.replace(/\\n/g, "\n");
         resultBox.style.display = "block";
+        resultBox.scrollIntoView({ behavior: "smooth" });
       } catch (err) {
         console.error(err);
         statusEl.textContent = "Something went wrong. Please try again in a moment.";
@@ -512,11 +517,9 @@
       } finally {
         form.dataset.loading = "false";
         submitButton.disabled = false;
+        submitButton.innerHTML = originalButtonHTML;
       }
     });
   </script>
 </body>
 </html>
-
-
-
