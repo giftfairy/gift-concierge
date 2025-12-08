@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Gift Lane</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <style>
+    /* ===== Colours ===== */
+    :root {
+      --gold: #d4af37;
+      --navy: #1a1d2e;
+      --beige: #faf7f2;
+
+      --text-main: #222;
+      --text-muted: #666;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Segoe UI", sans-serif;
+    }
+
+    /* Page background + base layout */
+    body {
+      background: var(--beige);
+      min-height: 100vh;
+      padding: 0 16px 40px;
+      color: var(--text-main);
+    }
+
+    /* HERO HEADER */
+    .hero-header {
+      text-align: center;
+      padding: 60px 20px 40px;
+      background: linear-gradient(
+        180deg,
+        #faf7f2 0%,
+        #f5f2ea 100%
+      );
+      border-bottom: 2px solid rgba(212,175,55,0.35); /* softer gold line */
+      margin: 0 -16px 50px; /* stretch full-width while body keeps padding */
+      box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+    }
+
+    .hero-title {
+      font-size: 3rem;
+      font-weight: 700;
+      color: #2b2b2b;
+      letter-spacing: -0.5px;
+    }
+
+    .hero-subtitle {
+      margin-top: 12px;
+      font-size: 1.15rem;
+      color: #5a5a5a;
+      max-width: 620px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 640px) {
+      .hero-title {
+        font-size: 2.3rem;
+      }
+
+      .hero-subtitle {
+        font-size: 1rem;
+      }
+    }
+
+    /* Main container */
+    .card {
+      background: white;
+      padding: 32px;
+      border-radius: 18px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+      border: 1px solid rgba(212,175,55,0.25); /* GOLD TINT FRAME */
+      max-width: 980px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    /* Two-column layout */
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+      gap: 32px;
+      align-items: flex-start;
+    }
+
+    @media (max-width: 768px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+
+      .card {
+        padding: 24px 20px;
+      }
+    }
+
+    .left {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .right {
+      background: #fdfbf7;
+      border-radius: 16px;
+      padding: 18px 18px 16px;
+      border: 1px solid rgba(0,0,0,0.05);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(26, 29, 46, 0.05);
+      color: var(--navy);
+      font-size: 12px;
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+
+    .badge-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #22c55e;
+      box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.25);
+    }
+
+    .subtitle {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.55;
+      margin-bottom: 6px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      margin-top: 8px;
+    }
+
+    .field-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    /* Labels */
+    label {
+      font-weight: 600;
+      color: var(--navy);
+      font-size: 13px;
+    }
+
+    .helper {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    /* Input boxes */
+    input {
+      border: 1px solid rgba(0,0,0,0.15);
+      border-radius: 10px;
+      padding: 14px;
+      font-size: 15px;
+      background: #fdfdfd;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+    }
+
+    input::placeholder {
+      color: #9ca3af;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: var(--navy);
+      box-shadow: 0 0 0 1px rgba(26, 29, 46, 0.15);
+      background: #ffffff;
+    }
+
+    /* CTA BUTTON */
+    button {
+      background: var(--navy);
+      color: white;
+      border-radius: 12px;
+      padding: 14px 16px;
+      font-size: 16px;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: 0.25s ease;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 4px;
+      width: 100%;
+    }
+
+    .pill {
+      font-size: 11px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: rgba(212, 175, 55, 0.15);
+      color: #4b4b4b;
+    }
+
+    /* Gold glow hover */
+    button:hover:not(:disabled) {
+      background: var(--navy);
+      box-shadow: 0 0 18px var(--gold);
+      transform: translateY(-2px);
+    }
+
+    button:active:not(:disabled) {
+      transform: translateY(0);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
+
+    button:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+      transform: none;
+    }
+
+    .status {
+      margin-top: 6px;
+      font-size: 12px;
+      color: var(--text-muted);
+      min-height: 1em;
+    }
+
+    .status.error {
+      color: #c0392b;
+    }
+
+    /* Right side copy + chips */
+    .right-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 4px;
+    }
+
+    .right-copy {
+      font-size: 13px;
+      color: #4b5563;
+      line-height: 1.55;
+      margin-bottom: 8px;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 10px;
+    }
+
+    .chip {
+      font-size: 11px;
+      padding: 4px 9px;
+      border-radius: 999px;
+      background: #ffffff;
+      border: 1px solid rgba(0,0,0,0.08);
+      color: #374151;
+    }
+
+    .preview-card {
+      background: #111827;
+      color: #e5e7eb;
+      border-radius: 12px;
+      padding: 12px 12px 10px;
+      box-shadow: 0 10px 22px rgba(15, 23, 42, 0.4);
+      position: relative;
+      font-size: 13px;
+      line-height: 1.5;
+      margin-bottom: 4px;
+    }
+
+    .preview-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #9ca3af;
+      margin-bottom: 4px;
+    }
+
+    .preview-pill {
+      margin-top: 6px;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 11px;
+      color: #e5e7eb;
+      background: rgba(37, 99, 235, 0.35);
+      padding: 3px 8px;
+      border-radius: 999px;
+    }
+
+    .preview-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #22c55e;
+    }
+
+    /* ===== Response box ===== */
+    #result {
+      margin-top: 10px;
+      padding: 24px;
+      background: white;
+      border-radius: 16px;
+      min-height: 280px;
+      max-height: none;
+      border: 1px solid rgba(0,0,0,0.12);
+      font-size: 15px;
+      line-height: 1.55;
+      color: #222;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+      overflow-y: auto;
+      display: none;
+    }
+
+    #result h2 {
+      color: var(--gold);
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    #result-content {
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+  <header class="hero-header">
+    <h1 class="hero-title">Gift Lane</h1>
+    <p class="hero-subtitle">
+      Thoughtful, tailored gifting — without the endless scrolling.
+    </p>
+  </header>
+
+  <div class="card">
+    <div class="layout">
+      <div class="left">
+        <div class="badge">
+          <span class="badge-dot"></span>
+          Smart gift ideas, no scrolling
+        </div>
+
+        <p class="subtitle">
+          Tell me who you’re buying for, what it’s for, and your budget. I’ll curate
+          thoughtful ideas that actually fit.
+        </p>
+
+        <form id="gift-form">
+          <div class="field-group">
+            <label for="demographic">Who is this for?</label>
+            <input
+              id="demographic"
+              type="text"
+              required
+              placeholder="e.g. my sister, 32, new mum, loves books"
+            />
+            <div class="helper">Be specific – age, vibe, interests, relationship.</div>
+          </div>
+
+          <div class="field-group">
+            <label for="occasion">Occasion</label>
+            <input
+              id="occasion"
+              type="text"
+              required
+              placeholder="e.g. birthday, Christmas, baby shower"
+            />
+          </div>
+
+          <div class="field-group">
+            <label for="budget">Budget</label>
+            <input
+              id="budget"
+              type="text"
+              required
+              placeholder="e.g. $80–$120"
+            />
+            <div class="helper">Approximate is totally fine.</div>
+          </div>
+
+          <button type="submit">
+            Curate ideas
+            <span class="pill">powered by AI</span>
+          </button>
+
+          <div id="status" class="status"></div>
+        </form>
+      </div>
+
+      <div class="right">
+        <div>
+          <div class="right-title">Designed to make shopping easy.</div>
+          <div class="right-copy">
+            Thoughtful guidance, personalised ideas, and a little serenity — gifting made beautifully simple.
+          </div>
+
+          <div class="chips">
+            <div class="chip">No endless scrolling</div>
+            <div class="chip">Curated to your budget</div>
+            <div class="chip">Gifting feels easy again</div>
+          </div>
+
+          <div class="preview-card">
+            <div class="preview-label">Example output</div>
+            <div>
+              “A cosy night-in bundle with a beautiful paperback from her favourite genre,
+              a gold-foiled bookmark, small-batch hot chocolate, and a soft throw blanket…”
+            </div>
+            <div>
+              “Finish it with a handwritten card sharing three things you adore about her –
+              that’s the bit she’ll remember.”
+            </div>
+            <div class="preview-pill">
+              <span class="preview-dot"></span> 3–5 ideas · tailored to your spend
+            </div>
+          </div>
+        </div>
+
+        <div id="result">
+          <h2>Your curated gift ideas</h2>
+          <div id="result-content"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById("gift-form");
+    const statusEl = document.getElementById("status");
+    const resultBox = document.getElementById("result");
+    const resultContent = document.getElementById("result-content");
+    const submitButton = form.querySelector("button[type='submit']");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      if (form.dataset.loading === "true") return;
+
+      statusEl.classList.remove("error");
+      statusEl.textContent = "";
+      resultBox.style.display = "none";
+      resultContent.textContent = "";
+
+      const demographic = document.getElementById("demographic").value.trim();
+      const occasion = document.getElementById("occasion").value.trim();
+      const budget = document.getElementById("budget").value.trim();
+
+      if (!demographic || !occasion || !budget) {
+        statusEl.textContent = "Please fill in all fields.";
+        statusEl.classList.add("error");
+        return;
+      }
+
+      const originalButtonHTML = submitButton.innerHTML;
+
+      form.dataset.loading = "true";
+      submitButton.disabled = true;
+      submitButton.textContent = "Curating ideas…";
+      statusEl.textContent = "Curating ideas just for you…";
+
+      try {
+        const response = await fetch("/curate", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ demographic, occasion, budget })
+        });
+
+        if (!response.ok) {
+          throw new Error("Server error");
+        }
+
+        const data = await response.json();
+
+        const text = typeof data.suggestions === "string"
+          ? data.suggestions
+          : JSON.stringify(data, null, 2);
+
+        statusEl.textContent = "";
+        resultContent.textContent = text.replace(/\\n/g, "\n");
+        resultBox.style.display = "block";
+        resultBox.scrollIntoView({ behavior: "smooth" });
+      } catch (err) {
+        console.error(err);
+        statusEl.textContent = "Something went wrong. Please try again in a moment.";
+        statusEl.classList.add("error");
+      } finally {
+        form.dataset.loading = "false";
+        submitButton.disabled = false;
+        submitButton.innerHTML = originalButtonHTML;
+      }
+    });
+  </script>
+</body>
+</html>
