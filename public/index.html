@@ -6,20 +6,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@300;400;500&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Inter:wght@300;400;500&display=swap"
     rel="stylesheet"
   />
 
   <style>
     :root {
-      --navy-deep: #08152e;
-      --navy-soft: #132749;
-      --gold: #d9b36c;
-      --text-main: #f8f6f2;
-      --text-muted: #b7c0d8;
+      --navy-deep: #061428;
+      --navy-soft: #122748;
+      --navy-hero: #102544;
+      --cream: #F7F3EB;
+      --cream-soft: #F5EFDD;
+
+      --gold-light: #F6E5B8;
+      --gold-mid:   #D9B36C;
+      --gold-deep:  #B88A3A;
+
+      --text-main: #F9FAFB;
+      --text-muted: #AEB7D1;
     }
 
     * {
@@ -29,12 +36,11 @@
     body {
       margin: 0;
       min-height: 100vh;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
-        "Segoe UI", sans-serif;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       color: var(--text-main);
       background:
-        radial-gradient(circle at top left, #324972 0, transparent 55%),
-        radial-gradient(circle at bottom right, #182743 0, transparent 55%),
+        radial-gradient(circle at top left, #31456E 0, transparent 55%),
+        radial-gradient(circle at bottom right, #050b18 0, transparent 55%),
         var(--navy-deep);
       display: flex;
       align-items: center;
@@ -44,33 +50,25 @@
     .page {
       width: 100%;
       max-width: 1120px;
-      padding: 24px 16px;
+      padding: 24px 16px 32px;
+    }
+
+    .layout {
       display: grid;
-      grid-template-columns: minmax(0, 2fr) minmax(0, 1.3fr);
+      grid-template-columns: minmax(0, 2.1fr) minmax(0, 1.4fr);
       gap: 24px;
     }
 
-    @media (max-width: 860px) {
-      body {
-        align-items: flex-start;
-      }
-      .page {
-        grid-template-columns: minmax(0, 1fr);
-        padding: 18px 14px 32px;
-      }
-    }
-
-    /* Brand mark */
+    /* Brand strip */
     .brand-mark {
-      grid-column: 1 / -1;
       font-size: 11px;
-      letter-spacing: 0.16em;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--text-muted);
       display: flex;
       align-items: center;
       gap: 8px;
-      margin-bottom: 10px;
+      margin-bottom: 16px;
     }
 
     .brand-dot {
@@ -78,127 +76,126 @@
       height: 8px;
       border-radius: 999px;
       background: radial-gradient(circle at 30% 30%, #7affc3, #10b981);
-      box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
+      box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.25);
     }
 
     .left {
       position: relative;
-      z-index: 1;
     }
 
     .sub-line {
-      font-size: 11px;
-      letter-spacing: 0.16em;
+      letter-spacing: 0.17em;
       text-transform: uppercase;
+      font-size: 11px;
       color: var(--text-muted);
-      margin-bottom: 4px;
+      margin-bottom: 6px;
     }
 
-    /* LUXE GOLD LOGO */
     .logo-word {
-      font-family: "Playfair Display", serif;
-      font-size: 40px;
+      margin: 0 0 10px;
+      font-family: "Cormorant Garamond", "Times New Roman", serif;
       font-weight: 600;
+      font-size: 40px; /* bigger but elegant */
       letter-spacing: 0.06em;
-      text-transform: none;
-      margin: 0 0 8px;
-
-      background: linear-gradient(
-        135deg,
-        #fff4d9 0%,
-        #f4da9b 22%,
-        #e0b862 50%,
-        #c8963a 75%,
-        #f7e7be 100%
-      );
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-
-      text-shadow:
-        0 2px 6px rgba(0, 0, 0, 0.55),
-        0 0 14px rgba(255, 230, 180, 0.45);
+      position: relative;
+      display: inline-block;
     }
 
     .logo-word span {
-      background: inherit;
-      -webkit-background-clip: inherit;
-      background-clip: inherit;
-      color: inherit;
+      background: linear-gradient(135deg, var(--gold-light), var(--gold-mid), var(--gold-deep));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow:
+        0 0 18px rgba(248, 231, 177, 0.45),
+        0 8px 20px rgba(0, 0, 0, 0.6);
+    }
+
+    .logo-word {
+      color: var(--gold-light);
+      text-shadow:
+        0 0 18px rgba(248, 231, 177, 0.35),
+        0 10px 26px rgba(0, 0, 0, 0.8);
     }
 
     .hero-line {
-      margin: 4px 0 18px;
+      margin: 0 0 18px;
       font-size: 15px;
-      line-height: 1.5;
-      color: #d7dde9;
+      line-height: 1.55;
+      color: #dde5f4;
       max-width: 36rem;
     }
 
     .micro-copy {
-      margin-top: 12px;
+      margin-top: 10px;
+      margin-bottom: 8px;
       font-size: 11px;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
       color: var(--text-muted);
     }
 
     .card {
-      margin-top: 10px;
-      border-radius: 22px;
-      background: radial-gradient(circle at top left, #324972, #0b1326);
-      padding: 16px 16px 14px;
+      border-radius: 26px;
+      padding: 18px 18px 16px;
+      background:
+        radial-gradient(circle at top left, #26406E 0, #0F1C34 45%, #060b16 100%);
       box-shadow:
-        0 24px 60px rgba(0, 0, 0, 0.85),
-        0 0 0 1px rgba(255, 255, 255, 0.06);
+        0 28px 72px rgba(0, 0, 0, 0.78),
+        0 0 0 1px rgba(255, 255, 255, 0.05);
     }
 
     .field-label {
       display: block;
       font-size: 11px;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
       color: var(--text-muted);
-      margin-bottom: 5px;
+      margin-bottom: 6px;
     }
 
     .input {
       width: 100%;
       border-radius: 999px;
-      border: 1px solid rgba(207, 216, 239, 0.35);
-      background: linear-gradient(135deg, rgba(5, 11, 26, 0.9), rgba(10, 20, 43, 0.95));
-      padding: 11px 14px;
+      padding: 11px 15px;
       font-size: 14px;
       color: var(--text-main);
+      border: 1.2px solid rgba(217, 179, 108, 0.85); /* gold border */
+      background: linear-gradient(135deg, #050b1a, #101d35);
       outline: none;
+      box-shadow:
+        0 0 0 1px rgba(0, 0, 0, 0.9),
+        0 12px 26px rgba(0, 0, 0, 0.85);
     }
 
     .input::placeholder {
-      color: #848faa;
+      color: #9CA4C3;
     }
 
     .input:focus {
-      border-color: var(--gold);
-      box-shadow: 0 0 0 1px rgba(222, 188, 120, 0.7);
+      border-color: var(--gold-light);
+      box-shadow:
+        0 0 0 1px rgba(249, 246, 220, 0.9),
+        0 16px 32px rgba(0, 0, 0, 0.95);
     }
 
     .row {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-      gap: 10px;
+      display: flex;
+      gap: 12px;
       margin-top: 10px;
+      margin-bottom: 8px;
+      flex-wrap: wrap;
     }
 
-    @media (max-width: 640px) {
-      .row {
-        grid-template-columns: minmax(0, 1fr);
-      }
+    .row > div {
+      flex: 1 1 0;
+      min-width: 0;
     }
 
     .button-row {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 14px;
       margin-top: 10px;
       flex-wrap: wrap;
     }
@@ -208,21 +205,21 @@
       outline: none;
       cursor: pointer;
       border-radius: 999px;
-      padding: 10px 24px;
+      padding: 11px 26px;
       font-size: 13px;
       letter-spacing: 0.14em;
       text-transform: uppercase;
       font-weight: 600;
-      background: radial-gradient(circle at top left, #ffe5a8 0, #e3b968 40%, #c48a32 100%);
-      color: #31220b;
+      background: radial-gradient(circle at top left, #fff2c3 0, #e5c47c 40%, #c58b34 100%);
+      color: #1a1306;
       box-shadow:
-        0 16px 35px rgba(0, 0, 0, 0.7),
-        0 0 0 1px rgba(255, 255, 255, 0.25);
+        0 18px 40px rgba(0, 0, 0, 0.85),
+        0 0 0 1px rgba(255, 255, 255, 0.32);
       display: inline-flex;
       align-items: center;
       gap: 8px;
       white-space: nowrap;
-      transition: transform 0.14s ease, box-shadow 0.14s ease, filter 0.14s ease;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
     }
 
     .btn-primary span.icon {
@@ -233,19 +230,23 @@
       height: 18px;
       border-radius: 999px;
       background: #111827;
-      color: #fef9c3;
+      color: #FEF9C3;
       font-size: 11px;
     }
 
     .btn-primary:hover {
       transform: translateY(-1px);
       filter: brightness(1.03);
-      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.85);
+      box-shadow:
+        0 22px 48px rgba(0, 0, 0, 0.9),
+        0 0 0 1px rgba(255, 255, 255, 0.4);
     }
 
     .btn-primary:active {
       transform: translateY(0);
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.8);
+      box-shadow:
+        0 14px 32px rgba(0, 0, 0, 0.85),
+        0 0 0 1px rgba(255, 255, 255, 0.35);
     }
 
     .button-note {
@@ -258,17 +259,16 @@
       margin-top: 16px;
       max-height: 260px;
       overflow: auto;
-      padding-right: 4px;
+      padding-top: 10px;
+      border-top: 1px solid rgba(148, 163, 184, 0.45);
       font-size: 14px;
       line-height: 1.6;
       color: var(--text-main);
-      border-top: 1px solid rgba(148, 163, 184, 0.3);
-      padding-top: 10px;
     }
 
     .results h2 {
-      font-size: 13px;
-      letter-spacing: 0.16em;
+      font-size: 12px;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--text-muted);
       margin: 0 0 6px;
@@ -279,12 +279,12 @@
     }
 
     .results-empty {
+      color: #9CA3AF;
       font-size: 13px;
-      color: #9ca3af;
     }
 
     .about-block {
-      margin-top: 22px;
+      margin-top: 26px;
       max-width: 520px;
       font-size: 14px;
       line-height: 1.7;
@@ -292,7 +292,7 @@
     }
 
     .about-title {
-      font-size: 13px;
+      font-size: 12px;
       letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--text-muted);
@@ -301,18 +301,22 @@
 
     .about-block p {
       margin: 0 0 10px;
-      color: #e5e7eb;
+      color: #E5E7EB;
     }
 
     .about-jude {
       margin-top: 12px;
       font-size: 13px;
+      color: #E5E7EB;
     }
 
     .about-signoff {
       margin-top: 4px;
       font-size: 13px;
+      color: #E5E7EB;
     }
+
+    /* Right panel */
 
     .right {
       display: flex;
@@ -322,19 +326,28 @@
 
     .side-panel {
       width: 100%;
-      max-width: 360px;
+      max-width: 340px;
       border-radius: 24px;
       background:
-        linear-gradient(135deg, rgba(249, 250, 251, 0.18), transparent 35%),
-        #f7f3eb;
-      box-shadow: 0 22px 50px rgba(0, 0, 0, 0.65);
-      padding: 18px 18px 16px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+        linear-gradient(135deg, rgba(249, 250, 251, 0.12), transparent 35%),
+        radial-gradient(circle at top, rgba(250, 250, 249, 0.5), transparent 55%),
+        var(--cream);
+      box-shadow:
+        0 24px 60px rgba(0, 0, 0, 0.7),
+        0 0 0 1px rgba(15, 23, 42, 0.08);
+      padding: 20px 20px 18px;
       color: #111827;
       position: relative;
       overflow: hidden;
+    }
+
+    .side-panel::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top left, rgba(217, 179, 93, 0.16), transparent 55%);
+      mix-blend-mode: soft-light;
+      pointer-events: none;
     }
 
     .side-top-label {
@@ -342,18 +355,21 @@
       letter-spacing: 0.18em;
       text-transform: uppercase;
       color: #6b7280;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
 
     .side-main-line {
-      font-family: "Playfair Display", serif;
-      font-size: 19px;
+      font-family: "Cormorant Garamond", "Times New Roman", serif;
+      font-size: 20px;
       line-height: 1.35;
       margin-bottom: 10px;
     }
 
     .side-main-line strong {
-      color: #b88932;
+      background: linear-gradient(135deg, var(--gold-mid), var(--gold-deep));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
     }
 
     .side-bullets {
@@ -397,7 +413,7 @@
       font-size: 11px;
       color: #4b5563;
       margin-top: 4px;
-      background: rgba(255, 255, 255, 0.7);
+      background: rgba(255, 255, 255, 0.85);
     }
 
     .badge-dot {
@@ -406,8 +422,24 @@
       border-radius: 999px;
       background: linear-gradient(135deg, #facc15, #d97706);
     }
+
+    @media (max-width: 860px) {
+      body {
+        align-items: flex-start;
+      }
+      .page {
+        padding: 18px 14px 32px;
+      }
+      .layout {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .side-panel {
+        margin-top: 18px;
+      }
+    }
   </style>
 </head>
+
 <body>
   <div class="page">
     <div class="brand-mark">
@@ -415,105 +447,113 @@
       LIVE · GIFT CONCIERGE
     </div>
 
-    <div class="left">
-      <div class="sub-line">Beautifully considered gifting</div>
-      <h1 class="logo-word"><span>Gift</span> Lane</h1>
+    <div class="layout">
+      <div class="left">
+        <div class="sub-line">Beautifully considered gifting</div>
+        <h1 class="logo-word"><span>Gift</span> Lane</h1>
 
-      <p class="hero-line">
-        Beautifully considered gifting — made effortless.<br />
-        Tell me who the gift is for, the moment you’re celebrating, and your budget.
-        I’ll curate ideas that feel thoughtful, well-chosen, and genuinely right for them.
-      </p>
-
-      <div class="micro-copy">Start your request</div>
-
-      <div class="card">
-        <label class="field-label" for="recipient">Who is this for?</label>
-        <input
-          id="recipient"
-          class="input"
-          type="text"
-          placeholder="e.g. my sister, 32, new mum, loves spa days"
-        />
-
-        <div class="row">
-          <div>
-            <label class="field-label" for="occasion">Occasion</label>
-            <input
-              id="occasion"
-              class="input"
-              type="text"
-              placeholder="e.g. birthday, Christmas, baby shower"
-            />
-          </div>
-          <div>
-            <label class="field-label" for="budget">Budget (AUD)</label>
-            <input
-              id="budget"
-              class="input"
-              type="text"
-              placeholder="e.g. $80–$120"
-            />
-          </div>
-        </div>
-
-        <div class="button-row">
-          <button id="submit" class="btn-primary">
-            <span class="icon">✨</span>
-            Curate gifts
-          </button>
-          <div class="button-note">
-            No sign-up. No fuss. Just beautiful ideas you can shop anywhere.
-          </div>
-        </div>
-
-        <div class="results" id="results">
-          <h2>Suggestions</h2>
-          <div class="results-content results-empty">
-            Your personalised ideas will appear here in a few seconds.
-          </div>
-        </div>
-      </div>
-
-      <div class="about-block">
-        <div class="about-title">A little more about Gift Lane</div>
-        <p>No more tabs. No more maybes. No more scrolling until everything looks the same.</p>
-        <p>
-          Gift Lane brings together good taste, realistic options, and a sense of calm —
-          turning “I have no idea what to get” into “Oh… that’s perfect.”
+        <p class="hero-line">
+          Beautifully considered gifting — made effortless.<br />
+          Tell me who the gift is for, the moment you’re celebrating, and your budget.
+          I’ll curate ideas that feel thoughtful, well-chosen, and genuinely right for them.
         </p>
-        <p class="about-jude">Designed by Jude. Inspired by a busy mum.</p>
-        <p class="about-signoff">Chosen with intention.<br />— Jude</p>
+
+        <div class="micro-copy">Start your request</div>
+
+        <div class="card">
+          <label class="field-label" for="recipient">Who is this for?</label>
+          <input
+            id="recipient"
+            class="input"
+            type="text"
+            placeholder="e.g. my sister, 32, new mum, loves spa days"
+          />
+
+          <div class="row">
+            <div>
+              <label class="field-label" for="occasion">Occasion</label>
+              <input
+                id="occasion"
+                class="input"
+                type="text"
+                placeholder="e.g. birthday, Christmas, baby shower"
+              />
+            </div>
+            <div>
+              <label class="field-label" for="budget">Budget (AUD)</label>
+              <input
+                id="budget"
+                class="input"
+                type="text"
+                placeholder="e.g. $80–$120"
+              />
+            </div>
+          </div>
+
+          <div class="button-row">
+            <button id="submit" class="btn-primary">
+              <span class="icon">✨</span>
+              Curate gifts
+            </button>
+            <div class="button-note">
+              No sign-up. No fuss. Just beautiful ideas you can shop anywhere.
+            </div>
+          </div>
+
+          <div class="results" id="results">
+            <h2>Suggestions</h2>
+            <div class="results-content results-empty">
+              Your personalised ideas will appear here in a few seconds.
+            </div>
+          </div>
+        </div>
+
+        <div class="about-block">
+          <div class="about-title">A little more about Gift Lane</div>
+          <p>No more tabs. No more maybes. No more scrolling until everything looks the same.</p>
+          <p>
+            Gift Lane brings together good taste, realistic options, and a sense of calm —
+            turning “I have no idea what to get” into “Oh… that’s perfect.”
+          </p>
+          <p class="about-jude">
+            Designed by Jude. Inspired by a busy mum.
+          </p>
+          <p class="about-signoff">
+            Chosen with intention.<br />— Jude
+          </p>
+        </div>
       </div>
-    </div>
 
-    <div class="right">
-      <aside class="side-panel">
-        <div>
-          <div class="side-top-label">How Gift Lane works</div>
-          <div class="side-main-line">
-            Your calm gifting concierge — curated in minutes with ideas that feel
-            <strong>thoughtful and realistic</strong>.
+      <div class="right">
+        <aside class="side-panel">
+          <div>
+            <div class="side-top-label">How Gift Lane works</div>
+            <div class="side-main-line">
+              Your calm gifting concierge — curated in minutes with ideas that feel
+              <strong>thoughtful and realistic</strong>.
+            </div>
+            <ul class="side-bullets">
+              <li>Perfect for busy people who still care about giving something meaningful.</li>
+              <li>Every suggestion is shaped around the person, the occasion, and what feels right.</li>
+              <li>Built for Australian brands, budgets, and delivery expectations.</li>
+            </ul>
           </div>
-          <ul class="side-bullets">
-            <li>Perfect for busy people who still care about giving something meaningful.</li>
-            <li>Every suggestion is shaped around the person, the occasion, and what feels right.</li>
-            <li>Built for Australian brands, budgets, and delivery expectations.</li>
-          </ul>
-        </div>
 
-        <div class="side-footer">
-          <div class="side-tagline">Made for “I don’t know what to buy” moments</div>
-          <div class="side-note">
-            Think of Gift Lane as the friend who always chooses well — the one who makes gifting
-            feel easy, considered, and actually enjoyable.
+          <div class="side-footer">
+            <div class="side-tagline">
+              Made for “I don’t know what to buy” moments
+            </div>
+            <div class="side-note">
+              Think of Gift Lane as the friend who always chooses well —
+              the one who makes gifting feel easy, considered, and actually enjoyable.
+            </div>
+            <div class="badge-pill">
+              <span class="badge-dot"></span>
+              Works beautifully on mobile while you’re out living life.
+            </div>
           </div>
-          <div class="badge-pill">
-            <span class="badge-dot"></span>
-            Works beautifully on mobile while you’re out living life.
-          </div>
-        </div>
-      </aside>
+        </aside>
+      </div>
     </div>
   </div>
 
