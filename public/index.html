@@ -5,7 +5,7 @@
   <title>Gift Lane – Beautifully Considered Gifting</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- Luxe fonts -->
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -15,19 +15,17 @@
 
   <style>
     :root {
-      --navy-deep: #0B172E;
-      --navy-card: #0E1E3A;
-      --navy-soft: #152648;
+      --navy-bg: #07142b;
+      --navy-main: #102547;
+      --navy-soft: #1c345c;
+      --navy-card: #050b18;
 
-      --gold-strong: #D9B36C;   /* main rich gold (B) */
-      --gold-mid:    #F1D8A0;
-      --gold-bright: #FFE6AE;
+      --gold-light: #fff5dc;
+      --gold-mid:   #f6d58d;
+      --gold-deep:  #d9a446;
 
-      --text-main: #F8F6F2;
-      --text-muted: #B7C0D8;
-
-      --cream: #F7F3EB;
-      --cream-soft: #F5EFDD;
+      --text-main: #f9fafb;
+      --text-muted: #b9c3dd;
     }
 
     * {
@@ -37,13 +35,13 @@
     body {
       margin: 0;
       min-height: 100vh;
-      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont,
-        "SF Pro Text", "Segoe UI", sans-serif;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Segoe UI", sans-serif;
       color: var(--text-main);
       background:
-        radial-gradient(circle at top left, #2F4775 0, transparent 55%),
-        radial-gradient(circle at bottom right, #111827 0, transparent 55%),
-        var(--navy-deep);
+        radial-gradient(circle at top left, #223a65 0, transparent 55%),
+        radial-gradient(circle at bottom right, #09142a 0, transparent 55%),
+        var(--navy-bg);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -51,182 +49,175 @@
 
     .page {
       width: 100%;
-      max-width: 1120px;
-      padding: 24px 16px 32px;
+      max-width: 1100px;
+      padding: 20px 14px 32px;
     }
 
     .layout {
       display: grid;
-      grid-template-columns: minmax(0, 2.1fr) minmax(0, 1.4fr);
-      gap: 24px;
+      grid-template-columns: minmax(0, 2.2fr) minmax(0, 1.5fr);
+      gap: 22px;
     }
 
-    /* Top live bar */
+    /* Brand marker */
+
     .brand-mark {
       font-size: 11px;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--text-muted);
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
       margin-bottom: 10px;
     }
 
     .brand-dot {
-      width: 9px;
-      height: 9px;
+      width: 8px;
+      height: 8px;
       border-radius: 999px;
-      background: radial-gradient(circle at 30% 30%, #7affc3, #10b981);
-      box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.25);
+      background: radial-gradient(circle at 30% 30%, #7bf2b7, #16a34a);
+      box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.25);
     }
 
-    /* LEFT SIDE */
+    /* Left / hero */
 
     .left {
+      background:
+        radial-gradient(circle at top left, #243a68 0, #0c172d 45%, #050b18 100%);
+      border-radius: 26px;
+      padding: 24px 20px 20px;
+      box-shadow:
+        0 30px 80px rgba(0, 0, 0, 0.7),
+        0 0 0 1px rgba(255, 255, 255, 0.05);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .left::before {
+      /* very soft highlight across the top, NOT over the text */
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at top left, rgba(255, 255, 255, 0.08), transparent 55%);
+      pointer-events: none;
+    }
+
+    .left-inner {
       position: relative;
       z-index: 1;
     }
 
     .sub-line {
-      letter-spacing: 0.20em;
-      text-transform: uppercase;
       font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
       color: var(--text-muted);
-      margin-bottom: 6px;
+      margin-bottom: 8px;
     }
 
     .logo-word {
-      font-family: "Playfair Display", serif;
-      font-size: 42px; /* +~20% */
-      line-height: 1.1;
+      font-family: "Playfair Display", "Times New Roman", serif;
+      font-size: 34px;
       margin: 0 0 12px;
       letter-spacing: 0.03em;
     }
 
     .logo-word span {
-      /* High-gloss metallic gold (style 3) */
-      background:
-        linear-gradient(145deg,
-          #704a13 0%,
-          #d6ac5d 20%,
-          #ffe6ae 45%,
-          #d9b36c 65%,
-          #8c611f 100%);
+      background: linear-gradient(
+        130deg,
+        var(--gold-light) 0%,
+        var(--gold-mid) 32%,
+        var(--gold-deep) 68%,
+        var(--gold-light) 100%
+      );
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
       text-shadow:
-        0 0.5px 0 rgba(0, 0, 0, 0.5),
-        0 4px 10px rgba(0, 0, 0, 0.7);
+        0 0 10px rgba(0, 0, 0, 0.65),
+        0 3px 6px rgba(0, 0, 0, 0.8);
     }
 
     .hero-line {
-      margin: 0 0 20px;
+      margin: 0 0 18px;
       font-size: 15px;
       line-height: 1.6;
-      color: #dde3f3;
+      color: #e4e8f4;
       max-width: 36rem;
     }
 
     .micro-copy {
-      margin-top: 8px;
+      margin-top: 12px;
       font-size: 11px;
-      letter-spacing: 0.16em;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--text-muted);
     }
 
-    /* HERO CARD */
+    /* Card + inputs */
 
     .card {
       margin-top: 10px;
-      border-radius: 28px;
       background:
-        radial-gradient(circle at top left, #324972 0, #111a30 45%, #050a16 100%);
+        radial-gradient(circle at top left, #111b34 0, #050a17 70%);
+      border-radius: 22px;
+      padding: 16px 14px 14px;
       box-shadow:
-        0 32px 80px rgba(0, 0, 0, 0.75),
-        0 0 0 1px rgba(255, 255, 255, 0.04);
-      padding: 18px 18px 16px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .card::before {
-      content: "";
-      position: absolute;
-      inset: -35%;
-      background:
-        radial-gradient(circle at top, rgba(255, 219, 164, 0.19), transparent 60%),
-        radial-gradient(circle at bottom right, rgba(0, 0, 0, 0.9), transparent 60%);
-      mix-blend-mode: screen;
-      opacity: 0.9;
-      pointer-events: none;
-    }
-
-    .card-inner {
-      position: relative;
-      z-index: 1;
+        0 22px 55px rgba(0, 0, 0, 0.9),
+        0 0 0 1px rgba(148, 163, 184, 0.24);
     }
 
     .field-label {
       display: block;
       font-size: 11px;
-      letter-spacing: 0.16em;
+      letter-spacing: 0.13em;
       text-transform: uppercase;
       color: var(--text-muted);
-      margin-bottom: 5px;
+      margin-bottom: 6px;
     }
 
     .input {
       width: 100%;
       border-radius: 999px;
-      border: 1px solid rgba(217, 179, 108, 0.65);
-      padding: 11px 15px;
+      border: 1px solid rgba(247, 222, 155, 0.9);
+      background:
+        radial-gradient(circle at top left, #1a2b52 0, #101a33 55%, #071024 100%);
+      padding: 11px 14px;
       font-size: 14px;
       color: var(--text-main);
-
-      background:
-        radial-gradient(circle at 20% 0, rgba(255, 248, 220, 0.05), transparent 55%),
-        linear-gradient(135deg, #050a17, #0f1e38);
-      box-shadow:
-        0 0 0 1px rgba(15, 23, 42, 0.7),
-        0 10px 28px rgba(0, 0, 0, 0.9);
       outline: none;
-      transition:
-        border-color 0.14s ease,
-        box-shadow 0.14s ease,
-        background 0.14s ease;
+      box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.9),
+        0 0 0 1px rgba(0, 0, 0, 0.35);
     }
 
     .input::placeholder {
-      color: #8f9abc;
+      color: #93a0c0;
     }
 
     .input:focus {
-      border-color: var(--gold-bright);
+      border-color: #ffe9b0;
       box-shadow:
-        0 0 0 1px rgba(255, 230, 174, 0.9),
-        0 14px 34px rgba(0, 0, 0, 1);
-      background:
-        radial-gradient(circle at 0 0, rgba(255, 246, 209, 0.10), transparent 60%),
-        linear-gradient(135deg, #080f23, #132446);
+        0 0 0 1px rgba(255, 233, 176, 0.9),
+        0 14px 30px rgba(0, 0, 0, 0.95);
     }
 
     .row {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
       gap: 10px;
       margin-top: 10px;
     }
 
-    /* BUTTON */
+    /* Button */
 
     .button-row {
       display: flex;
       align-items: center;
-      gap: 14px;
-      margin-top: 12px;
+      gap: 12px;
+      margin-top: 14px;
       margin-bottom: 2px;
       flex-wrap: wrap;
     }
@@ -238,23 +229,24 @@
       border-radius: 999px;
       padding: 11px 26px;
       font-size: 13px;
-      letter-spacing: 0.16em;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
       font-weight: 600;
-      background:
-        radial-gradient(circle at 15% 0, #fff6d5 0, #f4dd9b 30%, #d9b36c 70%, #a6742d 100%);
-      color: #111827;
+      background: radial-gradient(
+        circle at top left,
+        #fff4cf 0%,
+        #f5cf7c 40%,
+        #d0932f 100%
+      );
+      color: #1f1305;
       box-shadow:
-        0 18px 40px rgba(0, 0, 0, 0.85),
-        0 0 0 1px rgba(255, 255, 255, 0.25);
+        0 20px 40px rgba(0, 0, 0, 0.9),
+        0 0 0 1px rgba(255, 247, 209, 0.6);
       display: inline-flex;
       align-items: center;
       gap: 8px;
       white-space: nowrap;
-      transition:
-        transform 0.14s ease,
-        box-shadow 0.14s ease,
-        filter 0.14s ease;
+      transition: transform 0.14s ease, box-shadow 0.14s ease, filter 0.14s ease;
     }
 
     .btn-primary span.icon {
@@ -271,41 +263,40 @@
 
     .btn-primary:hover {
       transform: translateY(-1px);
-      filter: brightness(1.04);
+      filter: brightness(1.03);
       box-shadow:
-        0 22px 50px rgba(0, 0, 0, 0.95),
-        0 0 0 1px rgba(255, 255, 255, 0.3);
+        0 22px 46px rgba(0, 0, 0, 1),
+        0 0 0 1px rgba(255, 249, 214, 0.9);
     }
 
     .btn-primary:active {
       transform: translateY(0);
       box-shadow:
-        0 14px 35px rgba(0, 0, 0, 0.9),
-        0 0 0 1px rgba(255, 255, 255, 0.3);
+        0 14px 34px rgba(0, 0, 0, 0.9),
+        0 0 0 1px rgba(255, 249, 214, 0.9);
     }
 
     .button-note {
       font-size: 11px;
       color: var(--text-muted);
-      max-width: 220px;
+      max-width: 210px;
     }
 
-    /* RESULTS */
+    /* Results */
 
     .results {
       margin-top: 16px;
-      max-height: 260px;
-      overflow: auto;
-      padding-right: 4px;
+      padding-top: 10px;
+      border-top: 1px solid rgba(148, 163, 184, 0.4);
       font-size: 14px;
       line-height: 1.6;
       color: var(--text-main);
-      border-top: 1px solid rgba(148, 163, 184, 0.35);
-      padding-top: 10px;
+      max-height: 260px;
+      overflow-y: auto;
     }
 
     .results h2 {
-      font-size: 13px;
+      font-size: 12px;
       letter-spacing: 0.16em;
       text-transform: uppercase;
       color: var(--text-muted);
@@ -320,67 +311,26 @@
       color: #9ca3af;
     }
 
-    /* ABOUT BLOCK */
-
-    .about-block {
-      margin-top: 24px;
-      max-width: 540px;
-      font-size: 14px;
-      line-height: 1.7;
-      color: var(--text-main);
-    }
-
-    .about-title {
-      font-size: 12px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      margin-bottom: 8px;
-    }
-
-    .about-block p {
-      margin: 0 0 10px;
-      color: #e5e7eb;
-    }
-
-    .about-jude {
-      margin-top: 10px;
-      font-size: 13px;
-      color: #f1ead7;
-    }
-
-    .about-signoff {
-      margin-top: 4px;
-      font-size: 13px;
-      color: #f1ead7;
-    }
-
-    /* RIGHT SIDE – EXPLAINER PANEL */
+    /* Right / explainer */
 
     .right {
-      position: relative;
-      z-index: 1;
       display: flex;
       align-items: stretch;
-      justify-content: center;
     }
 
     .side-panel {
       width: 100%;
-      max-width: 340px;
       border-radius: 24px;
       background:
-        linear-gradient(135deg, rgba(249, 250, 251, 0.12), transparent 40%),
-        radial-gradient(circle at top, rgba(250, 250, 249, 0.5), transparent 60%),
-        var(--cream);
+        linear-gradient(135deg, #f8f5ee, #f2eadc);
       box-shadow:
-        0 22px 50px rgba(3, 9, 28, 0.7),
-        0 0 0 1px rgba(12, 21, 45, 0.1);
-      padding: 20px 20px 16px;
+        0 22px 60px rgba(3, 9, 28, 0.75),
+        0 0 0 1px rgba(15, 23, 42, 0.12);
+      padding: 20px 18px 16px;
+      color: #111827;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      color: #111827;
       position: relative;
       overflow: hidden;
     }
@@ -389,9 +339,14 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: radial-gradient(circle at top left, rgba(217, 179, 93, 0.18), transparent 55%);
+      background: radial-gradient(circle at top left, rgba(217, 179, 93, 0.2), transparent 60%);
       mix-blend-mode: soft-light;
       pointer-events: none;
+    }
+
+    .side-inner {
+      position: relative;
+      z-index: 1;
     }
 
     .side-top-label {
@@ -410,7 +365,7 @@
     }
 
     .side-main-line strong {
-      background: linear-gradient(135deg, #b88932, #d19f3e);
+      background: linear-gradient(135deg, #b88932, #d3a644);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
@@ -418,7 +373,7 @@
 
     .side-bullets {
       font-size: 13px;
-      color: #4b5563;
+      color: #374151;
       margin: 0 0 12px;
       padding-left: 18px;
     }
@@ -428,8 +383,11 @@
     }
 
     .side-footer {
-      border-top: 1px solid rgba(148, 163, 184, 0.45);
+      position: relative;
+      z-index: 1;
+      border-top: 1px solid rgba(148, 163, 184, 0.5);
       padding-top: 10px;
+      margin-top: 8px;
       display: flex;
       flex-direction: column;
       gap: 4px;
@@ -437,8 +395,8 @@
 
     .side-tagline {
       font-size: 11px;
-      text-transform: uppercase;
       letter-spacing: 0.18em;
+      text-transform: uppercase;
       color: #6b7280;
     }
 
@@ -452,12 +410,12 @@
       align-items: center;
       gap: 6px;
       border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.6);
-      padding: 4px 10px;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      padding: 5px 10px;
       font-size: 11px;
       color: #4b5563;
       margin-top: 4px;
-      background: linear-gradient(135deg, var(--cream-soft), #ffffff);
+      background: rgba(255, 255, 255, 0.8);
     }
 
     .badge-dot {
@@ -467,27 +425,29 @@
       background: linear-gradient(135deg, #facc15, #d97706);
     }
 
-    /* RESPONSIVE */
+    /* About line under card */
+
+    .about-line {
+      margin-top: 18px;
+      font-size: 13px;
+      color: #e5e7eb;
+    }
+
+    .about-line span {
+      display: block;
+      margin-top: 4px;
+      font-size: 13px;
+    }
 
     @media (max-width: 860px) {
       body {
         align-items: flex-start;
       }
-
-      .page {
-        padding: 18px 14px 32px;
-      }
-
       .layout {
         grid-template-columns: minmax(0, 1fr);
       }
-
       .right {
         margin-top: 18px;
-      }
-
-      .logo-word {
-        font-size: 34px;
       }
     }
   </style>
@@ -501,21 +461,19 @@
     </div>
 
     <div class="layout">
-      <!-- LEFT SIDE -->
-      <div class="left">
-        <div class="sub-line">Beautifully considered gifting</div>
-        <h1 class="logo-word"><span>Gift Lane</span></h1>
+      <!-- LEFT -->
+      <section class="left">
+        <div class="left-inner">
+          <div class="sub-line">Beautifully considered gifting</div>
+          <h1 class="logo-word"><span>Gift Lane</span></h1>
 
-        <p class="hero-line">
-          Beautifully considered gifting — made effortless.<br />
-          Tell me who the gift is for, the moment you’re celebrating, and your budget.
-          I’ll curate ideas that feel thoughtful, well-chosen, and genuinely right for them.
-        </p>
+          <p class="hero-line">
+            Beautifully considered gifting — made effortless. Tell me who the gift is for, the moment you’re celebrating, and your budget. I’ll curate ideas that feel thoughtful, well-chosen, and genuinely right for them.
+          </p>
 
-        <div class="micro-copy">Start your request</div>
+          <div class="micro-copy">Start your request</div>
 
-        <div class="card">
-          <div class="card-inner">
+          <div class="card">
             <label class="field-label" for="recipient">Who is this for?</label>
             <input
               id="recipient"
@@ -562,28 +520,18 @@
               </div>
             </div>
           </div>
-        </div>
 
-        <div class="about-block">
-          <div class="about-title">A little more about Gift Lane</div>
-          <p>No more tabs. No more maybes. No more scrolling until everything looks the same.</p>
-          <p>
-            Gift Lane brings together good taste, realistic options, and a sense of calm —
-            turning “I have no idea what to get” into “Oh… that’s perfect.”
-          </p>
-          <p class="about-jude">
+          <p class="about-line">
             Designed by Jude. Inspired by a busy mum.
-          </p>
-          <p class="about-signoff">
-            Chosen with intention.<br />— Jude
+            <span>Chosen with intention.</span>
           </p>
         </div>
-      </div>
+      </section>
 
-      <!-- RIGHT SIDE -->
-      <div class="right">
-        <aside class="side-panel">
-          <div>
+      <!-- RIGHT -->
+      <aside class="right">
+        <div class="side-panel">
+          <div class="side-inner">
             <div class="side-top-label">How Gift Lane works</div>
             <div class="side-main-line">
               Your calm gifting concierge — curated in minutes with ideas that feel
@@ -601,16 +549,15 @@
               Made for “I don’t know what to buy” moments
             </div>
             <div class="side-note">
-              Think of Gift Lane as the friend who always chooses well —
-              the one who makes gifting feel easy, considered, and actually enjoyable.
+              Think of Gift Lane as the friend who always chooses well — the one who makes gifting feel easy, considered, and actually enjoyable.
             </div>
             <div class="badge-pill">
               <span class="badge-dot"></span>
               Works beautifully on mobile while you’re out living life.
             </div>
           </div>
-        </aside>
-      </div>
+        </div>
+      </aside>
     </div>
   </div>
 
@@ -643,12 +590,10 @@
         const response = await fetch("https://gift-concierge-hub.onrender.com/curate", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ demographic, occasion, budget }),
+          body: JSON.stringify({ demographic, occasion, budget })
         });
 
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
+        if (!response.ok) throw new Error("Network response was not ok");
 
         const data = await response.json();
         const text =
