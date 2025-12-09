@@ -12,76 +12,6 @@
     href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@300;400;500&display=swap"
     rel="stylesheet"
   />
-/* === GIFT LANE TITLE OVERRIDES === */
-.logo-word {
-  font-family: "Playfair Display", "Times New Roman", serif;
-  font-size: clamp(42px, 8vw, 54px);
-  margin: 0 0 18px;
-  letter-spacing: 0.04em;
-}
-
-.logo-word span {
-  background: linear-gradient(
-    120deg,
-    #fff6dd 0%,
-    #f9dc96 30%,
-    #e2aa4f 65%,
-    #fff3cf 100%
-  );
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  text-shadow:
-    0 2px 4px rgba(0, 0, 0, 0.55),
-    0 0 12px rgba(0, 0, 0, 0.75);
-}
-
-/* === INPUT OVERRIDES === */
-.card {
-  background: radial-gradient(circle at top left, #152447 0, #050915 75%);
-  box-shadow:
-    0 24px 60px rgba(0, 0, 0, 0.95),
-    0 0 0 1px rgba(148, 163, 184, 0.4);
-}
-
-.input {
-  border: 1px solid rgba(247, 222, 155, 0.95);
-  background: radial-gradient(circle at top left, #223461 0, #111a33 60%);
-  box-shadow:
-    0 12px 28px rgba(0, 0, 0, 0.95),
-    0 0 0 1px rgba(0, 0, 0, 0.35);
-}
-
-.input:focus {
-  border-color: #ffe9b0;
-  box-shadow:
-    0 0 0 1px rgba(255, 233, 176, 0.95),
-    0 16px 34px rgba(0, 0, 0, 1);
-}
-
-/* Mobile boost */
-@media (max-width: 600px) {
-  .logo-word {
-  font-family: "Playfair Display", serif;
-  font-size: 64px;            /* BIGGER + FEMININE */
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  margin: 0 0 12px;
-  line-height: 1.1;
-  text-shadow:
-    0 3px 6px rgba(0, 0, 0, 0.55),
-    0 12px 22px rgba(0, 0, 0, 0.75);
-}
-
-.logo-word span {
-  background: linear-gradient(135deg, var(--gold-light), var(--gold-mid), var(--gold-deep));
-  -webkit-background-clip: text;
-  color: transparent;
-  filter: drop-shadow(0 0 6px rgba(255, 228, 160, 0.45));
-}
-
-  }
-}
 
   <style>
     :root {
@@ -187,27 +117,30 @@
       margin-bottom: 8px;
     }
 
+    /* GIFT LANE TITLE – LUXE GOLD */
+
     .logo-word {
       font-family: "Playfair Display", "Times New Roman", serif;
-      font-size: 34px;
-      margin: 0 0 12px;
-      letter-spacing: 0.03em;
+      font-size: clamp(42px, 6vw, 64px);
+      margin: 0 0 16px;
+      letter-spacing: 0.05em;
+      line-height: 1.1;
     }
 
     .logo-word span {
       background: linear-gradient(
-        130deg,
-        var(--gold-light) 0%,
-        var(--gold-mid) 32%,
-        var(--gold-deep) 68%,
-        var(--gold-light) 100%
+        120deg,
+        #fff6dd 0%,
+        #f9dc96 30%,
+        #e2aa4f 65%,
+        #fff3cf 100%
       );
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
       text-shadow:
-        0 0 10px rgba(0, 0, 0, 0.65),
-        0 3px 6px rgba(0, 0, 0, 0.8);
+        0 3px 6px rgba(0, 0, 0, 0.55),
+        0 12px 22px rgba(0, 0, 0, 0.75);
     }
 
     .hero-line {
@@ -251,15 +184,15 @@
     .input {
       width: 100%;
       border-radius: 999px;
-      border: 1px solid rgba(247, 222, 155, 0.9);
+      border: 1px solid rgba(247, 222, 155, 0.95);
       background:
-        radial-gradient(circle at top left, #1a2b52 0, #101a33 55%, #071024 100%);
+        radial-gradient(circle at top left, #223461 0, #111a33 60%);
       padding: 11px 14px;
       font-size: 14px;
       color: var(--text-main);
       outline: none;
       box-shadow:
-        0 10px 25px rgba(0, 0, 0, 0.9),
+        0 12px 28px rgba(0, 0, 0, 0.95),
         0 0 0 1px rgba(0, 0, 0, 0.35);
     }
 
@@ -270,8 +203,8 @@
     .input:focus {
       border-color: #ffe9b0;
       box-shadow:
-        0 0 0 1px rgba(255, 233, 176, 0.9),
-        0 14px 30px rgba(0, 0, 0, 0.95);
+        0 0 0 1px rgba(255, 233, 176, 0.95),
+        0 16px 34px rgba(0, 0, 0, 1);
     }
 
     .row {
@@ -509,6 +442,8 @@
       font-size: 13px;
     }
 
+    /* Mobile tweaks */
+
     @media (max-width: 860px) {
       body {
         align-items: flex-start;
@@ -518,6 +453,13 @@
       }
       .right {
         margin-top: 18px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .logo-word {
+        font-size: 56px;
+        letter-spacing: 0.06em;
       }
     }
   </style>
