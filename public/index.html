@@ -6,8 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
     href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@300;400;500&display=swap"
     rel="stylesheet"
@@ -15,15 +15,11 @@
 
   <style>
     :root {
-      --navy-deep: #0F2241;      /* main navy */
-      --navy-soft: #1B315A;      /* lighter navy */
-      --navy-dark: #060e20;      /* shadow navy */
-      --cream: #F7F3EB;          /* card background */
-      --cream-soft: #F5EFDD;
-      --gold: #D9B36C;           /* rich gold */
-      --gold-soft: #F2D9A0;
-      --text-main: #F8F6F2;
-      --text-muted: #B7C0D8;
+      --navy-deep: #08152e;
+      --navy-soft: #132749;
+      --gold: #d9b36c;
+      --text-main: #f8f6f2;
+      --text-muted: #b7c0d8;
     }
 
     * {
@@ -33,7 +29,7 @@
     body {
       margin: 0;
       min-height: 100vh;
-      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont,
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
         "Segoe UI", sans-serif;
       color: var(--text-main);
       background:
@@ -43,30 +39,38 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 16px;
     }
 
     .page {
       width: 100%;
-      max-width: 1100px;
-      margin: 0 auto;
+      max-width: 1120px;
+      padding: 24px 16px;
       display: grid;
-      grid-template-columns: minmax(0, 1.7fr) minmax(0, 1.3fr);
-      gap: 28px;
-      align-items: flex-start;
+      grid-template-columns: minmax(0, 2fr) minmax(0, 1.3fr);
+      gap: 24px;
     }
 
-    /* Brand mark top-left */
+    @media (max-width: 860px) {
+      body {
+        align-items: flex-start;
+      }
+      .page {
+        grid-template-columns: minmax(0, 1fr);
+        padding: 18px 14px 32px;
+      }
+    }
+
+    /* Brand mark */
     .brand-mark {
       grid-column: 1 / -1;
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-muted);
       display: flex;
       align-items: center;
       gap: 8px;
-      font-size: 11px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      margin-bottom: 6px;
+      margin-bottom: 10px;
     }
 
     .brand-dot {
@@ -74,93 +78,88 @@
       height: 8px;
       border-radius: 999px;
       background: radial-gradient(circle at 30% 30%, #7affc3, #10b981);
-      box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.25);
+      box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
     }
-
-    /* Left column -------------------------------------------------------- */
 
     .left {
-      background: radial-gradient(circle at top left, #324972 0, #15243F 40%, #0C162B 100%);
-      border-radius: 28px;
-      padding: 26px 22px 22px;
-      box-shadow:
-        0 32px 80px rgba(0, 0, 0, 0.7),
-        0 0 0 1px rgba(255, 255, 255, 0.06);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .left::before {
-      content: "";
-      position: absolute;
-      inset: -40%;
-      background:
-        radial-gradient(circle at top, rgba(255, 215, 160, 0.16), transparent 55%),
-        radial-gradient(circle at bottom right, rgba(3, 8, 20, 0.9), transparent 60%);
-      mix-blend-mode: screen;
-      pointer-events: none;
-      opacity: 0.9;
-    }
-
-    .left > * {
       position: relative;
       z-index: 1;
     }
 
     .sub-line {
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
       font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
       color: var(--text-muted);
-      margin-bottom: 6px;
+      margin-bottom: 4px;
     }
 
+    /* LUXE GOLD LOGO */
     .logo-word {
       font-family: "Playfair Display", serif;
-      font-size: 34px;
-      line-height: 1.1;
-      margin: 0 0 10px;
-      letter-spacing: 0.02em;
+      font-size: 40px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: none;
+      margin: 0 0 8px;
+
+      background: linear-gradient(
+        135deg,
+        #fff4d9 0%,
+        #f4da9b 22%,
+        #e0b862 50%,
+        #c8963a 75%,
+        #f7e7be 100%
+      );
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+
+      text-shadow:
+        0 2px 6px rgba(0, 0, 0, 0.55),
+        0 0 14px rgba(255, 230, 180, 0.45);
     }
 
     .logo-word span {
-      background: linear-gradient(135deg, var(--gold-soft), var(--gold));
-      -webkit-background-clip: text;
-      color: transparent;
+      background: inherit;
+      -webkit-background-clip: inherit;
+      background-clip: inherit;
+      color: inherit;
     }
 
     .hero-line {
-      margin: 0 0 18px;
+      margin: 4px 0 18px;
       font-size: 15px;
-      line-height: 1.6;
+      line-height: 1.5;
       color: #d7dde9;
       max-width: 36rem;
     }
 
     .micro-copy {
-      margin-top: 6px;
-      margin-bottom: 8px;
+      margin-top: 12px;
       font-size: 11px;
-      letter-spacing: 0.16em;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--text-muted);
     }
 
     .card {
-      border-radius: 20px;
-      background: radial-gradient(circle at top left, rgba(46, 72, 120, 0.9), rgba(4, 9, 22, 0.98));
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      margin-top: 10px;
+      border-radius: 22px;
+      background: radial-gradient(circle at top left, #324972, #0b1326);
       padding: 16px 16px 14px;
-      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.75);
+      box-shadow:
+        0 24px 60px rgba(0, 0, 0, 0.85),
+        0 0 0 1px rgba(255, 255, 255, 0.06);
     }
 
     .field-label {
       display: block;
       font-size: 11px;
-      letter-spacing: 0.14em;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--text-muted);
-      margin-bottom: 4px;
+      margin-bottom: 5px;
     }
 
     .input {
@@ -172,7 +171,6 @@
       font-size: 14px;
       color: var(--text-main);
       outline: none;
-      margin-bottom: 10px;
     }
 
     .input::placeholder {
@@ -186,16 +184,22 @@
 
     .row {
       display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
       gap: 10px;
+      margin-top: 10px;
+    }
+
+    @media (max-width: 640px) {
+      .row {
+        grid-template-columns: minmax(0, 1fr);
+      }
     }
 
     .button-row {
       display: flex;
       align-items: center;
-      gap: 12px;
-      margin-top: 6px;
-      margin-bottom: 2px;
+      gap: 10px;
+      margin-top: 10px;
       flex-wrap: wrap;
     }
 
@@ -206,22 +210,22 @@
       border-radius: 999px;
       padding: 10px 24px;
       font-size: 13px;
-      letter-spacing: 0.16em;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
       font-weight: 600;
       background: radial-gradient(circle at top left, #ffe5a8 0, #e3b968 40%, #c48a32 100%);
       color: #31220b;
       box-shadow:
-        0 14px 32px rgba(0, 0, 0, 0.8),
-        0 0 0 1px rgba(255, 255, 255, 0.3);
+        0 16px 35px rgba(0, 0, 0, 0.7),
+        0 0 0 1px rgba(255, 255, 255, 0.25);
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      transition: transform 0.14s ease, box-shadow 0.14s ease, filter 0.14s ease;
       white-space: nowrap;
+      transition: transform 0.14s ease, box-shadow 0.14s ease, filter 0.14s ease;
     }
 
-    .btn-primary .icon {
+    .btn-primary span.icon {
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -236,32 +240,34 @@
     .btn-primary:hover {
       transform: translateY(-1px);
       filter: brightness(1.03);
-      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.9);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.85);
     }
 
     .btn-primary:active {
       transform: translateY(0);
-      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.85);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.8);
     }
 
     .button-note {
       font-size: 11px;
-      color: #A8B3CF;
+      color: var(--text-muted);
       max-width: 220px;
     }
 
     .results {
-      margin-top: 18px;
+      margin-top: 16px;
       max-height: 260px;
       overflow: auto;
       padding-right: 4px;
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--text-main);
       border-top: 1px solid rgba(148, 163, 184, 0.3);
       padding-top: 10px;
-      font-size: 13px;
     }
 
     .results h2 {
-      font-size: 11px;
+      font-size: 13px;
       letter-spacing: 0.16em;
       text-transform: uppercase;
       color: var(--text-muted);
@@ -270,10 +276,10 @@
 
     .results-content {
       white-space: pre-line;
-      color: var(--text-main);
     }
 
     .results-empty {
+      font-size: 13px;
       color: #9ca3af;
     }
 
@@ -286,7 +292,7 @@
     }
 
     .about-title {
-      font-size: 11px;
+      font-size: 13px;
       letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--text-muted);
@@ -294,23 +300,19 @@
     }
 
     .about-block p {
-      margin: 0 0 8px;
+      margin: 0 0 10px;
       color: #e5e7eb;
     }
 
     .about-jude {
-      margin-top: 10px;
+      margin-top: 12px;
       font-size: 13px;
-      color: #f5f5f5;
     }
 
     .about-signoff {
       margin-top: 4px;
       font-size: 13px;
-      color: #f5f5f5;
     }
-
-    /* Right column ------------------------------------------------------- */
 
     .right {
       display: flex;
@@ -320,13 +322,12 @@
 
     .side-panel {
       width: 100%;
-      max-width: 340px;
+      max-width: 360px;
       border-radius: 24px;
       background:
-        linear-gradient(135deg, rgba(249, 250, 251, 0.16), transparent 35%),
-        radial-gradient(circle at top, rgba(250, 250, 249, 0.6), transparent 55%),
-        var(--cream);
-      box-shadow: 0 22px 50px rgba(3, 9, 28, 0.7);
+        linear-gradient(135deg, rgba(249, 250, 251, 0.18), transparent 35%),
+        #f7f3eb;
+      box-shadow: 0 22px 50px rgba(0, 0, 0, 0.65);
       padding: 18px 18px 16px;
       display: flex;
       flex-direction: column;
@@ -334,20 +335,6 @@
       color: #111827;
       position: relative;
       overflow: hidden;
-    }
-
-    .side-panel::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at top left, rgba(217, 179, 93, 0.22), transparent 55%);
-      mix-blend-mode: soft-light;
-      pointer-events: none;
-    }
-
-    .side-panel > * {
-      position: relative;
-      z-index: 1;
     }
 
     .side-top-label {
@@ -366,10 +353,7 @@
     }
 
     .side-main-line strong {
-      background: linear-gradient(135deg, #b88932, #d19f3e);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
+      color: #b88932;
     }
 
     .side-bullets {
@@ -413,7 +397,7 @@
       font-size: 11px;
       color: #4b5563;
       margin-top: 4px;
-      background: rgba(255, 255, 255, 0.85);
+      background: rgba(255, 255, 255, 0.7);
     }
 
     .badge-dot {
@@ -422,30 +406,8 @@
       border-radius: 999px;
       background: linear-gradient(135deg, #facc15, #d97706);
     }
-
-    /* Responsive --------------------------------------------------------- */
-
-    @media (max-width: 900px) {
-      body {
-        padding: 12px;
-        align-items: flex-start;
-      }
-
-      .page {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
-      .brand-mark {
-        margin-bottom: 10px;
-      }
-
-      .right {
-        margin-top: 16px;
-      }
-    }
   </style>
 </head>
-
 <body>
   <div class="page">
     <div class="brand-mark">
@@ -515,19 +477,13 @@
 
       <div class="about-block">
         <div class="about-title">A little more about Gift Lane</div>
-        <p>
-          No more tabs. No more maybes. No more scrolling until everything looks the same.
-        </p>
+        <p>No more tabs. No more maybes. No more scrolling until everything looks the same.</p>
         <p>
           Gift Lane brings together good taste, realistic options, and a sense of calm —
           turning “I have no idea what to get” into “Oh… that’s perfect.”
         </p>
-        <p class="about-jude">
-          Designed by Jude. Inspired by a busy mum.
-        </p>
-        <p class="about-signoff">
-          Chosen with intention.<br />— Jude
-        </p>
+        <p class="about-jude">Designed by Jude. Inspired by a busy mum.</p>
+        <p class="about-signoff">Chosen with intention.<br />— Jude</p>
       </div>
     </div>
 
@@ -547,12 +503,10 @@
         </div>
 
         <div class="side-footer">
-          <div class="side-tagline">
-            Made for “I don’t know what to buy” moments
-          </div>
+          <div class="side-tagline">Made for “I don’t know what to buy” moments</div>
           <div class="side-note">
-            Think of Gift Lane as the friend who always chooses well —
-            the one who makes gifting feel easy, considered, and actually enjoyable.
+            Think of Gift Lane as the friend who always chooses well — the one who makes gifting
+            feel easy, considered, and actually enjoyable.
           </div>
           <div class="badge-pill">
             <span class="badge-dot"></span>
