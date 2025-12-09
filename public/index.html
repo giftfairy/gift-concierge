@@ -1,4 +1,19 @@
-<style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Gift Lane – Beautifully Considered Gifting</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Fonts for luxe vibes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@300;400;500&display=swap"
+    rel="stylesheet"
+  />
+
+  <<style>
   :root {
     --navy-deep: #0F2241;      /* main navy */
     --navy-soft: #1B315A;      /* lighter navy */
@@ -363,3 +378,407 @@
     }
   }
 </style>
+;
+      }
+    }
+
+    .button-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 6px;
+      margin-bottom: 2px;
+    }
+
+    .btn-primary {
+      border: none;
+      outline: none;
+      cursor: pointer;
+      border-radius: 999px;
+      padding: 10px 22px;
+      font-size: 13px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-weight: 500;
+      background: linear-gradient(135deg, var(--gold-strong), #f7e0a6);
+      color: #111827;
+      box-shadow: 0 16px 35px rgba(0, 0, 0, 0.7);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: transform 0.14s ease, box-shadow 0.14s ease, filter 0.14s ease;
+      white-space: nowrap;
+    }
+
+    .btn-primary span.icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 18px;
+      height: 18px;
+      border-radius: 999px;
+      background: #111827;
+      color: #fef9c3;
+      font-size: 11px;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.03);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.85);
+    }
+
+    .btn-primary:active {
+      transform: translateY(0);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.8);
+    }
+
+    .button-note {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .results {
+      margin-top: 18px;
+      max-height: 260px;
+      overflow: auto;
+      padding-right: 4px;
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--text-main);
+      border-top: 1px solid rgba(148, 163, 184, 0.3);
+      padding-top: 12px;
+    }
+
+    .results h2 {
+      font-size: 13px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin: 0 0 6px;
+    }
+
+    .results-content {
+      white-space: pre-line;
+    }
+
+    .results-empty {
+      font-size: 13px;
+      color: #9ca3af;
+    }
+
+    .about-block {
+      margin-top: 26px;
+      max-width: 520px;
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--text-main);
+    }
+
+    .about-title {
+      font-size: 13px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .about-block p {
+      margin: 0 0 10px;
+      color: #e5e7eb;
+    }
+
+    .about-jude {
+      margin-top: 12px;
+      font-size: 13px;
+      color: #e5e7eb;
+    }
+
+    .about-signoff {
+      margin-top: 4px;
+      font-size: 13px;
+      color: #e5e7eb;
+    }
+
+    .right {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: stretch;
+      justify-content: center;
+    }
+
+    .side-panel {
+      width: 100%;
+      max-width: 340px;
+      border-radius: 22px;
+      background:
+        linear-gradient(135deg, rgba(249, 250, 251, 0.12), transparent 35%),
+        radial-gradient(circle at top, rgba(250, 250, 249, 0.4), transparent 55%),
+        var(--marble);
+      box-shadow: 0 22px 50px rgba(0, 0, 0, 0.65);
+      padding: 18px 18px 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      color: #111827;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .side-panel::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top left, rgba(217, 179, 93, 0.18), transparent 55%);
+      mix-blend-mode: soft-light;
+      pointer-events: none;
+    }
+
+    .side-top-label {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #6b7280;
+      margin-bottom: 10px;
+    }
+
+    .side-main-line {
+      font-family: "Playfair Display", serif;
+      font-size: 19px;
+      line-height: 1.35;
+      margin-bottom: 10px;
+    }
+
+    .side-main-line strong {
+      background: linear-gradient(135deg, #b88932, #d19f3e);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .side-bullets {
+      font-size: 13px;
+      color: #4b5563;
+      margin: 0 0 12px;
+      padding-left: 18px;
+    }
+
+    .side-bullets li + li {
+      margin-top: 4px;
+    }
+
+    .side-footer {
+      border-top: 1px solid rgba(148, 163, 184, 0.4);
+      padding-top: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .side-tagline {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: #6b7280;
+    }
+
+    .side-note {
+      font-size: 12px;
+      color: #4b5563;
+    }
+
+    .badge-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      padding: 4px 10px;
+      font-size: 11px;
+      color: #4b5563;
+      margin-top: 4px;
+      background: rgba(255, 255, 255, 0.7);
+    }
+
+    .badge-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #facc15, #d97706);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <div class="brand-mark">
+      <span class="brand-dot"></span>
+      LIVE · GIFT CONCIERGE
+    </div>
+
+    <div class="left">
+      <div class="sub-line">Beautifully considered gifting</div>
+      <h1 class="logo-word"><span>Gift</span> Lane</h1>
+
+      <p class="hero-line">
+        Beautifully considered gifting — made effortless.<br />
+        Tell me who the gift is for, the moment you’re celebrating, and your budget.
+        I’ll curate ideas that feel thoughtful, well-chosen, and genuinely right for them.
+      </p>
+
+      <div class="micro-copy">Start your request</div>
+
+      <div class="card">
+        <label class="field-label" for="recipient">Who is this for?</label>
+        <input
+          id="recipient"
+          class="input"
+          type="text"
+          placeholder="e.g. my sister, 32, new mum, loves spa days"
+        />
+
+        <div class="row">
+          <div>
+            <label class="field-label" for="occasion">Occasion</label>
+            <input
+              id="occasion"
+              class="input"
+              type="text"
+              placeholder="e.g. birthday, Christmas, baby shower"
+            />
+          </div>
+          <div>
+            <label class="field-label" for="budget">Budget (AUD)</label>
+            <input
+              id="budget"
+              class="input"
+              type="text"
+              placeholder="e.g. $80–$120"
+            />
+          </div>
+        </div>
+
+        <div class="button-row">
+          <button id="submit" class="btn-primary">
+            <span class="icon">✨</span>
+            Curate gifts
+          </button>
+          <div class="button-note">
+            No sign-up. No fuss. Just beautiful ideas you can shop anywhere.
+          </div>
+        </div>
+
+        <div class="results" id="results">
+          <h2>Suggestions</h2>
+          <div class="results-content results-empty">
+            Your personalised ideas will appear here in a few seconds.
+          </div>
+        </div>
+      </div>
+
+      <div class="about-block">
+        <div class="about-title">A little more about Gift Lane</div>
+        <p>
+          No more tabs. No more maybes. No more scrolling until everything looks the same.
+        </p>
+        <p>
+          Gift Lane brings together good taste, realistic options, and a sense of calm —
+          turning “I have no idea what to get” into “Oh… that’s perfect.”
+        </p>
+        <p class="about-jude">
+          Designed by Jude. Inspired by a busy mum.
+        </p>
+        <p class="about-signoff">
+          Chosen with intention.<br />— Jude
+        </p>
+      </div>
+    </div>
+
+    <div class="right">
+      <aside class="side-panel">
+        <div>
+          <div class="side-top-label">How Gift Lane works</div>
+          <div class="side-main-line">
+            Your calm gifting concierge —
+            curated in minutes with ideas that feel
+            <strong>thoughtful and realistic</strong>.
+          </div>
+          <ul class="side-bullets">
+            <li>Perfect for busy people who still care about giving something meaningful.</li>
+            <li>Every suggestion is shaped around the person, the occasion, and what feels right.</li>
+            <li>Built for Australian brands, budgets, and delivery expectations.</li>
+          </ul>
+        </div>
+
+        <div class="side-footer">
+          <div class="side-tagline">
+            Made for “I don’t know what to buy” moments
+          </div>
+          <div class="side-note">
+            Think of Gift Lane as the friend who always chooses well —
+            the one who makes gifting feel easy, considered, and actually enjoyable.
+          </div>
+          <div class="badge-pill">
+            <span class="badge-dot"></span>
+            Works beautifully on mobile while you’re out living life.
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <script>
+    const btn = document.getElementById("submit");
+    const resultsEl = document.getElementById("results");
+    const resultsContent = resultsEl.querySelector(".results-content");
+
+    function setLoading(isLoading) {
+      if (isLoading) {
+        resultsContent.classList.remove("results-empty");
+        resultsContent.textContent =
+          "Pour yourself a drink… I’m curating options for you.";
+      }
+    }
+
+    btn.addEventListener("click", async () => {
+      const demographic = document.getElementById("recipient").value.trim();
+      const occasion = document.getElementById("occasion").value.trim();
+      const budget = document.getElementById("budget").value.trim();
+
+      if (!demographic || !occasion || !budget) {
+        alert("Tell me who it’s for, the occasion, and your budget first.");
+        return;
+      }
+
+      setLoading(true);
+
+      try {
+        const response = await fetch("https://gift-concierge-hub.onrender.com/curate", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ demographic, occasion, budget }),
+        });
+
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+
+        const data = await response.json();
+        const text =
+          data.suggestions ||
+          "I couldn’t fetch any ideas just now. Please try again in a moment.";
+
+        resultsContent.classList.remove("results-empty");
+        resultsContent.textContent =
+          text + "\n\n—\nChosen with intention.\n— Jude";
+      } catch (err) {
+        console.error(err);
+        resultsContent.classList.remove("results-empty");
+        resultsContent.textContent =
+          "Something went wrong on my side. Try again shortly and I’ll behave.\n\n—\nChosen with intention.\n— Jude";
+      }
+    });
+  </script>
+</body>
+</html>
