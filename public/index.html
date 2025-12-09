@@ -5,28 +5,29 @@
   <title>Gift Lane – Beautifully Considered Gifting</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- Fonts -->
+  <!-- Luxe fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Inter:wght@300;400;500&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@300;400;500&display=swap"
     rel="stylesheet"
   />
 
   <style>
     :root {
-      --navy-deep: #061428;
-      --navy-soft: #122748;
-      --navy-hero: #102544;
+      --navy-deep: #0B172E;
+      --navy-card: #0E1E3A;
+      --navy-soft: #152648;
+
+      --gold-strong: #D9B36C;   /* main rich gold (B) */
+      --gold-mid:    #F1D8A0;
+      --gold-bright: #FFE6AE;
+
+      --text-main: #F8F6F2;
+      --text-muted: #B7C0D8;
+
       --cream: #F7F3EB;
       --cream-soft: #F5EFDD;
-
-      --gold-light: #F6E5B8;
-      --gold-mid:   #D9B36C;
-      --gold-deep:  #B88A3A;
-
-      --text-main: #F9FAFB;
-      --text-muted: #AEB7D1;
     }
 
     * {
@@ -36,11 +37,12 @@
     body {
       margin: 0;
       min-height: 100vh;
-      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont,
+        "SF Pro Text", "Segoe UI", sans-serif;
       color: var(--text-main);
       background:
-        radial-gradient(circle at top left, #31456E 0, transparent 55%),
-        radial-gradient(circle at bottom right, #050b18 0, transparent 55%),
+        radial-gradient(circle at top left, #2F4775 0, transparent 55%),
+        radial-gradient(circle at bottom right, #111827 0, transparent 55%),
         var(--navy-deep);
       display: flex;
       align-items: center;
@@ -59,7 +61,7 @@
       gap: 24px;
     }
 
-    /* Brand strip */
+    /* Top live bar */
     .brand-mark {
       font-size: 11px;
       letter-spacing: 0.18em;
@@ -68,23 +70,26 @@
       display: flex;
       align-items: center;
       gap: 8px;
-      margin-bottom: 16px;
+      margin-bottom: 10px;
     }
 
     .brand-dot {
-      width: 8px;
-      height: 8px;
+      width: 9px;
+      height: 9px;
       border-radius: 999px;
       background: radial-gradient(circle at 30% 30%, #7affc3, #10b981);
       box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.25);
     }
 
+    /* LEFT SIDE */
+
     .left {
       position: relative;
+      z-index: 1;
     }
 
     .sub-line {
-      letter-spacing: 0.17em;
+      letter-spacing: 0.20em;
       text-transform: uppercase;
       font-size: 11px;
       color: var(--text-muted);
@@ -92,57 +97,76 @@
     }
 
     .logo-word {
-      margin: 0 0 10px;
-      font-family: "Cormorant Garamond", "Times New Roman", serif;
-      font-weight: 600;
-      font-size: 40px; /* bigger but elegant */
-      letter-spacing: 0.06em;
-      position: relative;
-      display: inline-block;
+      font-family: "Playfair Display", serif;
+      font-size: 42px; /* +~20% */
+      line-height: 1.1;
+      margin: 0 0 12px;
+      letter-spacing: 0.03em;
     }
 
     .logo-word span {
-      background: linear-gradient(135deg, var(--gold-light), var(--gold-mid), var(--gold-deep));
+      /* High-gloss metallic gold (style 3) */
+      background:
+        linear-gradient(145deg,
+          #704a13 0%,
+          #d6ac5d 20%,
+          #ffe6ae 45%,
+          #d9b36c 65%,
+          #8c611f 100%);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
       text-shadow:
-        0 0 18px rgba(248, 231, 177, 0.45),
-        0 8px 20px rgba(0, 0, 0, 0.6);
-    }
-
-    .logo-word {
-      color: var(--gold-light);
-      text-shadow:
-        0 0 18px rgba(248, 231, 177, 0.35),
-        0 10px 26px rgba(0, 0, 0, 0.8);
+        0 0.5px 0 rgba(0, 0, 0, 0.5),
+        0 4px 10px rgba(0, 0, 0, 0.7);
     }
 
     .hero-line {
-      margin: 0 0 18px;
+      margin: 0 0 20px;
       font-size: 15px;
-      line-height: 1.55;
-      color: #dde5f4;
+      line-height: 1.6;
+      color: #dde3f3;
       max-width: 36rem;
     }
 
     .micro-copy {
-      margin-top: 10px;
-      margin-bottom: 8px;
+      margin-top: 8px;
       font-size: 11px;
       letter-spacing: 0.16em;
       text-transform: uppercase;
       color: var(--text-muted);
     }
 
+    /* HERO CARD */
+
     .card {
-      border-radius: 26px;
-      padding: 18px 18px 16px;
+      margin-top: 10px;
+      border-radius: 28px;
       background:
-        radial-gradient(circle at top left, #26406E 0, #0F1C34 45%, #060b16 100%);
+        radial-gradient(circle at top left, #324972 0, #111a30 45%, #050a16 100%);
       box-shadow:
-        0 28px 72px rgba(0, 0, 0, 0.78),
-        0 0 0 1px rgba(255, 255, 255, 0.05);
+        0 32px 80px rgba(0, 0, 0, 0.75),
+        0 0 0 1px rgba(255, 255, 255, 0.04);
+      padding: 18px 18px 16px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: -35%;
+      background:
+        radial-gradient(circle at top, rgba(255, 219, 164, 0.19), transparent 60%),
+        radial-gradient(circle at bottom right, rgba(0, 0, 0, 0.9), transparent 60%);
+      mix-blend-mode: screen;
+      opacity: 0.9;
+      pointer-events: none;
+    }
+
+    .card-inner {
+      position: relative;
+      z-index: 1;
     }
 
     .field-label {
@@ -151,52 +175,59 @@
       letter-spacing: 0.16em;
       text-transform: uppercase;
       color: var(--text-muted);
-      margin-bottom: 6px;
+      margin-bottom: 5px;
     }
 
     .input {
       width: 100%;
       border-radius: 999px;
+      border: 1px solid rgba(217, 179, 108, 0.65);
       padding: 11px 15px;
       font-size: 14px;
       color: var(--text-main);
-      border: 1.2px solid rgba(217, 179, 108, 0.85); /* gold border */
-      background: linear-gradient(135deg, #050b1a, #101d35);
-      outline: none;
+
+      background:
+        radial-gradient(circle at 20% 0, rgba(255, 248, 220, 0.05), transparent 55%),
+        linear-gradient(135deg, #050a17, #0f1e38);
       box-shadow:
-        0 0 0 1px rgba(0, 0, 0, 0.9),
-        0 12px 26px rgba(0, 0, 0, 0.85);
+        0 0 0 1px rgba(15, 23, 42, 0.7),
+        0 10px 28px rgba(0, 0, 0, 0.9);
+      outline: none;
+      transition:
+        border-color 0.14s ease,
+        box-shadow 0.14s ease,
+        background 0.14s ease;
     }
 
     .input::placeholder {
-      color: #9CA4C3;
+      color: #8f9abc;
     }
 
     .input:focus {
-      border-color: var(--gold-light);
+      border-color: var(--gold-bright);
       box-shadow:
-        0 0 0 1px rgba(249, 246, 220, 0.9),
-        0 16px 32px rgba(0, 0, 0, 0.95);
+        0 0 0 1px rgba(255, 230, 174, 0.9),
+        0 14px 34px rgba(0, 0, 0, 1);
+      background:
+        radial-gradient(circle at 0 0, rgba(255, 246, 209, 0.10), transparent 60%),
+        linear-gradient(135deg, #080f23, #132446);
     }
 
     .row {
-      display: flex;
-      gap: 12px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 10px;
       margin-top: 10px;
-      margin-bottom: 8px;
-      flex-wrap: wrap;
     }
 
-    .row > div {
-      flex: 1 1 0;
-      min-width: 0;
-    }
+    /* BUTTON */
 
     .button-row {
       display: flex;
       align-items: center;
       gap: 14px;
-      margin-top: 10px;
+      margin-top: 12px;
+      margin-bottom: 2px;
       flex-wrap: wrap;
     }
 
@@ -207,19 +238,23 @@
       border-radius: 999px;
       padding: 11px 26px;
       font-size: 13px;
-      letter-spacing: 0.14em;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
       font-weight: 600;
-      background: radial-gradient(circle at top left, #fff2c3 0, #e5c47c 40%, #c58b34 100%);
-      color: #1a1306;
+      background:
+        radial-gradient(circle at 15% 0, #fff6d5 0, #f4dd9b 30%, #d9b36c 70%, #a6742d 100%);
+      color: #111827;
       box-shadow:
         0 18px 40px rgba(0, 0, 0, 0.85),
-        0 0 0 1px rgba(255, 255, 255, 0.32);
+        0 0 0 1px rgba(255, 255, 255, 0.25);
       display: inline-flex;
       align-items: center;
       gap: 8px;
       white-space: nowrap;
-      transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+      transition:
+        transform 0.14s ease,
+        box-shadow 0.14s ease,
+        filter 0.14s ease;
     }
 
     .btn-primary span.icon {
@@ -230,23 +265,23 @@
       height: 18px;
       border-radius: 999px;
       background: #111827;
-      color: #FEF9C3;
+      color: #fef9c3;
       font-size: 11px;
     }
 
     .btn-primary:hover {
       transform: translateY(-1px);
-      filter: brightness(1.03);
+      filter: brightness(1.04);
       box-shadow:
-        0 22px 48px rgba(0, 0, 0, 0.9),
-        0 0 0 1px rgba(255, 255, 255, 0.4);
+        0 22px 50px rgba(0, 0, 0, 0.95),
+        0 0 0 1px rgba(255, 255, 255, 0.3);
     }
 
     .btn-primary:active {
       transform: translateY(0);
       box-shadow:
-        0 14px 32px rgba(0, 0, 0, 0.85),
-        0 0 0 1px rgba(255, 255, 255, 0.35);
+        0 14px 35px rgba(0, 0, 0, 0.9),
+        0 0 0 1px rgba(255, 255, 255, 0.3);
     }
 
     .button-note {
@@ -255,20 +290,23 @@
       max-width: 220px;
     }
 
+    /* RESULTS */
+
     .results {
       margin-top: 16px;
       max-height: 260px;
       overflow: auto;
-      padding-top: 10px;
-      border-top: 1px solid rgba(148, 163, 184, 0.45);
+      padding-right: 4px;
       font-size: 14px;
       line-height: 1.6;
       color: var(--text-main);
+      border-top: 1px solid rgba(148, 163, 184, 0.35);
+      padding-top: 10px;
     }
 
     .results h2 {
-      font-size: 12px;
-      letter-spacing: 0.18em;
+      font-size: 13px;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
       color: var(--text-muted);
       margin: 0 0 6px;
@@ -279,13 +317,14 @@
     }
 
     .results-empty {
-      color: #9CA3AF;
-      font-size: 13px;
+      color: #9ca3af;
     }
 
+    /* ABOUT BLOCK */
+
     .about-block {
-      margin-top: 26px;
-      max-width: 520px;
+      margin-top: 24px;
+      max-width: 540px;
       font-size: 14px;
       line-height: 1.7;
       color: var(--text-main);
@@ -301,24 +340,26 @@
 
     .about-block p {
       margin: 0 0 10px;
-      color: #E5E7EB;
+      color: #e5e7eb;
     }
 
     .about-jude {
-      margin-top: 12px;
+      margin-top: 10px;
       font-size: 13px;
-      color: #E5E7EB;
+      color: #f1ead7;
     }
 
     .about-signoff {
       margin-top: 4px;
       font-size: 13px;
-      color: #E5E7EB;
+      color: #f1ead7;
     }
 
-    /* Right panel */
+    /* RIGHT SIDE – EXPLAINER PANEL */
 
     .right {
+      position: relative;
+      z-index: 1;
       display: flex;
       align-items: stretch;
       justify-content: center;
@@ -329,13 +370,16 @@
       max-width: 340px;
       border-radius: 24px;
       background:
-        linear-gradient(135deg, rgba(249, 250, 251, 0.12), transparent 35%),
-        radial-gradient(circle at top, rgba(250, 250, 249, 0.5), transparent 55%),
+        linear-gradient(135deg, rgba(249, 250, 251, 0.12), transparent 40%),
+        radial-gradient(circle at top, rgba(250, 250, 249, 0.5), transparent 60%),
         var(--cream);
       box-shadow:
-        0 24px 60px rgba(0, 0, 0, 0.7),
-        0 0 0 1px rgba(15, 23, 42, 0.08);
-      padding: 20px 20px 18px;
+        0 22px 50px rgba(3, 9, 28, 0.7),
+        0 0 0 1px rgba(12, 21, 45, 0.1);
+      padding: 20px 20px 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
       color: #111827;
       position: relative;
       overflow: hidden;
@@ -345,7 +389,7 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: radial-gradient(circle at top left, rgba(217, 179, 93, 0.16), transparent 55%);
+      background: radial-gradient(circle at top left, rgba(217, 179, 93, 0.18), transparent 55%);
       mix-blend-mode: soft-light;
       pointer-events: none;
     }
@@ -355,18 +399,18 @@
       letter-spacing: 0.18em;
       text-transform: uppercase;
       color: #6b7280;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
     }
 
     .side-main-line {
-      font-family: "Cormorant Garamond", "Times New Roman", serif;
-      font-size: 20px;
+      font-family: "Playfair Display", serif;
+      font-size: 19px;
       line-height: 1.35;
       margin-bottom: 10px;
     }
 
     .side-main-line strong {
-      background: linear-gradient(135deg, var(--gold-mid), var(--gold-deep));
+      background: linear-gradient(135deg, #b88932, #d19f3e);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
@@ -384,7 +428,7 @@
     }
 
     .side-footer {
-      border-top: 1px solid rgba(148, 163, 184, 0.4);
+      border-top: 1px solid rgba(148, 163, 184, 0.45);
       padding-top: 10px;
       display: flex;
       flex-direction: column;
@@ -413,7 +457,7 @@
       font-size: 11px;
       color: #4b5563;
       margin-top: 4px;
-      background: rgba(255, 255, 255, 0.85);
+      background: linear-gradient(135deg, var(--cream-soft), #ffffff);
     }
 
     .badge-dot {
@@ -423,18 +467,27 @@
       background: linear-gradient(135deg, #facc15, #d97706);
     }
 
+    /* RESPONSIVE */
+
     @media (max-width: 860px) {
       body {
         align-items: flex-start;
       }
+
       .page {
         padding: 18px 14px 32px;
       }
+
       .layout {
         grid-template-columns: minmax(0, 1fr);
       }
-      .side-panel {
+
+      .right {
         margin-top: 18px;
+      }
+
+      .logo-word {
+        font-size: 34px;
       }
     }
   </style>
@@ -448,9 +501,10 @@
     </div>
 
     <div class="layout">
+      <!-- LEFT SIDE -->
       <div class="left">
         <div class="sub-line">Beautifully considered gifting</div>
-        <h1 class="logo-word"><span>Gift</span> Lane</h1>
+        <h1 class="logo-word"><span>Gift Lane</span></h1>
 
         <p class="hero-line">
           Beautifully considered gifting — made effortless.<br />
@@ -461,49 +515,51 @@
         <div class="micro-copy">Start your request</div>
 
         <div class="card">
-          <label class="field-label" for="recipient">Who is this for?</label>
-          <input
-            id="recipient"
-            class="input"
-            type="text"
-            placeholder="e.g. my sister, 32, new mum, loves spa days"
-          />
+          <div class="card-inner">
+            <label class="field-label" for="recipient">Who is this for?</label>
+            <input
+              id="recipient"
+              class="input"
+              type="text"
+              placeholder="e.g. my sister, 32, new mum, loves spa days"
+            />
 
-          <div class="row">
-            <div>
-              <label class="field-label" for="occasion">Occasion</label>
-              <input
-                id="occasion"
-                class="input"
-                type="text"
-                placeholder="e.g. birthday, Christmas, baby shower"
-              />
+            <div class="row">
+              <div>
+                <label class="field-label" for="occasion">Occasion</label>
+                <input
+                  id="occasion"
+                  class="input"
+                  type="text"
+                  placeholder="e.g. birthday, Christmas, baby shower"
+                />
+              </div>
+              <div>
+                <label class="field-label" for="budget">Budget (AUD)</label>
+                <input
+                  id="budget"
+                  class="input"
+                  type="text"
+                  placeholder="e.g. $80–$120"
+                />
+              </div>
             </div>
-            <div>
-              <label class="field-label" for="budget">Budget (AUD)</label>
-              <input
-                id="budget"
-                class="input"
-                type="text"
-                placeholder="e.g. $80–$120"
-              />
-            </div>
-          </div>
 
-          <div class="button-row">
-            <button id="submit" class="btn-primary">
-              <span class="icon">✨</span>
-              Curate gifts
-            </button>
-            <div class="button-note">
-              No sign-up. No fuss. Just beautiful ideas you can shop anywhere.
+            <div class="button-row">
+              <button id="submit" class="btn-primary">
+                <span class="icon">✨</span>
+                Curate gifts
+              </button>
+              <div class="button-note">
+                No sign-up. No fuss. Just beautiful ideas you can shop anywhere.
+              </div>
             </div>
-          </div>
 
-          <div class="results" id="results">
-            <h2>Suggestions</h2>
-            <div class="results-content results-empty">
-              Your personalised ideas will appear here in a few seconds.
+            <div class="results" id="results">
+              <h2>Suggestions</h2>
+              <div class="results-content results-empty">
+                Your personalised ideas will appear here in a few seconds.
+              </div>
             </div>
           </div>
         </div>
@@ -524,6 +580,7 @@
         </div>
       </div>
 
+      <!-- RIGHT SIDE -->
       <div class="right">
         <aside class="side-panel">
           <div>
