@@ -4,49 +4,276 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Affiliate Disclosure – Gift Lane</title>
-  <meta name="description" content="How Gift Lane uses affiliate links and how that affects you as a shopper.">
+  <meta name="description" content="Affiliate disclosure for Gift Lane – how affiliate links work on this site." />
+
+  <!-- Uses the same styling pattern as privacy.html -->
+  <style>
+    :root {
+      --navy-bg: #050b18;
+      --navy-main: #0f172a;
+      --gold-light: #fff5dd;
+      --gold-mid: #f6d58d;
+      --gold-deep: #d9a446;
+      --text-main: #f9fafb;
+      --text-muted: #9ca3af;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Segoe UI", sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at top left, #1f2937 0, transparent 55%),
+        radial-gradient(circle at bottom right, #020617 0, transparent 55%),
+        var(--navy-bg);
+      color: var(--text-main);
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      padding: 16px 20px 6px;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.25);
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .nav-inner {
+      max-width: 1050px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand {
+      font-family: "Playfair Display", "Times New Roman", serif;
+      font-size: 22px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      background: linear-gradient(120deg,#fff6dd,#f9dc96,#e2aa4f);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      white-space: nowrap;
+    }
+
+    nav a {
+      color: var(--gold-mid);
+      text-decoration: none;
+      font-size: 13px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-left: 18px;
+      white-space: nowrap;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .page {
+      flex: 1;
+      padding: 32px 16px 40px;
+    }
+
+    .page-inner {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(248, 250, 252, 0.22);
+      padding: 5px 12px;
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+
+    .pill-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 30%, #fb923c, #facc15);
+    }
+
+    h1 {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(30px, 4vw, 40px);
+      margin-bottom: 8px;
+    }
+
+    .meta-line {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 22px;
+    }
+
+    .card {
+      background:
+        radial-gradient(circle at top left,#1e293b 0,#020617 70%);
+      border-radius: 24px;
+      padding: 24px 20px;
+      box-shadow:
+        0 24px 60px rgba(0,0,0,0.85),
+        0 0 0 1px rgba(148,163,184,0.35);
+    }
+
+    .card section + section {
+      margin-top: 18px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(148, 163, 184, 0.35);
+    }
+
+    h2 {
+      font-size: 17px;
+      margin-bottom: 6px;
+    }
+
+    p {
+      font-size: 14px;
+      line-height: 1.7;
+      color: #e5e7eb;
+      margin-bottom: 8px;
+    }
+
+    a { color: var(--gold-mid); }
+    a:hover { text-decoration: underline; }
+
+    footer {
+      border-top: 1px solid rgba(148, 163, 184, 0.3);
+      padding: 20px;
+      font-size: 12px;
+      color: var(--text-muted);
+      text-align: center;
+    }
+
+    footer a {
+      color: var(--gold-mid);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 720px) {
+      .nav-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      nav {
+        width: 100%;
+        overflow-x: auto;
+        padding-bottom: 4px;
+      }
+      nav a {
+        margin: 0 12px 0 0;
+      }
+    }
+  </style>
 </head>
 <body>
-  <nav>
-    <a href="/">Home</a>
-    <a href="/about.html">About</a>
-    <a href="/blog.html">Blog & Guides</a>
-    <a href="/privacy.html">Privacy</a>
-    <a href="/affiliates.html">Affiliate Disclosure</a>
-  </nav>
+  <header>
+    <div class="nav-inner">
+      <div class="brand">Gift Lane</div>
+      <nav>
+        <a href="/">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/blog.html">Blog & Guides</a>
+        <a href="/privacy.html">Privacy</a>
+        <a href="/affiliates.html">Affiliate Disclosure</a>
+      </nav>
+    </div>
+  </header>
 
-  <main>
-    <h1>Affiliate Disclosure</h1>
-    <p>
-      Some of the links shared on Gift Lane may be affiliate links. This means
-      that if you click a link and make a purchase, Gift Lane may earn a small
-      commission from the retailer – at no extra cost to you.
-    </p>
+  <main class="page">
+    <div class="page-inner">
+      <div class="pill">
+        <span class="pill-dot"></span>
+        Affiliate Disclosure
+      </div>
 
-    <h2>What this means in normal-people language</h2>
-    <ul>
-      <li>You pay exactly the same price you would if you went direct.</li>
-      <li>The small commission helps keep Gift Lane online and improving.</li>
-      <li>Suggestions are based on fit for the person and occasion – not just commission.</li>
-    </ul>
+      <h1>How affiliate links work on Gift Lane</h1>
+      <p class="meta-line">We believe in being upfront about how this site earns money.</p>
 
-    <p>
-      Partners may include major retailers, small Australian businesses, and
-      affiliate networks such as Awin, Commission Factory or Impact (once
-      approved). As the site grows, this list may change over time.
-    </p>
+      <div class="card">
+        <section>
+          <h2>1. What are affiliate links?</h2>
+          <p>
+            Some products recommended on Gift Lane use affiliate links. This means
+            if you click a link and go on to make a purchase, the retailer may
+            pay Gift Lane a small commission for the referral.
+          </p>
+          <p>
+            This commission comes from the retailer, not from you. The price you
+            pay is exactly the same as if you went to the site directly.
+          </p>
+        </section>
 
-    <p>
-      If you ever have questions about a particular link or recommendation, you
-      can email <a href="mailto:concierge@giftlane.au">concierge@giftlane.au</a>.
-    </p>
+        <section>
+          <h2>2. Why we use them</h2>
+          <p>
+            Affiliate income helps keep Gift Lane running and allows us to keep
+            building better tools, guides, and ideas for time-poor humans who
+            still want their gifts to feel considered.
+          </p>
+        </section>
+
+        <section>
+          <h2>3. How it affects our recommendations</h2>
+          <p>
+            Recommendations are driven by what feels thoughtful, realistic and
+            appropriate for the person and budget you describe. We won’t suggest
+            something purely because it has an affiliate program.
+          </p>
+          <p>
+            In some cases, we may link to multiple retailers so you can choose
+            the store, shipping and pricing that works best for you.
+          </p>
+        </section>
+
+        <section>
+          <h2>4. Third-party tracking</h2>
+          <p>
+            When you click an affiliate link, a cookie may be placed in your
+            browser by the retailer or affiliate network so they can recognise
+            that Gift Lane referred you. We don’t see your payment details or
+            account information.
+          </p>
+        </section>
+
+        <section>
+          <h2>5. Questions</h2>
+          <p>
+            If you have any questions about affiliate links on Gift Lane, you
+            can email us at
+            <a href="mailto:concierge@giftlane.au">concierge@giftlane.au</a>.
+          </p>
+        </section>
+      </div>
+    </div>
   </main>
 
   <footer>
-    © 2025 Gift Lane • Designed with love by Jude<br />
-    <a href="/privacy.html">Privacy Policy</a> •
-    <a href="/affiliates.html">Affiliate Disclosure</a> •
-    <a href="mailto:concierge@giftlane.au">Contact</a>
+    © 2025 Gift Lane • Designed with love by Jude ·
+    <a href="/privacy.html">Privacy</a> ·
+    <a href="/affiliates.html">Affiliate Disclosure</a>
   </footer>
 </body>
 </html>
