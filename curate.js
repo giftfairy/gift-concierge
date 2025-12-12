@@ -107,6 +107,7 @@ Output ONLY valid JSON in this exact shape (no markdown, no backticks, no commen
 }
 
 // -----------------------------
+// -----------------------------
 // /curate route – AI suggestions
 // -----------------------------
 app.post("/curate", async (req, res) => {
@@ -123,62 +124,59 @@ app.post("/curate", async (req, res) => {
       model: "gpt-4.1-mini",
       input: prompt,
       max_output_tokens: 900,
-      // Strongly encourages strict JSON output
-      response_format: { type: "json_object" },
     });
 
-    const rawText = response.output_text || "";
+    // ⚠️ IMPORTANT: OpenAI sometimes wraps JSON in markdown
+    let rawText = response.output_text || "";
 
-    // Defensive cleaning (handles rare cases where model still wraps JSON)
-    const cleaned = rawText
-      .replace(/```json\s*/gi, "")
-      .replace(/```\s*/g, "")
+    // 🔧 HARD CLEAN
+    rawText = rawText
+      .replace(/```json/gi, "")
+      .replace(/```/g, "")
       .trim();
-
-    const start = cleaned.indexOf("{");
-    const end = cleaned.lastIndexOf("}");
-    const jsonOnly =
-      start !== -1 && end !== -1 ? cleaned.slice(start, end + 1) : cleaned;
 
     let parsed;
     try {
-      parsed = JSON.parse(jsonOnly);
+      parsed = JSON.parse(rawText);
     } catch (e) {
+      console.error("JSON parse failed:", rawText);
       return res.status(500).json({
         error: "AI returned non-JSON. Try again.",
-        debug: rawText.slice(0, 400),
       });
     }
 
-    if (!parsed?.products || !Array.isArray(parsed.products)) {
+    if (!Array.isArray(parsed.products)) {
       return res.status(500).json({
         error: "AI JSON missing products array.",
-        debug: rawText.slice(0, 400),
       });
     }
 
-    // Basic safety + shape normalisation
-    parsed.products = parsed.products.map((p) => ({
-      title: String(p.title || "").slice(0, 140),
-      why: String(p.why || "").slice(0, 400),
-      price_note: String(p.price_note || "").slice(0, 80),
-      links: Array.isArray(p.links)
-        ? p.links
-            .filter((l) => l?.url && String(l.url).startsWith("https://"))
-            .slice(0, 4)
-            .map((l) => ({
-              label: String(l.label || "Search").slice(0, 40),
-              url: String(l.url).slice(0, 500),
-            }))
-        : [],
-    }));
+    // ✅ Final safety normalisation
+    const cleaned = {
+      products: parsed.products.map((p) => ({
+        title: String(p.title || "").slice(0, 120),
+        why: String(p.why || "").slice(0, 300),
+        price_note: String(p.price_note || ""),
+        links: Array.isArray(p.links)
+          ? p.links
+              .filter((l) => l?.url?.startsWith("https://"))
+              .map((l) => ({
+                label: String(l.label || "Search").slice(0, 30),
+                url: String(l.url).slice(0, 400),
+              }))
+          : [],
+      })),
+    };
 
-    res.json(parsed);
+    res.json(cleaned);
   } catch (err) {
     console.error("Error in /curate:", err);
-    res.status(500).json({ error: "Something went wrong talking to OpenAI." });
+    res.status(500).json({
+      error: "Something went wrong talking to OpenAI.",
+    });
   }
 });
+
 
 // -----------------------------
 // SERVER START (Render)
@@ -187,3 +185,4 @@ const port = process.env.PORT || 10000;
 app.listen(port, () => {
   console.log(`Gift Lane server running on port ${port}`);
 });
+
