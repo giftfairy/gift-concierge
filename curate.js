@@ -18,7 +18,6 @@ const app = express();
 // -----------------------------
 // STATIC WEBSITE
 // -----------------------------
-// This serves your public/index.html at giftlane.au
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use(express.json());
@@ -70,9 +69,9 @@ function buildGiftPrompt(recipient, occasion, budget) {
 
   let count = 5;
   if (central != null) {
-    if (central < 150) count = 2;
+    if (central < 150) count = 3;
     else if (central >= 150 && central <= 400) count = 5;
-    else count = 10;
+    else count = 8;
   }
 
   return `
@@ -85,11 +84,11 @@ Budget: ${raw || budget}
 Return EXACTLY ${count} product suggestions.
 
 IMPORTANT:
-- Suggest REAL, commonly available products/brands.
-- Do NOT invent “random Etsy shop” type items.
+- Suggest REAL, commonly available products/brands in Australia.
+- Do NOT invent fake “shops”.
 - Provide links as retailer SEARCH links (not deep product links) so they stay valid.
 
-Output ONLY valid JSON in this exact shape:
+Output ONLY valid JSON in this exact shape (no markdown, no backticks, no commentary):
 
 {
   "products": [
@@ -106,7 +105,6 @@ Output ONLY valid JSON in this exact shape:
 }
 `.trim();
 }
-
 
 // -----------------------------
 // /curate route – AI suggestions
@@ -125,13 +123,26 @@ app.post("/curate", async (req, res) => {
       model: "gpt-4.1-mini",
       input: prompt,
       max_output_tokens: 900,
+      // Strongly encourages strict JSON output
+      response_format: { type: "json_object" },
     });
 
-    const rawText = response.output_text;
+    const rawText = response.output_text || "";
+
+    // Defensive cleaning (handles rare cases where model still wraps JSON)
+    const cleaned = rawText
+      .replace(/```json\s*/gi, "")
+      .replace(/```\s*/g, "")
+      .trim();
+
+    const start = cleaned.indexOf("{");
+    const end = cleaned.lastIndexOf("}");
+    const jsonOnly =
+      start !== -1 && end !== -1 ? cleaned.slice(start, end + 1) : cleaned;
 
     let parsed;
     try {
-      parsed = JSON.parse(rawText);
+      parsed = JSON.parse(jsonOnly);
     } catch (e) {
       return res.status(500).json({
         error: "AI returned non-JSON. Try again.",
@@ -140,21 +151,24 @@ app.post("/curate", async (req, res) => {
     }
 
     if (!parsed?.products || !Array.isArray(parsed.products)) {
-      return res.status(500).json({ error: "AI JSON missing products array." });
+      return res.status(500).json({
+        error: "AI JSON missing products array.",
+        debug: rawText.slice(0, 400),
+      });
     }
 
-    // Optional: basic safety filter for links
+    // Basic safety + shape normalisation
     parsed.products = parsed.products.map((p) => ({
-      title: String(p.title || "").slice(0, 120),
-      why: String(p.why || "").slice(0, 300),
-      price_note: String(p.price_note || "").slice(0, 60),
+      title: String(p.title || "").slice(0, 140),
+      why: String(p.why || "").slice(0, 400),
+      price_note: String(p.price_note || "").slice(0, 80),
       links: Array.isArray(p.links)
         ? p.links
             .filter((l) => l?.url && String(l.url).startsWith("https://"))
             .slice(0, 4)
             .map((l) => ({
-              label: String(l.label || "Link").slice(0, 30),
-              url: String(l.url).slice(0, 400),
+              label: String(l.label || "Search").slice(0, 40),
+              url: String(l.url).slice(0, 500),
             }))
         : [],
     }));
@@ -166,7 +180,6 @@ app.post("/curate", async (req, res) => {
   }
 });
 
-
 // -----------------------------
 // SERVER START (Render)
 // -----------------------------
@@ -174,4 +187,3 @@ const port = process.env.PORT || 10000;
 app.listen(port, () => {
   console.log(`Gift Lane server running on port ${port}`);
 });
-
