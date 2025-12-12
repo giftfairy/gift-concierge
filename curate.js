@@ -9,6 +9,19 @@ import cors from "cors";
 import path from "path";
 import { fileURLToPath } from "url";
 
+// -----------------------------
+// Approved affiliate partners
+// -----------------------------
+const AFFILIATES = {
+  "Will & Bear": {
+    brand: "Will & Bear",
+    homepage: "https://willandbear.com.au",
+    affiliate: "https://www.awin1.com/cread.php?awinmid=119813&awinaffid=2689862&ued=https%3A%2F%2Fwillandbear.com.au",
+    category: ["fashion", "accessories", "gifts"],
+    vibe: ["premium", "sustainable", "travel"]
+  }
+};
+
 // Required to correctly resolve file paths on Render
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -185,4 +198,5 @@ const port = process.env.PORT || 10000;
 app.listen(port, () => {
   console.log(`Gift Lane server running on port ${port}`);
 });
+
 
