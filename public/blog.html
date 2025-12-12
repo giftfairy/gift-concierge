@@ -3,43 +3,312 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Gift Guides – Gift Lane</title>
-  <meta name="description" content="Gift guides and ideas from Gift Lane – inspiration for birthdays, baby showers, Christmas and more.">
+  <title>Blog & Gift Guides – Gift Lane</title>
+  <meta
+    name="description"
+    content="Curated gift guides from Gift Lane – ideas for new mums, tricky people and every kind of budget."
+  />
+
+  <style>
+    :root {
+      --navy-bg: #050b18;
+      --navy-main: #0f172a;
+      --gold-light: #fff5dd;
+      --gold-mid: #f6d58d;
+      --gold-deep: #d9a446;
+      --text-main: #f9fafb;
+      --text-muted: #9ca3af;
+      --card-bg: radial-gradient(circle at top left,#1e293b 0,#020617 70%);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Segoe UI", sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at top left, #1f2937 0, transparent 55%),
+        radial-gradient(circle at bottom right, #020617 0, transparent 55%),
+        var(--navy-bg);
+      color: var(--text-main);
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      padding: 16px 20px 6px;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.25);
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .nav-inner {
+      max-width: 1050px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand {
+      font-family: "Playfair Display", "Times New Roman", serif;
+      font-size: 22px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      background: linear-gradient(120deg, #fff6dd, #f9dc96, #e2aa4f);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      white-space: nowrap;
+    }
+
+    nav a {
+      color: var(--gold-mid);
+      text-decoration: none;
+      font-size: 13px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-left: 18px;
+      white-space: nowrap;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .page {
+      flex: 1;
+      padding: 32px 16px 44px;
+    }
+
+    .page-inner {
+      max-width: 1050px;
+      margin: 0 auto;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(248, 250, 252, 0.22);
+      padding: 5px 12px;
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+
+    .pill-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 30%, #a855f7, #ec4899);
+    }
+
+    h1 {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(30px, 4vw, 40px);
+      margin-bottom: 8px;
+    }
+
+    .meta-line {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 22px;
+      max-width: 620px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 22px;
+      padding: 18px 16px 16px;
+      box-shadow:
+        0 22px 55px rgba(0,0,0,0.9),
+        0 0 0 1px rgba(148,163,184,0.35);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 180px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.6);
+      padding: 3px 9px;
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+
+    .card h2 {
+      font-size: 17px;
+      margin-bottom: 6px;
+    }
+
+    .card p {
+      font-size: 14px;
+      line-height: 1.6;
+      color: #e5e7eb;
+      margin-bottom: 10px;
+    }
+
+    .card a {
+      font-size: 13px;
+      color: var(--gold-mid);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .card a:hover {
+      text-decoration: underline;
+    }
+
+    .soon {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    footer {
+      border-top: 1px solid rgba(148, 163, 184, 0.3);
+      padding: 20px;
+      font-size: 12px;
+      color: var(--text-muted);
+      text-align: center;
+    }
+
+    footer a {
+      color: var(--gold-mid);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 900px) {
+      .grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 640px) {
+      .nav-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      nav {
+        width: 100%;
+        overflow-x: auto;
+        padding-bottom: 4px;
+      }
+      nav a {
+        margin: 0 12px 0 0;
+      }
+      .grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+  </style>
 </head>
 <body>
-  <nav>
-    <a href="/">Home</a>
-    <a href="/about.html">About</a>
-    <a href="/blog.html">Blog & Guides</a>
-    <a href="/privacy.html">Privacy</a>
-    <a href="/affiliates.html">Affiliate Disclosure</a>
-  </nav>
+  <header>
+    <div class="nav-inner">
+      <div class="brand">Gift Lane</div>
+      <nav>
+        <a href="/">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/blog.html">Blog & Guides</a>
+        <a href="/privacy.html">Privacy</a>
+        <a href="/affiliates.html">Affiliate Disclosure</a>
+      </nav>
+    </div>
+  </header>
 
-  <main>
-    <h1>Gift Guides & Ideas</h1>
-    <p>
-      This is where you’ll find deeper dives into gifting – curated guides, themed
-      ideas, and “save you at the last minute” lists.
-    </p>
+  <main class="page">
+    <div class="page-inner">
+      <div class="pill">
+        <span class="pill-dot"></span>
+        Blog & Gift Guides
+      </div>
 
-    <h2>Coming soon</h2>
-    <ul>
-      <li><strong>Spa Gifts for New Mums</strong> – little luxuries that actually get used.</li>
-      <li><strong>Baby Gifts Under $100</strong> – practical, beautiful, and not more plastic clutter.</li>
-      <li><strong>Non-cringey teacher gifts</strong> – thank-you presents they’ll genuinely appreciate.</li>
-    </ul>
+      <h1>Guides for all your “what do I buy?” moments</h1>
+      <p class="meta-line">
+        A growing library of realistic gift ideas for different people, budgets
+        and seasons. Short reads, fewer tabs, more “nailed it”.
+      </p>
 
-    <p>
-      For now, you can still use the main Gift Lane concierge on the home page to
-      get personalised suggestions in seconds.
-    </p>
+      <div class="grid">
+        <article class="card">
+          <div>
+            <div class="badge">Occasion · New mums</div>
+            <h2>Spa-Inspired Gifts for Tired New Mums</h2>
+            <p>
+              Think: soft robes, elevated skincare, tiny “me time” moments that
+              work with nap schedules, not against them.
+            </p>
+          </div>
+          <div>
+            <a href="#">Read guide (coming soon)</a>
+            <div class="soon">This guide will live at <code>spa-gifts.html</code>.</div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div>
+            <div class="badge">Budget · Under $100</div>
+            <h2>Clever Baby Gifts Under $100</h2>
+            <p>
+              Practical-but-cute ideas that parents will actually use, from
+              playtime to bath time to “please sleep now” time.
+            </p>
+          </div>
+          <div>
+            <a href="#">Read guide (coming soon)</a>
+            <div class="soon">This guide will live at <code>baby-gifts.html</code>.</div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div>
+            <div class="badge">People · Hard to buy for</div>
+            <h2>What to Buy for the “I Don’t Need Anything” Person</h2>
+            <p>
+              Low-clutter, high-thoughtfulness ideas for minimalists, dads,
+              in-laws and those mysterious people who already “have everything”.
+            </p>
+          </div>
+          <div>
+            <a href="#">Read guide (coming soon)</a>
+            <div class="soon">More guides will be added here as the library grows.</div>
+          </div>
+        </article>
+      </div>
+    </div>
   </main>
 
   <footer>
-    © 2025 Gift Lane • Designed with love by Jude<br />
-    <a href="/privacy.html">Privacy Policy</a> •
-    <a href="/affiliates.html">Affiliate Disclosure</a> •
-    <a href="mailto:concierge@giftlane.au">Contact</a>
+    © 2025 Gift Lane • Designed with love by Jude ·
+    <a href="/privacy.html">Privacy</a> ·
+    <a href="/affiliates.html">Affiliate Disclosure</a>
   </footer>
 </body>
 </html>
