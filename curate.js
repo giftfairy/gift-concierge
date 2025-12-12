@@ -68,37 +68,45 @@ function buildGiftPrompt(recipient, occasion, budget) {
   else if (min != null) central = min;
   else if (max != null) central = max;
 
-  let budgetBand = "unknown";
-  let ideaGuideline = "3–4 ideas";
-
+  let count = 5;
   if (central != null) {
-    if (central < 150) {
-      budgetBand = "under_150";
-      ideaGuideline = "3–4 ideas";
-    } else if (central >= 150 && central <= 400) {
-      budgetBand = "150_to_400";
-      ideaGuideline = "5–7 ideas";
-    } else if (central > 400) {
-      budgetBand = "over_400";
-      ideaGuideline = "8–10 ideas";
-    }
+    if (central < 150) count = 2;
+    else if (central >= 150 && central <= 400) count = 5;
+    else count = 10;
   }
 
   return `
-You are a calm, thoughtful, luxe-feeling gift-concierge assistant.
+You are Gift Lane’s calm, luxe-feeling gift concierge.
 
 Recipient: ${recipient}
 Occasion: ${occasion}
 Budget: ${raw || budget}
 
-Use the budget band (${budgetBand}) to decide how many ideas to offer (${ideaGuideline}).
+Return EXACTLY ${count} product suggestions.
 
-Output ONLY JSON like:
+IMPORTANT:
+- Suggest REAL, commonly available products/brands.
+- Do NOT invent “random Etsy shop” type items.
+- Provide links as retailer SEARCH links (not deep product links) so they stay valid.
+
+Output ONLY valid JSON in this exact shape:
+
 {
-  "suggestions": "1. **Gift Idea**\\nWhy it’s a good fit: ...etc"
+  "products": [
+    {
+      "title": "Product name",
+      "why": "1–2 sentences why it fits",
+      "price_note": "Approx $XX–$YY",
+      "links": [
+        { "label": "Amazon AU", "url": "https://www.amazon.com.au/s?k=..." },
+        { "label": "The Iconic", "url": "https://www.theiconic.com.au/search/?q=..." }
+      ]
+    }
+  ]
 }
-  `.trim();
+`.trim();
 }
+
 
 // -----------------------------
 // /curate route – AI suggestions
@@ -116,25 +124,48 @@ app.post("/curate", async (req, res) => {
     const response = await client.responses.create({
       model: "gpt-4.1-mini",
       input: prompt,
-      max_output_tokens: 800,
+      max_output_tokens: 900,
     });
 
     const rawText = response.output_text;
-    let suggestionsText = rawText;
 
+    let parsed;
     try {
-      const parsed = JSON.parse(rawText);
-      if (parsed?.suggestions) suggestionsText = parsed.suggestions;
+      parsed = JSON.parse(rawText);
     } catch (e) {
-      console.warn("Model returned non-JSON text – sending raw output.");
+      return res.status(500).json({
+        error: "AI returned non-JSON. Try again.",
+        debug: rawText.slice(0, 400),
+      });
     }
 
-    res.json({ suggestions: suggestionsText });
+    if (!parsed?.products || !Array.isArray(parsed.products)) {
+      return res.status(500).json({ error: "AI JSON missing products array." });
+    }
+
+    // Optional: basic safety filter for links
+    parsed.products = parsed.products.map((p) => ({
+      title: String(p.title || "").slice(0, 120),
+      why: String(p.why || "").slice(0, 300),
+      price_note: String(p.price_note || "").slice(0, 60),
+      links: Array.isArray(p.links)
+        ? p.links
+            .filter((l) => l?.url && String(l.url).startsWith("https://"))
+            .slice(0, 4)
+            .map((l) => ({
+              label: String(l.label || "Link").slice(0, 30),
+              url: String(l.url).slice(0, 400),
+            }))
+        : [],
+    }));
+
+    res.json(parsed);
   } catch (err) {
     console.error("Error in /curate:", err);
     res.status(500).json({ error: "Something went wrong talking to OpenAI." });
   }
 });
+
 
 // -----------------------------
 // SERVER START (Render)
@@ -143,3 +174,4 @@ const port = process.env.PORT || 10000;
 app.listen(port, () => {
   console.log(`Gift Lane server running on port ${port}`);
 });
+
