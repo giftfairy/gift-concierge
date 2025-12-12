@@ -38,10 +38,31 @@
 
       const data = await response.json();
 
-      resultsContent.classList.remove("results-empty");
-      resultsContent.textContent =
-        (data.suggestions || "No ideas right now — try again in a sec!") +
-        "\n\n—\nChosen with intention.\n— Jude";
+     resultsContent.classList.remove("results-empty");
+resultsContent.innerHTML = "";
+
+if (!data.products || data.products.length === 0) {
+  resultsContent.textContent =
+    "No solid matches right now — try tweaking the details.\n\n— Jude";
+  return;
+}
+
+data.products.forEach((product) => {
+  const card = document.createElement("div");
+  card.className = "product-card";
+
+  card.innerHTML = `
+    <h3>${product.name}</h3>
+    <p class="price">${product.price}</p>
+    <p class="reason">${product.reason}</p>
+    <a href="${product.url}" target="_blank" rel="noopener">
+      View product
+    </a>
+  `;
+
+  resultsContent.appendChild(card);
+});
+
     } catch (err) {
       console.error("Gift curation failed:", err);
       resultsContent.classList.remove("results-empty");
