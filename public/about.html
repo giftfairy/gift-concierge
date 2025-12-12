@@ -4,45 +4,323 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>About – Gift Lane</title>
-  <meta name="description" content="The story behind Gift Lane – a calm gifting concierge created for busy humans who still care about giving something thoughtful.">
+  <meta
+    name="description"
+    content="The story behind Gift Lane – a calm gifting concierge for busy humans who still care about thoughtful presents."
+  />
+
+  <style>
+    :root {
+      --navy-bg: #050b18;
+      --navy-main: #0f172a;
+      --gold-light: #fff5dd;
+      --gold-mid: #f6d58d;
+      --gold-deep: #d9a446;
+      --text-main: #f9fafb;
+      --text-muted: #9ca3af;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Segoe UI", sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at top left, #1f2937 0, transparent 55%),
+        radial-gradient(circle at bottom right, #020617 0, transparent 55%),
+        var(--navy-bg);
+      color: var(--text-main);
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      padding: 16px 20px 6px;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.25);
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .nav-inner {
+      max-width: 1050px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand {
+      font-family: "Playfair Display", "Times New Roman", serif;
+      font-size: 22px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      background: linear-gradient(120deg, #fff6dd, #f9dc96, #e2aa4f);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      white-space: nowrap;
+    }
+
+    nav a {
+      color: var(--gold-mid);
+      text-decoration: none;
+      font-size: 13px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-left: 18px;
+      white-space: nowrap;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .page {
+      flex: 1;
+      padding: 32px 16px 40px;
+    }
+
+    .page-inner {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(248, 250, 252, 0.22);
+      padding: 5px 12px;
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+
+    .pill-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 30%, #a3e635, #4ade80);
+    }
+
+    h1 {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(30px, 4vw, 40px);
+      margin-bottom: 8px;
+    }
+
+    .meta-line {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 22px;
+    }
+
+    .card {
+      background:
+        radial-gradient(circle at top left,#1e293b 0,#020617 70%);
+      border-radius: 24px;
+      padding: 24px 20px;
+      box-shadow:
+        0 24px 60px rgba(0,0,0,0.85),
+        0 0 0 1px rgba(148,163,184,0.35);
+    }
+
+    .card section + section {
+      margin-top: 18px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(148, 163, 184, 0.35);
+    }
+
+    h2 {
+      font-size: 18px;
+      margin-bottom: 6px;
+    }
+
+    p {
+      font-size: 14px;
+      line-height: 1.7;
+      color: #e5e7eb;
+      margin-bottom: 8px;
+    }
+
+    ul {
+      margin: 4px 0 10px 18px;
+      padding-left: 0;
+    }
+
+    li {
+      font-size: 14px;
+      line-height: 1.6;
+      color: #e5e7eb;
+    }
+
+    a {
+      color: var(--gold-mid);
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .highlight {
+      background: linear-gradient(
+        120deg,
+        rgba(250, 250, 249, 0.03),
+        rgba(248, 250, 252, 0.06)
+      );
+      border-radius: 18px;
+      padding: 14px 16px;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      margin-top: 10px;
+    }
+
+    footer {
+      border-top: 1px solid rgba(148, 163, 184, 0.3);
+      padding: 20px;
+      font-size: 12px;
+      color: var(--text-muted);
+      text-align: center;
+    }
+
+    footer a {
+      color: var(--gold-mid);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 720px) {
+      .nav-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      nav {
+        width: 100%;
+        overflow-x: auto;
+        padding-bottom: 4px;
+      }
+      nav a {
+        margin: 0 12px 0 0;
+      }
+    }
+  </style>
 </head>
 <body>
-  <nav>
-    <a href="/">Home</a>
-    <a href="/about.html">About</a>
-    <a href="/blog.html">Blog & Guides</a>
-    <a href="/privacy.html">Privacy</a>
-    <a href="/affiliates.html">Affiliate Disclosure</a>
-  </nav>
+  <header>
+    <div class="nav-inner">
+      <div class="brand">Gift Lane</div>
+      <nav>
+        <a href="/">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/blog.html">Blog & Guides</a>
+        <a href="/privacy.html">Privacy</a>
+        <a href="/affiliates.html">Affiliate Disclosure</a>
+      </nav>
+    </div>
+  </header>
 
-  <main>
-    <h1>About Gift Lane</h1>
-    <p>
-      Gift Lane is your calm, luxe-feeling gifting concierge. It’s for people who
-      don’t have time to scroll endless product pages, but still care deeply about
-      giving something that feels personal and intentional.
-    </p>
+  <main class="page">
+    <div class="page-inner">
+      <div class="pill">
+        <span class="pill-dot"></span>
+        About Gift Lane
+      </div>
 
-    <h2>How it works</h2>
-    <p>
-      You tell Gift Lane who the gift is for, what you’re celebrating, and your
-      budget. Behind the scenes, an AI assistant curates ideas that are thoughtful,
-      realistic, and aligned with Aussie brands, shipping, and budgets.
-    </p>
+      <h1>Beautifully considered gifting for busy humans</h1>
+      <p class="meta-line">
+        Gift Lane is a calm little corner of the internet that helps you find
+        presents that feel like you actually know the person.
+      </p>
 
-    <h2>Why it exists</h2>
-    <p>
-      Gift Lane was created by a very tired mum who was sick of last-minute panic
-      buys, generic hampers, and analysis paralysis. The goal is simple: make
-      gifting feel easy again, without losing the heart behind it.
-    </p>
+      <div class="card">
+        <section>
+          <h2>Born from “I don’t know what to buy”</h2>
+          <p>
+            Gift Lane was created by a busy mum who loves thoughtful gifting but
+            doesn’t always have the time (or brain space) to scroll through a
+            million tabs looking for “the one”.
+          </p>
+          <p>
+            Instead of another overwhelming online store, Gift Lane acts like a
+            personal gifting concierge. You tell us who it’s for, what you’re
+            celebrating, and your budget. The concierge does the thinking.
+          </p>
+        </section>
+
+        <section>
+          <h2>How the concierge works</h2>
+          <p>
+            Behind the scenes, Gift Lane combines human-written prompts with
+            powerful AI to generate curated suggestions tailored to:
+          </p>
+          <ul>
+            <li>Who you’re buying for (their stage of life, vibe, and interests)</li>
+            <li>The occasion (big milestone or little moment)</li>
+            <li>Your budget and how far you want it to stretch</li>
+          </ul>
+          <div class="highlight">
+            <p>
+              The goal: ideas that feel realistic, well-chosen and
+              actually deliverable in Australia &mdash; not fantasy Pinterest
+              boards or US-only unicorns.
+            </p>
+          </div>
+        </section>
+
+        <section>
+          <h2>We’re not a store</h2>
+          <p>
+            Gift Lane doesn’t hold stock or ship anything. Think of it as
+            the friend who always has a good idea and sends you links.
+            Sometimes those links are affiliate links (you can read more in our
+            <a href="/affiliates.html">Affiliate Disclosure</a>), but the
+            suggestion has to earn its place first.
+          </p>
+        </section>
+
+        <section>
+          <h2>Made for real life, not perfection</h2>
+          <p>
+            Life is full and messy. Gift Lane is designed to feel like a deep
+            breath in the middle of that – a quick way to get from “I have no
+            idea” to “That’s perfect, done.”
+          </p>
+          <p>
+            Whether you’re shopping from the school pickup line, between
+            meetings, or at 11:47 pm the night before a birthday, the concierge
+            is quietly waiting for you.
+          </p>
+        </section>
+
+        <section>
+          <h2>Say hello</h2>
+          <p>
+            Ideas, feedback or collaboration enquiries are always welcome.
+            You can reach the human behind Gift Lane at
+            <a href="mailto:concierge@giftlane.au">concierge@giftlane.au</a>.
+          </p>
+        </section>
+      </div>
+    </div>
   </main>
 
   <footer>
-    © 2025 Gift Lane • Designed with love by Jude<br />
-    <a href="/privacy.html">Privacy Policy</a> •
-    <a href="/affiliates.html">Affiliate Disclosure</a> •
-    <a href="mailto:concierge@giftlane.au">Contact</a>
+    © 2025 Gift Lane • Designed with love by Jude ·
+    <a href="/privacy.html">Privacy</a> ·
+    <a href="/affiliates.html">Affiliate Disclosure</a>
   </footer>
 </body>
 </html>
