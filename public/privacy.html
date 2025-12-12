@@ -5,82 +5,306 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Privacy Policy – Gift Lane</title>
   <meta name="description" content="Gift Lane Privacy Policy – how we collect, store and protect your data." />
+
+  <style>
+    :root {
+      --navy-bg: #050b18;
+      --navy-main: #0f172a;
+      --gold-light: #fff5dd;
+      --gold-mid: #f6d58d;
+      --gold-deep: #d9a446;
+      --text-main: #f9fafb;
+      --text-muted: #9ca3af;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Segoe UI", sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at top left, #1f2937 0, transparent 55%),
+        radial-gradient(circle at bottom right, #020617 0, transparent 55%),
+        var(--navy-bg);
+      color: var(--text-main);
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Header / nav */
+    header {
+      padding: 16px 20px 6px;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.25);
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .nav-inner {
+      max-width: 1050px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand {
+      font-family: "Playfair Display", "Times New Roman", serif;
+      font-size: 22px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      background: linear-gradient(120deg,#fff6dd,#f9dc96,#e2aa4f);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      white-space: nowrap;
+    }
+
+    nav a {
+      color: var(--gold-mid);
+      text-decoration: none;
+      font-size: 13px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-left: 18px;
+      white-space: nowrap;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .page {
+      flex: 1;
+      padding: 32px 16px 40px;
+    }
+
+    .page-inner {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(248, 250, 252, 0.22);
+      padding: 5px 12px;
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+
+    .pill-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 30%, #a3e635, #4ade80);
+    }
+
+    h1 {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(30px, 4vw, 40px);
+      margin-bottom: 8px;
+    }
+
+    .meta-line {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 22px;
+    }
+
+    .card {
+      background:
+        radial-gradient(circle at top left,#1e293b 0,#020617 70%);
+      border-radius: 24px;
+      padding: 24px 20px;
+      box-shadow:
+        0 24px 60px rgba(0,0,0,0.85),
+        0 0 0 1px rgba(148,163,184,0.35);
+    }
+
+    .card section + section {
+      margin-top: 18px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(148, 163, 184, 0.35);
+    }
+
+    h2 {
+      font-size: 17px;
+      margin-bottom: 6px;
+    }
+
+    p {
+      font-size: 14px;
+      line-height: 1.7;
+      color: #e5e7eb;
+      margin-bottom: 8px;
+    }
+
+    ul {
+      margin: 4px 0 10px 18px;
+      padding-left: 0;
+    }
+
+    li {
+      font-size: 14px;
+      line-height: 1.6;
+      color: #e5e7eb;
+    }
+
+    a {
+      color: var(--gold-mid);
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      border-top: 1px solid rgba(148, 163, 184, 0.3);
+      padding: 20px;
+      font-size: 12px;
+      color: var(--text-muted);
+      text-align: center;
+    }
+
+    footer a {
+      color: var(--gold-mid);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 720px) {
+      .nav-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      nav {
+        width: 100%;
+        overflow-x: auto;
+        padding-bottom: 4px;
+      }
+      nav a {
+        margin: 0 12px 0 0;
+      }
+    }
+  </style>
 </head>
 <body>
+  <header>
+    <div class="nav-inner">
+      <div class="brand">Gift Lane</div>
+      <nav>
+        <a href="/">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/blog.html">Blog & Guides</a>
+        <a href="/privacy.html">Privacy</a>
+        <a href="/affiliates.html">Affiliate Disclosure</a>
+      </nav>
+    </div>
+  </header>
 
-  <nav>
-    <a href="/">Home</a>
-    <a href="/about.html">About</a>
-    <a href="/blog.html">Blog & Guides</a>
-    <a href="/privacy.html">Privacy</a>
-    <a href="/affiliates.html">Affiliate Disclosure</a>
-  </nav>
+  <main class="page">
+    <div class="page-inner">
+      <div class="pill">
+        <span class="pill-dot"></span>
+        Privacy Policy
+      </div>
 
-  <main>
-    <h1>Privacy Policy</h1>
+      <h1>How we look after your data</h1>
+      <p class="meta-line">Last updated: December 2025</p>
 
-    <p><strong>Last updated:</strong> December 2025</p>
+      <div class="card">
+        <section>
+          <h2>1. Who we are</h2>
+          <p>
+            Gift Lane is a gifting concierge that helps busy humans find 
+            thoughtful presents quickly. This policy explains what information 
+            we collect, how we use it, and the choices you have.
+          </p>
+        </section>
 
-    <p>
-      Gift Lane (“we”, “our”, “us”) is committed to protecting your privacy. 
-      This policy explains what information we collect, how we use it, and the 
-      choices you have.
-    </p>
+        <section>
+          <h2>2. Information you share with us</h2>
+          <p>When you use the concierge form, you might share:</p>
+          <ul>
+            <li>Who the gift is for (e.g. “my sister, 32, new mum”)</li>
+            <li>The occasion (birthday, Christmas, baby shower, etc.)</li>
+            <li>Your rough budget</li>
+          </ul>
+          <p>
+            This information is used only to generate gift suggestions. We don’t
+            ask for, or need, sensitive personal details.
+          </p>
+        </section>
 
-    <h2>1. Information We Collect</h2>
-    <p>
-      Gift Lane does not collect personal data unless you voluntarily submit it.
-      When using the gift concierge, you may provide:
-    </p>
-    <ul>
-      <li>Details about the recipient (e.g., age, hobbies)</li>
-      <li>Occasion and budget information</li>
-    </ul>
+        <section>
+          <h2>3. How we use your information</h2>
+          <p>
+            Your form details are securely sent to our AI assistant to create
+            tailored suggestions. We don’t sell your data, and we don’t share it
+            with third parties for their own marketing.
+          </p>
+        </section>
 
-    <p>
-      None of this information identifies you personally. It is used only to
-      generate curated gift suggestions.
-    </p>
+        <section>
+          <h2>4. Cookies & analytics</h2>
+          <p>
+            We may use basic analytics (for example, which pages are viewed
+            most often) to understand how people use Gift Lane. This is 
+            aggregated and does not personally identify you.
+          </p>
+        </section>
 
-    <h2>2. How Your Information Is Used</h2>
-    <p>
-      Information submitted into the concierge form is sent securely to our
-      AI assistant to generate suggestions. We do not store, sell, or share your
-      personal details with any third party for marketing purposes.
-    </p>
+        <section>
+          <h2>5. Affiliate links</h2>
+          <p>
+            Some gift suggestions may include affiliate links. If you buy
+            something through one of those links, the retailer may pay Gift
+            Lane a small commission. This happens at no extra cost to you, and
+            we don’t receive your payment details or account information.
+          </p>
+        </section>
 
-    <h2>3. Cookies & Analytics</h2>
-    <p>
-      Gift Lane may use anonymous analytics (e.g., page views, clicks) to improve
-      the site experience. These do not identify you personally.
-    </p>
+        <section>
+          <h2>6. Data security</h2>
+          <p>
+            We take reasonable steps to keep information secure and to limit
+            access to what’s needed to run the site. However, no internet
+            service can ever be guaranteed 100% secure.
+          </p>
+        </section>
 
-    <h2>4. Affiliate Links</h2>
-    <p>
-      Some gift suggestions may contain affiliate links. If you choose to make a
-      purchase, the retailer may track the sale to pay Gift Lane a commission.
-      We do not receive any personal details about you from these partners.
-    </p>
-
-    <h2>5. Data Security</h2>
-    <p>
-      We take reasonable measures to protect any information transmitted through
-      the site. Gift Lane does not store sensitive personal information.
-    </p>
-
-    <h2>6. Contact Us</h2>
-    <p>
-      If you have questions about this policy, email:
-      <a href="mailto:concierge@giftlane.au">concierge@giftlane.au</a>.
-    </p>
+        <section>
+          <h2>7. Your choices & questions</h2>
+          <p>
+            If you have questions about this policy or how your information is
+            used, you can contact us at:
+            <a href="mailto:concierge@giftlane.au">concierge@giftlane.au</a>.
+          </p>
+        </section>
+      </div>
+    </div>
   </main>
 
   <footer>
-    © 2025 Gift Lane • Designed with love by Jude<br />
-    <a href="/privacy.html">Privacy Policy</a> •
-    <a href="/affiliates.html">Affiliate Disclosure</a> •
-    <a href="mailto:concierge@giftlane.au">Contact</a>
+    © 2025 Gift Lane • Designed with love by Jude ·
+    <a href="/privacy.html">Privacy</a> ·
+    <a href="/affiliates.html">Affiliate Disclosure</a>
   </footer>
-
 </body>
 </html>
