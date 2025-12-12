@@ -1,4 +1,3 @@
-<script type="module">
   // form.js – Gift Lane frontend logic
 
   const btn = document.getElementById("submit");
@@ -70,4 +69,4 @@ data.products.forEach((product) => {
         "Oops — something went wrong on my end. Give me 10 seconds and try again.\n\n— Jude";
     }
   });
-</script>
+
