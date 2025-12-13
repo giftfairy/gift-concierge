@@ -16,17 +16,20 @@ const AFFILIATES = {
   "Will & Bear": {
     brand: "Will & Bear",
     homepage: "https://willandbear.com.au",
-    affiliate: "https://www.awin1.com/cread.php?awinmid=119813&awinaffid=2689862&ued=https%3A%2F%2Fwillandbear.com.au",
+    affiliate:
+      "https://www.awin1.com/cread.php?awinmid=119813&awinaffid=2689862&ued=https%3A%2F%2Fwillandbear.com.au",
     category: ["fashion", "accessories", "gifts"],
-    vibe: ["premium", "sustainable", "travel"]
-  },    
-    "YCZ Fragrance": {
-  brand: "YCZ Fragrance",
-  homepage: "https://yczfragrance.com",
-  affiliate: "https://www.awin1.com/cread.php?awinmid=121156&awinaffid=2689862&ued=https%3A%2F%2Fyczfragrance.com",
-  category: ["beauty", "fragrance", "gifts"],
-  vibe: ["luxury", "sensual", "modern"]
-  }
+    vibe: ["premium", "sustainable", "travel"],
+  },
+
+  "YCZ Fragrance": {
+    brand: "YCZ Fragrance",
+    homepage: "https://yczfragrance.com",
+    affiliate:
+      "https://www.awin1.com/cread.php?awinmid=121156&awinaffid=2689862&ued=https%3A%2F%2Fyczfragrance.com",
+    category: ["beauty", "fragrance", "gifts"],
+    vibe: ["luxury", "sensual", "modern"],
+  },
 };
 
 // Required to correctly resolve file paths on Render
@@ -39,7 +42,6 @@ const app = express();
 // STATIC WEBSITE
 // -----------------------------
 app.use(express.static(path.join(__dirname, "public")));
-
 app.use(express.json());
 app.use(cors());
 
@@ -77,6 +79,27 @@ function parseBudget(raw) {
 }
 
 // -----------------------------
+// Affiliate helpers
+// -----------------------------
+function detectAffiliateBrand({ title = "", why = "" }) {
+  const t = `${title} ${why}`.toLowerCase();
+
+  // Will & Bear
+  if (t.includes("will & bear") || t.includes("will and bear")) return "Will & Bear";
+
+  // YCZ Fragrance (keep slightly broad)
+  if (t.includes("ycz")) return "YCZ Fragrance";
+
+  return null;
+}
+
+function affiliateLinksFor(brandKey) {
+  const a = AFFILIATES?.[brandKey];
+  if (!a?.affiliate) return [];
+  return [{ label: a.brand, url: a.affiliate }];
+}
+
+// -----------------------------
 // Gift Prompt Builder
 // -----------------------------
 function buildGiftPrompt(recipient, occasion, budget) {
@@ -106,7 +129,7 @@ Return EXACTLY ${count} product suggestions.
 IMPORTANT:
 - Suggest REAL, commonly available products/brands.
 - Do NOT invent “random Etsy shop” type items.
-- Provide links as retailer SEARCH links (not deep product links) so they stay valid.
+- Provide links as retailer SEARCH links OR official brand site links (avoid deep product links).
 - If a suggestion fits an approved partner brand, you MAY include it.
 - Approved partner brands:
   - Will & Bear (premium sustainable hats & accessories, Australia)
@@ -131,7 +154,6 @@ Output ONLY valid JSON in this exact shape (no markdown, no backticks, no commen
 }
 
 // -----------------------------
-// -----------------------------
 // /curate route – AI suggestions
 // -----------------------------
 app.post("/curate", async (req, res) => {
@@ -150,57 +172,56 @@ app.post("/curate", async (req, res) => {
       max_output_tokens: 900,
     });
 
-    // ⚠️ IMPORTANT: OpenAI sometimes wraps JSON in markdown
+    // OpenAI sometimes wraps JSON in markdown
     let rawText = response.output_text || "";
-
-    // 🔧 HARD CLEAN
-    rawText = rawText
-      .replace(/```json/gi, "")
-      .replace(/```/g, "")
-      .trim();
+    rawText = rawText.replace(/```json/gi, "").replace(/```/g, "").trim();
 
     let parsed;
     try {
       parsed = JSON.parse(rawText);
     } catch (e) {
       console.error("JSON parse failed:", rawText);
-      return res.status(500).json({
-        error: "AI returned non-JSON. Try again.",
-      });
+      return res.status(500).json({ error: "AI returned non-JSON. Try again." });
     }
 
     if (!Array.isArray(parsed.products)) {
-      return res.status(500).json({
-        error: "AI JSON missing products array.",
-      });
+      return res.status(500).json({ error: "AI JSON missing products array." });
     }
 
-    // ✅ Final safety normalisation
+    // ✅ Final safety normalisation + ✅ affiliate override
     const cleaned = {
-      products: parsed.products.map((p) => ({
-        title: String(p.title || "").slice(0, 120),
-        why: String(p.why || "").slice(0, 300),
-        price_note: String(p.price_note || ""),
-        links: Array.isArray(p.links)
+      products: parsed.products.map((p) => {
+        const title = String(p.title || "").slice(0, 120);
+        const why = String(p.why || "").slice(0, 300);
+        const price_note = String(p.price_note || "").slice(0, 60);
+
+        // default links from AI (Amazon/Iconic etc.)
+        let links = Array.isArray(p.links)
           ? p.links
-              .filter((l) => l?.url?.startsWith("https://"))
+              .filter((l) => String(l?.url || "").startsWith("https://"))
+              .slice(0, 4)
               .map((l) => ({
                 label: String(l.label || "Search").slice(0, 30),
-                url: String(l.url).slice(0, 400),
+                url: String(l.url || "").slice(0, 400),
               }))
-          : [],
-      })),
+          : [];
+
+        // ✅ override links if this looks like an affiliate brand suggestion
+        const brandKey = detectAffiliateBrand({ title, why });
+        if (brandKey) {
+          links = affiliateLinksFor(brandKey);
+        }
+
+        return { title, why, price_note, links };
+      }),
     };
 
     res.json(cleaned);
   } catch (err) {
     console.error("Error in /curate:", err);
-    res.status(500).json({
-      error: "Something went wrong talking to OpenAI.",
-    });
+    res.status(500).json({ error: "Something went wrong talking to OpenAI." });
   }
 });
-
 
 // -----------------------------
 // SERVER START (Render)
@@ -209,7 +230,3 @@ const port = process.env.PORT || 10000;
 app.listen(port, () => {
   console.log(`Gift Lane server running on port ${port}`);
 });
-
-
-
-
