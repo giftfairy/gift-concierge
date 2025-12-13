@@ -19,6 +19,13 @@ const AFFILIATES = {
     affiliate: "https://www.awin1.com/cread.php?awinmid=119813&awinaffid=2689862&ued=https%3A%2F%2Fwillandbear.com.au",
     category: ["fashion", "accessories", "gifts"],
     vibe: ["premium", "sustainable", "travel"]
+  },    
+    "YCZ Fragrance": {
+  brand: "YCZ Fragrance",
+  homepage: "https://yczfragrance.com",
+  affiliate: "https://www.awin1.com/cread.php?awinmid=121156&awinaffid=2689862&ued=https%3A%2F%2Fyczfragrance.com",
+  category: ["beauty", "fragrance", "gifts"],
+  vibe: ["luxury", "sensual", "modern"]
   }
 };
 
@@ -103,6 +110,7 @@ IMPORTANT:
 - If a suggestion fits an approved partner brand, you MAY include it.
 - Approved partner brands:
   - Will & Bear (premium sustainable hats & accessories, Australia)
+  - YCZ Fragrance (luxury fragrances, Australia)
 
 Output ONLY valid JSON in this exact shape (no markdown, no backticks, no commentary):
 
@@ -201,6 +209,7 @@ const port = process.env.PORT || 10000;
 app.listen(port, () => {
   console.log(`Gift Lane server running on port ${port}`);
 });
+
 
 
 
