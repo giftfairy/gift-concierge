@@ -97,9 +97,12 @@ Budget: ${raw || budget}
 Return EXACTLY ${count} product suggestions.
 
 IMPORTANT:
-- Suggest REAL, commonly available products/brands in Australia.
-- Do NOT invent fake “shops”.
+- Suggest REAL, commonly available products/brands.
+- Do NOT invent “random Etsy shop” type items.
 - Provide links as retailer SEARCH links (not deep product links) so they stay valid.
+- If a suggestion fits an approved partner brand, you MAY include it.
+- Approved partner brands:
+  - Will & Bear (premium sustainable hats & accessories, Australia)
 
 Output ONLY valid JSON in this exact shape (no markdown, no backticks, no commentary):
 
@@ -198,5 +201,6 @@ const port = process.env.PORT || 10000;
 app.listen(port, () => {
   console.log(`Gift Lane server running on port ${port}`);
 });
+
 
 
