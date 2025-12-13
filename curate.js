@@ -195,16 +195,19 @@ app.post("/curate", async (req, res) => {
         const why = String(p.why || "").slice(0, 300);
         const price_note = String(p.price_note || "").slice(0, 60);
 
-        // default links from AI (Amazon/Iconic etc.)
-        let links = Array.isArray(p.links)
-          ? p.links
-              .filter((l) => String(l?.url || "").startsWith("https://"))
-              .slice(0, 4)
-              .map((l) => ({
-                label: String(l.label || "Search").slice(0, 30),
-                url: String(l.url || "").slice(0, 400),
-              }))
-          : [];
+       // default links from AI (Amazon / Iconic etc)
+let links = Array.isArray(p.links)
+  ? p.links
+      .filter((l) => String(l?.url || "").startsWith("https://"))
+      .map((l) => ({
+        label: String(l.label || "Shop now").slice(0, 30),
+        url: String(l.url || "").slice(0, 400),
+      }))
+  : [];
+
+// ✅ keep ONLY ONE retailer link
+if (links.length > 1) links = [links[0]];
+
 
         // ✅ override links if this looks like an affiliate brand suggestion
         const brandKey = detectAffiliateBrand({ title, why });
@@ -230,3 +233,4 @@ const port = process.env.PORT || 10000;
 app.listen(port, () => {
   console.log(`Gift Lane server running on port ${port}`);
 });
+
