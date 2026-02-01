@@ -30,6 +30,23 @@ const AFFILIATES = {
     category: ["beauty", "fragrance", "gifts"],
     vibe: ["luxury", "sensual", "modern"],
   },
+
+  "House of Sneakers": {
+  brand: "House of Sneakers",
+  homepage: "https://house-of-sneakers.de/en",
+  affiliate: "https://www.awin1.com/cread.php?awinmid=114336&awinaffid=2689862&ued=https%3A%2F%2Fhouse-of-sneakers.de%2Fen",
+  category: ["fashion", "sneakers", "streetwear"],
+  vibe: ["trendy", "premium", "european"]
+},
+
+ "Sylvox TV": {
+  brand: "Sylvox TV",
+  homepage: "https://www.sylvoxtv.com.au",
+  affiliate: "https://www.awin1.com/cread.php?awinmid=115797&awinaffid=2689862&ued=https%3A%2F%2Fwww.sylvoxtv.com.au",
+  category: ["electronics", "TV", "home entertainment"],
+  vibe: ["modern", "techy", "giftable"]
+},
+ 
 };
 
 // Required to correctly resolve file paths on Render
@@ -233,4 +250,5 @@ const port = process.env.PORT || 10000;
 app.listen(port, () => {
   console.log(`Gift Lane server running on port ${port}`);
 });
+
 
