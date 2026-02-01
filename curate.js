@@ -107,6 +107,17 @@ function detectAffiliateBrand({ title = "", why = "" }) {
   // YCZ Fragrance (keep slightly broad)
   if (t.includes("ycz")) return "YCZ Fragrance";
 
+  // House of Sneakers
+  if (
+  t.includes("house of sneakers") ||
+  t.includes("house-of-sneakers") ||
+  t.includes("sneakers de")
+  ) return "House of Sneakers DE";
+
+  // Sylvox
+  if (t.includes("sylvox")) return "Sylvox";
+
+
   return null;
 }
 
@@ -250,5 +261,6 @@ const port = process.env.PORT || 10000;
 app.listen(port, () => {
   console.log(`Gift Lane server running on port ${port}`);
 });
+
 
 
