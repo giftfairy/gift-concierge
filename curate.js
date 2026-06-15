@@ -31,7 +31,7 @@ const AFFILIATES = {
     vibe: ["luxury", "sensual", "modern"],
   },
 
-  "House of Sneakers": {
+  "House of Sneakers DE": {
   brand: "House of Sneakers",
   homepage: "https://house-of-sneakers.de/en",
   affiliate: "https://www.awin1.com/cread.php?awinmid=114336&awinaffid=2689862&ued=https%3A%2F%2Fhouse-of-sneakers.de%2Fen",
@@ -107,7 +107,7 @@ function detectAffiliateBrand({ title = "", why = "" }) {
   // YCZ Fragrance (keep slightly broad)
   if (t.includes("ycz")) return "YCZ Fragrance";
 
-  // House of Sneakers
+  // House of Sneakers DE
   if (
   t.includes("house of sneakers") ||
   t.includes("house-of-sneakers") ||
