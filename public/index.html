@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Gift Lane – Beautifully Considered Gifting for Busy Aussies</title>
-  <meta name="description" content="Instant personalised gift ideas for any occasion & budget. Designed by Jude, inspired by a busy mum. 100% Aussie brands, no sign-up needed." />
+  <meta name="description" content="Instant personalised gift ideas for any occasion & budget. Designed by Jude, inspired by a busy mum. Australia-first shopping, no sign-up needed." />
 
   <!-- Open Graph / Social -->
   <meta property="og:title" content="Gift Lane – Thoughtful Gift Ideas in Seconds" />
@@ -37,7 +37,11 @@
       --text-main: #f9fafb;
       --text-muted: #b9c3dd;
     }
-    * { box-sizing: border-box; }
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       min-height: 100vh;
@@ -51,11 +55,12 @@
       flex-direction: column;
     }
 
-    /* NEW: TOP NAVIGATION */
+    /* TOP NAVIGATION */
     nav {
       padding: 20px 20px 8px;
       text-align: center;
     }
+
     nav a {
       color: var(--gold-mid);
       text-decoration: none;
@@ -63,7 +68,10 @@
       font-weight: 500;
       font-size: 14.5px;
     }
-    nav a:hover { text-decoration: underline; }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
 
     .page {
       flex: 1;
@@ -73,7 +81,12 @@
       width: 100%;
     }
 
-    /* EVERYTHING BELOW IS YOUR ORIGINAL CSS — 100% UNCHANGED */
+    .layout {
+      display: block;
+      width: 100%;
+    }
+
+    /* BRAND MARK */
     .brand-mark {
       font-size: 11px;
       letter-spacing: 0.14em;
@@ -84,6 +97,7 @@
       gap: 6px;
       margin-bottom: 10px;
     }
+
     .brand-dot {
       width: 8px;
       height: 8px;
@@ -91,26 +105,10 @@
       background: radial-gradient(circle at 30% 30%, #7bf2b7, #16a34a);
       box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.25);
     }
-    /* Brand marker */
-    .brand-mark {
-      font-size: 11px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      margin-bottom: 10px;
-    }
-    .brand-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 999px;
-      background: radial-gradient(circle at 30% 30%, #7bf2b7, #16a34a);
-      box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.25);
-    }
-    /* Left / hero */
+
+    /* HERO */
     .left {
+      width: 100%;
       background:
         radial-gradient(circle at top left, #243a68 0, #0c172d 45%, #050b18 100%);
       border-radius: 26px;
@@ -121,6 +119,7 @@
       position: relative;
       overflow: hidden;
     }
+
     .left::before {
       content: "";
       position: absolute;
@@ -129,10 +128,12 @@
         radial-gradient(circle at top left, rgba(255, 255, 255, 0.08), transparent 55%);
       pointer-events: none;
     }
+
     .left-inner {
       position: relative;
       z-index: 1;
     }
+
     .sub-line {
       font-size: 11px;
       letter-spacing: 0.18em;
@@ -140,7 +141,7 @@
       color: var(--text-muted);
       margin-bottom: 8px;
     }
-    /* GIFT LANE TITLE – LUXE GOLD */
+
     .logo-word {
       font-family: "Playfair Display", "Times New Roman", serif;
       font-size: clamp(42px, 6vw, 64px);
@@ -148,6 +149,7 @@
       letter-spacing: 0.05em;
       line-height: 1.1;
     }
+
     .logo-word span {
       background: linear-gradient(
         120deg,
@@ -163,6 +165,7 @@
         0 3px 6px rgba(0, 0, 0, 0.55),
         0 12px 22px rgba(0, 0, 0, 0.75);
     }
+
     .hero-line {
       margin: 0 0 18px;
       font-size: 15px;
@@ -170,6 +173,7 @@
       color: #e4e8f4;
       max-width: 36rem;
     }
+
     .micro-copy {
       margin-top: 12px;
       font-size: 11px;
@@ -177,7 +181,8 @@
       text-transform: uppercase;
       color: var(--text-muted);
     }
-    /* Card + inputs */
+
+    /* FORM CARD */
     .card {
       margin-top: 10px;
       background:
@@ -188,6 +193,7 @@
         0 22px 55px rgba(0, 0, 0, 0.9),
         0 0 0 1px rgba(148, 163, 184, 0.24);
     }
+
     .field-label {
       display: block;
       font-size: 11px;
@@ -196,6 +202,7 @@
       color: var(--text-muted);
       margin-bottom: 6px;
     }
+
     .input {
       width: 100%;
       border-radius: 999px;
@@ -210,22 +217,26 @@
         0 12px 28px rgba(0, 0, 0, 0.95),
         0 0 0 1px rgba(0, 0, 0, 0.35);
     }
+
     .input::placeholder {
       color: #93a0c0;
     }
+
     .input:focus {
       border-color: #ffe9b0;
       box-shadow:
         0 0 0 1px rgba(255, 233, 176, 0.95),
         0 16px 34px rgba(0, 0, 0, 1);
     }
+
     .row {
       display: grid;
       grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
       gap: 10px;
       margin-top: 10px;
     }
-    /* Button */
+
+    /* BUTTON */
     .button-row {
       display: flex;
       align-items: center;
@@ -234,6 +245,7 @@
       margin-bottom: 2px;
       flex-wrap: wrap;
     }
+
     .btn-primary {
       border: none;
       outline: none;
@@ -258,8 +270,12 @@
       align-items: center;
       gap: 8px;
       white-space: nowrap;
-      transition: transform 0.14s ease, box-shadow 0.14s ease, filter 0.14s ease;
+      transition:
+        transform 0.14s ease,
+        box-shadow 0.14s ease,
+        filter 0.14s ease;
     }
+
     .btn-primary span.icon {
       display: inline-flex;
       align-items: center;
@@ -271,6 +287,7 @@
       color: #fef9c3;
       font-size: 11px;
     }
+
     .btn-primary:hover {
       transform: translateY(-1px);
       filter: brightness(1.03);
@@ -278,225 +295,183 @@
         0 22px 46px rgba(0, 0, 0, 1),
         0 0 0 1px rgba(255, 249, 214, 0.9);
     }
+
     .btn-primary:active {
       transform: translateY(0);
       box-shadow:
         0 14px 34px rgba(0, 0, 0, 0.9),
         0 0 0 1px rgba(255, 249, 214, 0.9);
     }
+
     .button-note {
       font-size: 11px;
       color: var(--text-muted);
-      max-width: 210px;
+      max-width: 260px;
     }
-    /* Results */
+
+    /* RESULTS */
     .results {
-      margin-top: 16px;
-      padding-top: 10px;
+      margin-top: 22px;
+      padding-top: 18px;
       border-top: 1px solid rgba(148, 163, 184, 0.4);
       font-size: 14px;
       line-height: 1.6;
       color: var(--text-main);
-      max-height: 260px;
-      overflow-y: auto;
+      max-height: none;
+      overflow: visible;
     }
+
     .results h2 {
       font-size: 12px;
       letter-spacing: 0.16em;
       text-transform: uppercase;
       color: var(--text-muted);
-      margin: 0 0 6px;
+      margin: 0 0 12px;
     }
+
     .results-content {
-      white-space: pre-line;
+      white-space: normal;
     }
+
+    .results-content:not(.results-empty) {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
     .results-empty {
       color: #9ca3af;
     }
-    /* Right / explainer */
-    .right {
-      display: flex;
-      align-items: stretch;
-    }
-    .side-panel {
-      width: 100%;
-      border-radius: 24px;
+
+    /* PRODUCT TILES */
+    .product-card {
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 16px;
+      padding: 18px;
+      margin-bottom: 0;
       background:
-        linear-gradient(135deg, #f8f5ee, #f2eadc);
-      box-shadow:
-        0 22px 60px rgba(3, 9, 28, 0.75),
-        0 0 0 1px rgba(15, 23, 42, 0.12);
-      padding: 20px 18px 16px;
-      color: #111827;
+        radial-gradient(
+          circle at top left,
+          rgba(255, 255, 255, 0.06),
+          rgba(255, 255, 255, 0.025)
+        );
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-      position: relative;
-      overflow: hidden;
+      min-height: 220px;
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.28);
     }
-    .side-panel::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at top left, rgba(217, 179, 93, 0.2), transparent 60%);
-      mix-blend-mode: soft-light;
-      pointer-events: none;
-    }
-    .side-inner {
-      position: relative;
-      z-index: 1;
-    }
-    .side-top-label {
-      font-size: 11px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: #6b7280;
-      margin-bottom: 10px;
-    }
-    .side-main-line {
-      font-family: "Playfair Display", serif;
-      font-size: 19px;
+
+    .product-card h3 {
+      margin: 0 0 8px;
+      font-size: 18px;
       line-height: 1.35;
-      margin-bottom: 10px;
     }
-    .side-main-line strong {
-      background: linear-gradient(135deg, #b88932, #d3a644);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
+
+    .product-card .price {
+      font-weight: 600;
+      margin: 0 0 8px;
+      color: var(--gold-mid);
     }
-    .side-bullets {
-      font-size: 13px;
-      color: #374151;
+
+    .product-card .reason {
+      font-size: 0.92rem;
+      opacity: 0.9;
       margin: 0 0 12px;
-      padding-left: 18px;
+      line-height: 1.55;
     }
-    .side-bullets li + li {
-      margin-top: 4px;
+
+    .product-card .links {
+      margin-top: auto;
+      padding-top: 8px;
     }
-    .side-footer {
-      position: relative;
-      z-index: 1;
-      border-top: 1px solid rgba(148, 163, 184, 0.5);
-      padding-top: 10px;
-      margin-top: 8px;
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-    .side-tagline {
-      font-size: 11px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: #6b7280;
-    }
-    .side-note {
-      font-size: 12px;
-      color: #4b5563;
-    }
-    .badge-pill {
+
+    .product-card a,
+    .product-link {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
+      justify-content: center;
       border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.7);
-      padding: 5px 10px;
-      font-size: 11px;
-      color: #4b5563;
-      margin-top: 4px;
-      background: rgba(255, 255, 255, 0.8);
+      padding: 9px 15px;
+      background: linear-gradient(135deg, #f6d58d, #d9a446);
+      color: #1f1305 !important;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 13px;
+      transition:
+        transform 0.14s ease,
+        filter 0.14s ease;
     }
-    .badge-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 999px;
-      background: linear-gradient(135deg, #facc15, #d97706);
+
+    .product-card a:hover,
+    .product-link:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.04);
     }
-    /* About line under card */
+
+    /* SIGNATURE */
     .about-line {
       margin-top: 18px;
       font-size: 13px;
       color: #e5e7eb;
     }
+
     .about-line span {
       display: block;
       margin-top: 4px;
       font-size: 13px;
     }
-    /* Mobile tweaks */
+
+    /* MOBILE */
     @media (max-width: 860px) {
       body {
         align-items: flex-start;
       }
-      .layout {
-        grid-template-columns: minmax(0, 1fr);
-      }
-      .right {
-        margin-top: 18px;
+
+      .results-content:not(.results-empty) {
+        grid-template-columns: 1fr;
       }
     }
+
     @media (max-width: 600px) {
       .logo-word {
         font-size: 56px;
         letter-spacing: 0.06em;
       }
+
+      .row {
+        grid-template-columns: 1fr;
+      }
+
+      nav a {
+        display: inline-block;
+        margin: 5px 9px;
+      }
     }
 
-    /* NEW: FOOTER */
+    /* FOOTER */
     footer {
       text-align: center;
       padding: 36px 20px 24px;
       font-size: 13.5px;
       color: var(--text-muted);
     }
+
     footer a {
       color: var(--gold-mid);
       text-decoration: none;
     }
-    footer a:hover { text-decoration: underline; }
 
-/* ============================= */
-/* Gift Lane – Product Cards */
-/* ============================= */
-
-.product-card {
-  border: 1px solid rgba(255,255,255,0.15);
-  border-radius: 12px;
-  padding: 16px;
-  margin-bottom: 16px;
-  background: rgba(255,255,255,0.03);
-}
-
-.product-card h3 {
-  margin: 0 0 6px;
-}
-
-.product-card .price {
-  font-weight: 600;
-  margin-bottom: 6px;
-}
-
-.product-card .reason {
-  font-size: 0.9rem;
-  opacity: 0.85;
-  margin-bottom: 10px;
-}
-
-.product-card a {
-  color: var(--gold-mid);
-  text-decoration: none;
-  font-weight: 500;
-}
-
-</style>
-
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
+
 <body>
   <div style="font-size:0; height:0; overflow:hidden;">
     Impact-Site-Verification: f235e672-2c7a-462f-94e1-22ab97d41578
   </div>
 
-  <!-- NEW: NAVIGATION BAR -->
   <nav>
     <a href="/">Home</a>
     <a href="/about.html">About</a>
@@ -510,27 +485,50 @@
       <span class="brand-dot"></span>
       LIVE · GIFT CONCIERGE
     </div>
+
     <div class="layout">
-      <!-- LEFT -->
       <section class="left">
         <div class="left-inner">
-          <div class="sub-line">Beautifully considered gifting</div>
-          <h1 class="logo-word"><span>Gift Lane</span></h1>
+
+          <div class="sub-line">
+            Beautifully considered gifting
+          </div>
+
+          <h1 class="logo-word">
+            <span>Gift Lane</span>
+          </h1>
+
           <p class="hero-line">
-            Beautifully considered gifting — made effortless. Tell me who the gift is for, the moment you’re celebrating, and your budget. I’ll curate ideas that feel thoughtful, well-chosen, and genuinely right for them.
+            Beautifully considered gifting — made effortless.
+            Tell me who the gift is for, the moment you’re celebrating,
+            and your budget. I’ll curate ideas that feel thoughtful,
+            well-chosen, and genuinely right for them.
           </p>
-          <div class="micro-copy">Start your request</div>
+
+          <div class="micro-copy">
+            Start your request
+          </div>
+
           <div class="card">
-            <label class="field-label" for="recipient">Who is this for?</label>
+
+            <label class="field-label" for="recipient">
+              Who is this for?
+            </label>
+
             <input
               id="recipient"
               class="input"
               type="text"
               placeholder="e.g. my sister, 32, new mum, loves spa days"
             />
+
             <div class="row">
+
               <div>
-                <label class="field-label" for="occasion">Occasion</label>
+                <label class="field-label" for="occasion">
+                  Occasion
+                </label>
+
                 <input
                   id="occasion"
                   class="input"
@@ -538,8 +536,12 @@
                   placeholder="e.g. birthday, Christmas, baby shower"
                 />
               </div>
+
               <div>
-                <label class="field-label" for="budget">Budget (AUD)</label>
+                <label class="field-label" for="budget">
+                  Budget (AUD)
+                </label>
+
                 <input
                   id="budget"
                   class="input"
@@ -547,70 +549,53 @@
                   placeholder="e.g. $80–$120"
                 />
               </div>
+
             </div>
+
             <div class="button-row">
+
               <button id="submit" class="btn-primary">
                 <span class="icon">Sparkles</span>
                 Curate gifts
               </button>
+
               <div class="button-note">
-                No sign-up. No fuss. Just beautiful ideas you can shop anywhere.
+                No sign-up. No fuss. Five thoughtful ideas with clear places to shop.
               </div>
+
             </div>
+
             <div class="results" id="results">
-              <h2>Suggestions</h2>
+
+              <h2>
+                Suggestions
+              </h2>
+
               <div class="results-content results-empty">
                 Your personalised ideas will appear here in a few seconds.
               </div>
+
             </div>
+
           </div>
+
           <p class="about-line">
             Designed by Jude. Inspired by a busy mum.
             <span>Chosen with intention.</span>
           </p>
+
         </div>
       </section>
-
-      <!-- RIGHT -->
-      <aside class="right">
-        <div class="side-panel">
-          <div class="side-inner">
-            <div class="side-top-label">How Gift Lane works</div>
-            <div class="side-main-line">
-              Your calm gifting concierge — curated in minutes with ideas that feel
-              <strong>thoughtful and realistic</strong>.
-            </div>
-            <ul class="side-bullets">
-              <li>Perfect for busy people who still care about giving something meaningful.</li>
-              <li>Every suggestion is shaped around the person, the occasion, and what feels right.</li>
-              <li>Built for Australian brands, budgets, and delivery expectations.</li>
-            </ul>
-          </div>
-          <div class="side-footer">
-            <div class="side-tagline">
-              Made for “I don’t know what to buy” moments
-            </div>
-            <div class="side-note">
-              Think of Gift Lane as the friend who always chooses well — the one who makes gifting feel easy, considered, and actually enjoyable.
-            </div>
-            <div class="badge-pill">
-              <span class="badge-dot"></span>
-              Works beautifully on mobile while you’re out living life.
-            </div>
-          </div>
-        </div>
-      </aside>
     </div>
   </div>
 
-  <!-- NEW: FOOTER -->
   <footer>
     © 2025 Gift Lane • Designed with love by Jude<br>
-    <a href="/privacy.html">Privacy Policy</a> • 
-    <a href="/affiliates.html">Affiliate Disclosure</a> • 
+    <a href="/privacy.html">Privacy Policy</a> •
+    <a href="/affiliates.html">Affiliate Disclosure</a> •
     <a href="mailto:concierge@giftlane.au">Contact</a>
   </footer>
 
-<script type="module" src="/frontend-curate.js"></script>
+  <script type="module" src="/frontend-curate.js"></script>
 </body>
 </html>
