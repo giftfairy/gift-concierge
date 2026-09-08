@@ -1,6 +1,7 @@
 // =============================
 // Gift Lane – Unified Server
-// Serves the website + the /curate API
+// Website + /curate API
+// Australia-first gift discovery
 // =============================
 
 import express from "express";
@@ -32,45 +33,45 @@ const AFFILIATES = {
   },
 
   "House of Sneakers DE": {
-  brand: "House of Sneakers",
-  homepage: "https://house-of-sneakers.de/en",
-  affiliate: "https://www.awin1.com/cread.php?awinmid=114336&awinaffid=2689862&ued=https%3A%2F%2Fhouse-of-sneakers.de%2Fen",
-  category: ["fashion", "sneakers", "streetwear"],
-  vibe: ["trendy", "premium", "european"]
-},
+    brand: "House of Sneakers",
+    homepage: "https://house-of-sneakers.de/en",
+    affiliate:
+      "https://www.awin1.com/cread.php?awinmid=114336&awinaffid=2689862&ued=https%3A%2F%2Fhouse-of-sneakers.de%2Fen",
+    category: ["fashion", "sneakers", "streetwear"],
+    vibe: ["trendy", "premium", "european"],
+  },
 
- "Sylvox TV": {
-  brand: "Sylvox TV",
-  homepage: "https://www.sylvoxtv.com.au",
-  affiliate: "https://www.awin1.com/cread.php?awinmid=115797&awinaffid=2689862&ued=https%3A%2F%2Fwww.sylvoxtv.com.au",
-  category: ["electronics", "TV", "home entertainment"],
-  vibe: ["modern", "techy", "giftable"]
-},
- 
+  "Sylvox TV": {
+    brand: "Sylvox TV",
+    homepage: "https://www.sylvoxtv.com.au",
+    affiliate:
+      "https://www.awin1.com/cread.php?awinmid=115797&awinaffid=2689862&ued=https%3A%2F%2Fwww.sylvoxtv.com.au",
+    category: ["electronics", "TV", "home entertainment"],
+    vibe: ["modern", "techy", "giftable"],
+  },
 };
 
-// Required to correctly resolve file paths on Render
+// -----------------------------
+// Render path setup
+// -----------------------------
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
 
-// -----------------------------
-// STATIC WEBSITE
-// -----------------------------
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.json());
 app.use(cors());
 
 // -----------------------------
-// OpenAI client setup
+// OpenAI
 // -----------------------------
 const client = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
 // -----------------------------
-// Helper: Budget parsing
+// Budget parsing
 // -----------------------------
 function parseBudget(raw) {
   if (!raw) return { min: null, max: null, raw: null };
@@ -80,101 +81,164 @@ function parseBudget(raw) {
 
   if (!matches) return { min: null, max: null, raw };
 
-  const nums = matches.map((n) => parseFloat(n));
+  const nums = matches.map(Number);
   const first = nums[0];
   const second = nums[1];
 
-  if (second != null) return { min: first, max: second, raw };
+  if (second != null) {
+    return {
+      min: Math.min(first, second),
+      max: Math.max(first, second),
+      raw,
+    };
+  }
 
-  if (/under|below|less than|up to|upto/i.test(str))
+  if (/under|below|less than|up to|upto/i.test(str)) {
     return { min: null, max: first, raw };
+  }
 
-  if (/over|more than|at least|from/i.test(str))
+  if (/over|more than|at least|from/i.test(str)) {
     return { min: first, max: null, raw };
+  }
 
-  return { min: first, max: first, raw };
+  // A plain number means "budget up to this amount"
+  // rather than "product must cost exactly this amount".
+  return { min: null, max: first, raw };
 }
 
 // -----------------------------
-// Affiliate helpers
+// Affiliate detection
 // -----------------------------
-function detectAffiliateBrand({ title = "", why = "" }) {
-  const t = `${title} ${why}`.toLowerCase();
+function detectAffiliateBrand({ title = "", retailer = "", why = "" }) {
+  const text = `${title} ${retailer} ${why}`.toLowerCase();
 
-  // Will & Bear
-  if (t.includes("will & bear") || t.includes("will and bear")) return "Will & Bear";
-
-  // YCZ Fragrance (keep slightly broad)
-  if (t.includes("ycz")) return "YCZ Fragrance";
-
-  // House of Sneakers DE
   if (
-  t.includes("house of sneakers") ||
-  t.includes("house-of-sneakers") ||
-  t.includes("sneakers de")
-  ) return "House of Sneakers DE";
+    text.includes("will & bear") ||
+    text.includes("will and bear")
+  ) {
+    return "Will & Bear";
+  }
 
-  // Sylvox
-  if (t.includes("sylvox")) return "Sylvox";
+  if (text.includes("ycz")) {
+    return "YCZ Fragrance";
+  }
 
+  if (
+    text.includes("house of sneakers") ||
+    text.includes("house-of-sneakers")
+  ) {
+    return "House of Sneakers DE";
+  }
+
+  if (text.includes("sylvox")) {
+    return "Sylvox TV";
+  }
 
   return null;
 }
 
-function affiliateLinksFor(brandKey) {
-  const a = AFFILIATES?.[brandKey];
-  if (!a?.affiliate) return [];
-  return [{ label: a.brand, url: a.affiliate }];
+function affiliateLinkFor(brandKey) {
+  const affiliate = AFFILIATES?.[brandKey];
+
+  if (!affiliate?.affiliate) return null;
+
+  return {
+    label: affiliate.brand,
+    url: affiliate.affiliate,
+    affiliate: true,
+  };
 }
 
 // -----------------------------
-// Gift Prompt Builder
+// Prompt
 // -----------------------------
 function buildGiftPrompt(recipient, occasion, budget) {
-  const { min, max, raw } = parseBudget(budget);
+  const parsedBudget = parseBudget(budget);
 
-  let central = null;
-  if (min != null && max != null) central = (min + max) / 2;
-  else if (min != null) central = min;
-  else if (max != null) central = max;
+  let budgetInstruction = `The customer's stated budget is ${budget}.`;
 
-  let count = 5;
-  if (central != null) {
-    if (central < 150) count = 3;
-    else if (central >= 150 && central <= 400) count = 5;
-    else count = 8;
+  if (parsedBudget.max != null && parsedBudget.min == null) {
+    budgetInstruction += `
+Treat this as a maximum spend, not a target price.
+Prefer excellent gifts in roughly the upper half of the budget when appropriate,
+but include a cheaper option if it is genuinely a better gift.
+Never exceed the stated maximum unless clearly labelled as slightly over budget.`;
+  }
+
+  if (parsedBudget.min != null && parsedBudget.max != null) {
+    budgetInstruction += `
+Prefer products inside the stated range of AUD $${parsedBudget.min}–$${parsedBudget.max}.`;
   }
 
   return `
-You are Gift Lane’s calm, luxe-feeling gift concierge.
+You are Jude, Gift Lane's gift concierge.
 
-Recipient: ${recipient}
-Occasion: ${occasion}
-Budget: ${raw || budget}
+Your job is to find genuinely good, CURRENT gift ideas for Australians.
 
-Return EXACTLY ${count} product suggestions.
+Recipient:
+${recipient}
 
-IMPORTANT:
-- Suggest REAL, commonly available products/brands.
-- Do NOT invent “random Etsy shop” type items.
-- Provide links as retailer SEARCH links OR official brand site links (avoid deep product links).
-- If a suggestion fits an approved partner brand, you MAY include it.
-- Approved partner brands:
-  - Will & Bear (premium sustainable hats & accessories, Australia)
-  - YCZ Fragrance (luxury fragrances, Australia)
+Occasion:
+${occasion}
 
-Output ONLY valid JSON in this exact shape (no markdown, no backticks, no commentary):
+${budgetInstruction}
+
+SEARCH RULES:
+
+1. Search the live web before choosing products.
+
+2. Australia comes first.
+Prioritise:
+- Australian retailers
+- Australian brand websites
+- products priced in AUD
+- products currently available to Australian customers
+
+3. International retailers are allowed only when:
+- the product is genuinely excellent
+- it ships to Australia
+- there is no obviously better Australian option
+
+4. DO NOT restrict suggestions to affiliate brands.
+
+5. Affiliate relationships must NEVER determine whether a product is recommended.
+Choose the best gifts first.
+
+6. Recommend REAL products that exist now.
+Do not invent products, shops, prices or URLs.
+
+7. Give ONE useful shopping destination per suggestion.
+Prefer:
+- a direct product page
+- otherwise a retailer search/results page
+- otherwise the official brand site
+
+8. Avoid boring generic recommendations unless they are genuinely strong fits.
+
+9. Match the recipient intelligently.
+For children, consider age appropriateness.
+For adults, consider relationship, interests, lifestyle and occasion.
+
+10. Variety matters.
+Do not return five near-identical products.
+
+Return EXACTLY 5 gift suggestions.
+
+Output ONLY valid JSON.
+No markdown.
+No backticks.
+No commentary outside the JSON.
+
+Use exactly this structure:
 
 {
   "products": [
     {
-      "title": "Product name",
-      "why": "1–2 sentences why it fits",
-      "price_note": "Approx $XX–$YY",
-      "links": [
-        { "label": "Amazon AU", "url": "https://www.amazon.com.au/s?k=..." },
-        { "label": "The Iconic", "url": "https://www.theiconic.com.au/search/?q=..." }
-      ]
+      "title": "Specific real product",
+      "retailer": "Retailer or brand",
+      "why": "A concise, human explanation of why this is a good fit.",
+      "price_note": "Approx AUD price",
+      "url": "https://actual-shopping-url"
     }
   ]
 }
@@ -182,85 +246,145 @@ Output ONLY valid JSON in this exact shape (no markdown, no backticks, no commen
 }
 
 // -----------------------------
-// /curate route – AI suggestions
+// /curate
 // -----------------------------
 app.post("/curate", async (req, res) => {
   try {
     const { demographic, occasion, budget } = req.body;
 
     if (!demographic || !occasion || !budget) {
-      return res.status(400).json({ error: "Missing fields in request." });
+      return res.status(400).json({
+        error: "Missing fields in request.",
+      });
     }
 
-    const prompt = buildGiftPrompt(demographic, occasion, budget);
+    const prompt = buildGiftPrompt(
+      demographic,
+      occasion,
+      budget
+    );
 
     const response = await client.responses.create({
-      model: "gpt-4.1-mini",
+      model: "gpt-5.6-luna",
+
+      tools: [
+        {
+          type: "web_search",
+        },
+      ],
+
       input: prompt,
-      max_output_tokens: 900,
+
+      max_output_tokens: 2500,
     });
 
-    // OpenAI sometimes wraps JSON in markdown
     let rawText = response.output_text || "";
-    rawText = rawText.replace(/```json/gi, "").replace(/```/g, "").trim();
+
+    rawText = rawText
+      .replace(/```json/gi, "")
+      .replace(/```/g, "")
+      .trim();
 
     let parsed;
+
     try {
       parsed = JSON.parse(rawText);
-    } catch (e) {
-      console.error("JSON parse failed:", rawText);
-      return res.status(500).json({ error: "AI returned non-JSON. Try again." });
+    } catch (err) {
+      console.error(
+        "JSON parse failed:",
+        rawText
+      );
+
+      return res.status(500).json({
+        error: "AI returned non-JSON. Try again.",
+      });
     }
 
     if (!Array.isArray(parsed.products)) {
-      return res.status(500).json({ error: "AI JSON missing products array." });
+      return res.status(500).json({
+        error: "AI JSON missing products array.",
+      });
     }
 
-    // ✅ Final safety normalisation + ✅ affiliate override
-    const cleaned = {
-      products: parsed.products.map((p) => {
-        const title = String(p.title || "").slice(0, 120);
-        const why = String(p.why || "").slice(0, 300);
-        const price_note = String(p.price_note || "").slice(0, 60);
+    const cleanedProducts = parsed.products
+      .slice(0, 5)
+      .map((product) => {
+        const title = String(
+          product.title || ""
+        ).slice(0, 140);
 
-       // default links from AI (Amazon / Iconic etc)
-let links = Array.isArray(p.links)
-  ? p.links
-      .filter((l) => String(l?.url || "").startsWith("https://"))
-      .map((l) => ({
-        label: String(l.label || "Shop now").slice(0, 30),
-        url: String(l.url || "").slice(0, 400),
-      }))
-  : [];
+        const retailer = String(
+          product.retailer || ""
+        ).slice(0, 80);
 
-// ✅ keep ONLY ONE retailer link
-if (links.length > 1) links = [links[0]];
+        const why = String(
+          product.why || ""
+        ).slice(0, 350);
 
+        const price_note = String(
+          product.price_note || ""
+        ).slice(0, 80);
 
-        // ✅ override links if this looks like an affiliate brand suggestion
-        const brandKey = detectAffiliateBrand({ title, why });
-        if (brandKey) {
-          links = affiliateLinksFor(brandKey);
+        const normalUrl = String(
+          product.url || ""
+        ).trim();
+
+        let link = null;
+
+        if (normalUrl.startsWith("https://")) {
+          link = {
+            label: retailer || "Shop now",
+            url: normalUrl.slice(0, 600),
+            affiliate: false,
+          };
         }
 
-        return { title, why, price_note, links };
-      }),
-    };
+        // Affiliate replacement happens AFTER
+        // Jude chooses the product.
+        const brandKey = detectAffiliateBrand({
+          title,
+          retailer,
+          why,
+        });
 
-    res.json(cleaned);
+        if (brandKey) {
+          const affiliateLink =
+            affiliateLinkFor(brandKey);
+
+          if (affiliateLink) {
+            link = affiliateLink;
+          }
+        }
+
+        return {
+          title,
+          retailer,
+          why,
+          price_note,
+          links: link ? [link] : [],
+        };
+      });
+
+    res.json({
+      products: cleanedProducts,
+    });
   } catch (err) {
     console.error("Error in /curate:", err);
-    res.status(500).json({ error: "Something went wrong talking to OpenAI." });
+
+    res.status(500).json({
+      error: "Something went wrong curating gifts.",
+    });
   }
 });
 
 // -----------------------------
-// SERVER START (Render)
+// Server start
 // -----------------------------
 const port = process.env.PORT || 10000;
+
 app.listen(port, () => {
-  console.log(`Gift Lane server running on port ${port}`);
+  console.log(
+    `Gift Lane server running on port ${port}`
+  );
 });
-
-
 
