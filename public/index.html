@@ -3,13 +3,12 @@
 <head>
   <meta charset="UTF-8" />
 
-  <!-- Google tag (gtag.js) -->
+  <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-D78BMLRNT2"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'G-D78BMLRNT2');
   </script>
 
@@ -19,16 +18,21 @@
     content="51e633fa507b46c39b03ffa32b7bce41"
   />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1"
+  />
 
-  <title>Gift Lane – Thoughtful Gift Ideas Made Easy</title>
+  <title>
+    Gift Lane – Thoughtful Gift Ideas Made Easy
+  </title>
 
   <meta
     name="description"
     content="Instant personalised gift ideas for any occasion and budget. Gift Lane helps Australians find thoughtful gifts from real retailers, with no sign-up needed."
   />
 
-  <!-- Open Graph / Social -->
+  <!-- Social sharing -->
   <meta
     property="og:title"
     content="Gift Lane – Thoughtful Gift Ideas in Seconds"
@@ -60,39 +64,43 @@
   />
 
   <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+  />
 
   <link
     rel="preconnect"
     href="https://fonts.gstatic.com"
     crossorigin
-  >
+  />
 
   <link
     href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@500;600&display=swap"
     rel="stylesheet"
-  >
+  />
 
   <style>
     :root {
-      --ivory: #f7f3ec;
-      --ivory-soft: #fbf8f3;
+      --cream: #f7f2e9;
       --paper: #fffdf9;
-      --forest: #17382e;
-      --forest-deep: #102a22;
-      --forest-soft: #35594d;
-      --charcoal: #454540;
-      --muted: #7f796f;
-      --gold: #c69a4b;
-      --gold-deep: #a97d34;
-      --gold-soft: #ead7ad;
-      --stone: #ded6ca;
-      --stone-light: #eee8df;
-      --blush: #d9a59a;
-      --blush-soft: #f3e3df;
-      --sage-soft: #dfe7df;
-      --success: #31a96c;
-      --white: #ffffff;
+
+      --green: #123d32;
+      --green-soft: #245649;
+
+      --gold: #c9973e;
+      --gold-deep: #b47f27;
+
+      --blush: #f2dfda;
+      --sage: #dde7df;
+
+      --ink: #33352f;
+      --muted: #77766f;
+
+      --line: #e6ded2;
+
+      --shadow:
+        0 18px 50px rgba(38, 46, 39, 0.09);
     }
 
     * {
@@ -105,7 +113,6 @@
 
     body {
       margin: 0;
-      min-height: 100vh;
 
       font-family:
         "Inter",
@@ -115,83 +122,142 @@
         "Segoe UI",
         sans-serif;
 
-      color: var(--forest);
+      color: var(--ink);
 
-      background:
-        radial-gradient(
-          circle at 8% 2%,
-          rgba(217, 165, 154, 0.13),
-          transparent 25%
-        ),
-        radial-gradient(
-          circle at 94% 7%,
-          rgba(198, 154, 75, 0.12),
-          transparent 23%
-        ),
-        var(--ivory);
+      background: var(--cream);
     }
 
     a {
       color: inherit;
+      text-decoration: none;
     }
 
-    /* ---------------- HEADER ---------------- */
+    button,
+    input {
+      font: inherit;
+    }
 
-    .site-header {
+    /* =========================================
+       HEADER
+    ========================================= */
+
+    .shell {
       width: 100%;
-      max-width: 1220px;
+      max-width: 1440px;
+
       margin: 0 auto;
+
+      padding: 0 42px;
+    }
+
+    header {
+      min-height: 76px;
 
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 24px;
 
-      padding: 20px 22px 12px;
+      gap: 24px;
     }
 
-    .mini-logo {
+    .brand {
       display: flex;
       align-items: center;
-      gap: 10px;
 
-      text-decoration: none;
-      color: var(--forest);
+      gap: 11px;
+
+      color: var(--green);
+
+      white-space: nowrap;
     }
 
-    .mini-logo-mark {
-      position: relative;
-
+    .brand-name {
       font-family:
         "Playfair Display",
         Georgia,
         serif;
 
-      font-size: 26px;
-      line-height: 1;
+      font-size: 34px;
       font-weight: 600;
+
+      line-height: 1;
     }
 
-    .mini-bow {
-      width: 32px;
-      height: 22px;
+    /* Bow logo */
+
+    .bow {
+      width: 40px;
+      height: 30px;
+
+      position: relative;
+
+      display: inline-block;
+
       flex: 0 0 auto;
+    }
+
+    .bow-left,
+    .bow-right {
+      position: absolute;
+
+      top: 2px;
+
+      width: 21px;
+      height: 16px;
+
+      border: 2px solid var(--gold);
+
+      border-radius:
+        60% 60% 55% 20%;
+    }
+
+    .bow-left {
+      left: 0;
+
+      transform: rotate(28deg);
+    }
+
+    .bow-right {
+      right: 0;
+
+      transform:
+        scaleX(-1)
+        rotate(28deg);
+    }
+
+    .bow-tail-left,
+    .bow-tail-right {
+      position: absolute;
+
+      top: 15px;
+
+      width: 2px;
+      height: 15px;
+
+      background: var(--gold);
+    }
+
+    .bow-tail-left {
+      left: 18px;
+
+      transform: rotate(24deg);
+    }
+
+    .bow-tail-right {
+      right: 18px;
+
+      transform: rotate(-24deg);
     }
 
     .top-nav {
       display: flex;
       align-items: center;
-      justify-content: flex-end;
-      gap: 28px;
-      flex-wrap: wrap;
-    }
 
-    .top-nav a {
-      text-decoration: none;
+      gap: 30px;
 
-      color: var(--forest);
+      color: var(--green);
 
-      font-size: 13px;
+      font-size: 14px;
       font-weight: 500;
     }
 
@@ -199,156 +265,171 @@
       color: var(--gold-deep);
     }
 
-    /* ---------------- PAGE ---------------- */
+    .header-note {
+      padding: 9px 14px;
 
-    .page {
-      width: 100%;
-      max-width: 1220px;
-
-      margin: 0 auto;
-
-      padding: 5px 18px 54px;
-    }
-
-    /* ---------------- LIVE STATUS ---------------- */
-
-    .brand-mark {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 8px;
-
-      margin: 3px 0 14px;
-
-      color: var(--forest-soft);
-
-      font-size: 10.5px;
-      font-weight: 500;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-    }
-
-    .brand-dot {
-      width: 8px;
-      height: 8px;
-
-      border-radius: 50%;
+      border: 1px solid var(--line);
+      border-radius: 999px;
 
       background:
-        radial-gradient(
-          circle at 30% 30%,
-          #8be9bb,
-          var(--success)
-        );
+        rgba(255, 255, 255, 0.55);
 
-      box-shadow:
-        0 0 0 4px rgba(49, 169, 108, 0.12);
+      color: var(--green);
+
+      font-size: 12px;
     }
 
-    /* ---------------- HERO ---------------- */
+    /* =========================================
+       HERO
+    ========================================= */
+
+    main {
+      padding-bottom: 10px;
+    }
 
     .hero {
       position: relative;
+
       overflow: hidden;
 
-      border: 1px solid rgba(23, 56, 46, 0.08);
+      display: grid;
+
+      grid-template-columns:
+        minmax(0, 1.05fr)
+        minmax(460px, 0.95fr);
+
+      min-height:
+        calc(100vh - 105px);
+
+      max-height: 770px;
+
+      border:
+        1px solid rgba(214, 204, 190, 0.7);
+
       border-radius: 30px;
 
       background:
+        radial-gradient(
+          circle at 18% 20%,
+          rgba(255, 255, 255, 0.95),
+          transparent 34%
+        ),
         linear-gradient(
-          110deg,
-          rgba(255, 253, 249, 0.98),
-          rgba(247, 243, 236, 0.96)
+          115deg,
+          #f8f1e8 0%,
+          #fffdf8 58%,
+          #e5ebe4 100%
         );
 
-      box-shadow:
-        0 24px 70px rgba(69, 58, 42, 0.11);
-
-      padding: 48px 46px 40px;
+      box-shadow: var(--shadow);
     }
 
-    .hero::before {
-      content: "";
+    /* subtle photo personality */
 
+    .hero-photo {
       position: absolute;
-      width: 320px;
-      height: 320px;
 
-      right: -120px;
-      top: -150px;
+      top: 0;
+      right: 0;
 
-      border-radius: 50%;
+      width: 27%;
+      height: 100%;
 
       background:
-        radial-gradient(
-          circle,
-          rgba(198, 154, 75, 0.16),
-          rgba(198, 154, 75, 0)
-        );
+        linear-gradient(
+          to left,
+          rgba(18, 61, 50, 0.05),
+          rgba(18, 61, 50, 0.15)
+        ),
+        url("https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&w=1000&q=82")
+        center / cover no-repeat;
+
+      opacity: 0.33;
 
       pointer-events: none;
     }
 
-    .hero-grid {
+    /* =========================================
+       HERO LEFT
+    ========================================= */
+
+    .intro {
       position: relative;
+
       z-index: 1;
 
-      display: grid;
-      grid-template-columns:
-        minmax(0, 0.95fr)
-        minmax(430px, 1.05fr);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
 
-      align-items: start;
-
-      gap: 46px;
+      padding:
+        52px
+        52px
+        40px
+        56px;
     }
 
-    /* ---------------- HERO COPY ---------------- */
-
     .eyebrow {
-      margin-bottom: 11px;
+      margin-bottom: 14px;
 
       color: var(--gold-deep);
 
-      font-size: 10.5px;
+      font-size: 11px;
       font-weight: 600;
-      letter-spacing: 0.21em;
+
+      letter-spacing: 0.23em;
+
       text-transform: uppercase;
     }
 
-    .hero-title {
-      margin: 0 0 18px;
+    h1 {
+      max-width: 680px;
 
-      color: var(--forest);
+      margin: 0;
+
+      color: var(--green);
 
       font-family:
         "Playfair Display",
         Georgia,
         serif;
 
-      font-size: clamp(48px, 5.8vw, 76px);
+      font-size:
+        clamp(
+          50px,
+          4.6vw,
+          74px
+        );
+
       font-weight: 600;
-      line-height: 0.98;
-      letter-spacing: -0.03em;
+
+      line-height: 0.99;
+
+      letter-spacing: -0.035em;
     }
 
-    .hero-title .line {
-      display: block;
-    }
+    .lead {
+      max-width: 650px;
 
-    .hero-copy {
-      max-width: 34rem;
+      margin:
+        20px
+        0
+        0;
 
-      margin: 0;
-
-      color: var(--charcoal);
+      color: #4e4e48;
 
       font-size: 17px;
-      line-height: 1.68;
+
+      line-height: 1.62;
     }
 
-    .handwritten {
-      margin: 22px 0 0;
+    .scribble {
+      display: inline-block;
+
+      margin:
+        15px
+        0
+        20px;
 
       color: var(--gold-deep);
 
@@ -356,360 +437,362 @@
         "Caveat",
         cursive;
 
-      font-size: 27px;
-      line-height: 1.15;
+      font-size: 28px;
+      font-weight: 600;
 
-      transform: rotate(-2deg);
+      line-height: 1.1;
 
-      display: inline-block;
+      transform: rotate(-1deg);
     }
 
-    /* ---------------- BENEFITS ---------------- */
+    /* =========================================
+       BENEFITS
+    ========================================= */
 
     .benefits {
       display: grid;
 
       grid-template-columns:
-        repeat(2, minmax(0, 1fr));
+        repeat(
+          4,
+          minmax(0, 1fr)
+        );
 
-      gap: 9px;
+      gap: 10px;
 
-      margin-top: 27px;
+      max-width: 680px;
     }
 
     .benefit {
-      display: flex;
-      align-items: center;
-      gap: 10px;
+      color: var(--green);
 
-      min-height: 54px;
+      text-align: center;
 
-      padding: 10px 12px;
+      font-size: 11px;
 
-      border: 1px solid var(--stone-light);
-      border-radius: 16px;
-
-      background:
-        rgba(255, 255, 255, 0.64);
-
-      color: var(--forest-soft);
-
-      font-size: 12px;
-      line-height: 1.3;
+      line-height: 1.35;
     }
 
     .benefit-icon {
-      width: 31px;
-      height: 31px;
+      width: 43px;
+      height: 43px;
 
-      flex: 0 0 auto;
+      margin:
+        0
+        auto
+        7px;
 
-      display: inline-flex;
+      display: flex;
       align-items: center;
       justify-content: center;
 
       border-radius: 50%;
 
-      background: var(--blush-soft);
+      background: var(--blush);
 
-      color: var(--forest);
-
-      font-size: 15px;
+      font-size: 19px;
     }
 
-    /* ---------------- FORM ---------------- */
+    .benefit:nth-child(even)
+    .benefit-icon {
+      background: var(--sage);
+    }
 
-    .request-column {
+    /* =========================================
+       FINDER
+    ========================================= */
+
+    .finder-wrap {
       position: relative;
-    }
 
-    .request-note {
-      position: absolute;
+      z-index: 2;
 
-      right: 15px;
-      top: -39px;
-
-      color: var(--forest);
-
-      font-family:
-        "Caveat",
-        cursive;
-
-      font-size: 25px;
-
-      transform: rotate(-3deg);
-    }
-
-    .request-note::after {
-      content: "↘";
-
-      display: inline-block;
-
-      margin-left: 8px;
-
-      color: var(--gold-deep);
-
-      font-family: Arial, sans-serif;
-
-      font-size: 22px;
-
-      transform: rotate(3deg);
-    }
-
-    .micro-copy {
-      margin-bottom: 9px;
-
-      color: var(--forest-soft);
-
-      font-size: 10.5px;
-      font-weight: 600;
-      letter-spacing: 0.17em;
-      text-transform: uppercase;
-    }
-
-    .card {
-      padding: 24px;
-
-      border: 1px solid rgba(23, 56, 46, 0.1);
-      border-radius: 24px;
-
-      background: rgba(255, 255, 255, 0.94);
-
-      box-shadow:
-        0 20px 50px rgba(79, 65, 44, 0.1);
-    }
-
-    .field-label {
-      display: block;
-
-      margin-bottom: 7px;
-
-      color: var(--forest);
-
-      font-size: 10.5px;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-    }
-
-    .input {
-      width: 100%;
-
-      padding: 13px 15px;
-
-      border: 1px solid var(--stone);
-      border-radius: 13px;
-
-      outline: none;
-
-      background: var(--paper);
-
-      color: var(--forest);
-
-      font-family: inherit;
-      font-size: 14px;
-
-      transition:
-        border-color 0.15s ease,
-        box-shadow 0.15s ease;
-    }
-
-    .input::placeholder {
-      color: #99938a;
-    }
-
-    .input:focus {
-      border-color: var(--gold);
-
-      box-shadow:
-        0 0 0 3px rgba(198, 154, 75, 0.13);
-    }
-
-    .row {
-      display: grid;
-
-      grid-template-columns:
-        minmax(0, 1.05fr)
-        minmax(0, 0.95fr);
-
-      gap: 12px;
-
-      margin-top: 14px;
-    }
-
-    .button-row {
       display: flex;
       align-items: center;
 
-      gap: 13px;
-
-      flex-wrap: wrap;
-
-      margin-top: 18px;
+      padding:
+        32px
+        40px
+        32px
+        12px;
     }
 
-    .btn-primary {
-      border: none;
+    .finder {
+      width: 100%;
+
+      max-height:
+        calc(100vh - 140px);
+
+      overflow-y: auto;
+
+      padding: 25px;
+
+      border:
+        1px solid rgba(219, 210, 198, 0.9);
+
+      border-radius: 23px;
+
+      background:
+        rgba(255, 253, 249, 0.95);
+
+      box-shadow:
+        0 18px 45px
+        rgba(48, 54, 46, 0.12);
+
+      backdrop-filter: blur(10px);
+    }
+
+    .finder::-webkit-scrollbar {
+      width: 7px;
+    }
+
+    .finder::-webkit-scrollbar-thumb {
+      background: #d8d0c4;
+
+      border-radius: 10px;
+    }
+
+    .finder-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      gap: 12px;
+
+      margin-bottom: 16px;
+    }
+
+    .finder-title strong {
+      color: var(--green);
+
+      font-size: 11px;
+      font-weight: 600;
+
+      letter-spacing: 0.21em;
+
+      text-transform: uppercase;
+    }
+
+    .live {
+      color: #71877e;
+
+      font-size: 10px;
+
+      letter-spacing: 0.15em;
+
+      text-transform: uppercase;
+    }
+
+    .live::before {
+      content: "";
+
+      display: inline-block;
+
+      width: 8px;
+      height: 8px;
+
+      margin-right: 7px;
+
+      border-radius: 50%;
+
+      background: #5fd09d;
+
+      box-shadow:
+        0 0 0 4px
+        rgba(95, 208, 157, 0.14);
+    }
+
+    label {
+      display: block;
+
+      margin:
+        12px
+        0
+        6px;
+
+      color: var(--green);
+
+      font-size: 10.5px;
+      font-weight: 600;
+
+      letter-spacing: 0.12em;
+
+      text-transform: uppercase;
+    }
+
+    input {
+      width: 100%;
+      height: 48px;
+
+      padding:
+        0
+        14px;
+
+      border:
+        1px solid #d9d0c3;
+
+      border-radius: 12px;
+
       outline: none;
 
+      background: #fffdfa;
+
+      color: var(--ink);
+    }
+
+    input::placeholder {
+      color: #99938a;
+    }
+
+    input:focus {
+      border-color: var(--gold);
+
+      box-shadow:
+        0 0 0 3px
+        rgba(201, 151, 62, 0.11);
+    }
+
+    .two {
+      display: grid;
+
+      grid-template-columns:
+        1fr
+        0.72fr;
+
+      gap: 12px;
+    }
+
+    #submit {
+      width: 100%;
+      height: 52px;
+
+      margin-top: 17px;
+
+      border: none;
+
+      border-radius: 12px;
+
       cursor: pointer;
-
-      min-height: 46px;
-
-      padding: 12px 25px;
-
-      border-radius: 13px;
-
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 9px;
 
       background:
         linear-gradient(
           135deg,
-          #d7ad5d,
-          #c69a4b,
-          #ad8035
+          #d8aa52,
+          var(--gold-deep)
         );
 
       color: white;
 
-      font-family: inherit;
-
-      font-size: 12.5px;
       font-weight: 600;
 
-      letter-spacing: 0.13em;
+      letter-spacing: 0.12em;
+
       text-transform: uppercase;
 
       box-shadow:
-        0 12px 26px rgba(169, 125, 52, 0.23);
+        0 9px 22px
+        rgba(180, 127, 39, 0.23);
 
       transition:
-        transform 0.14s ease,
-        box-shadow 0.14s ease;
+        transform
+        0.15s ease;
     }
 
-    .btn-primary:hover {
-      transform: translateY(-1px);
-
-      box-shadow:
-        0 15px 31px rgba(169, 125, 52, 0.28);
+    #submit:hover {
+      transform:
+        translateY(-1px);
     }
 
-    .btn-primary:active {
-      transform: translateY(0);
-    }
-
-    .btn-primary .icon {
-      width: 22px;
-      height: 22px;
-
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-
-      border-radius: 50%;
-
-      background:
-        rgba(255, 255, 255, 0.18);
-
-      font-size: 11px;
-    }
-
-    .button-note {
-      max-width: 240px;
+    .micro {
+      margin:
+        9px
+        0
+        0;
 
       color: var(--muted);
 
+      text-align: center;
+
       font-size: 10.5px;
-      line-height: 1.5;
     }
 
-    /* ---------------- RESULTS ---------------- */
+    /* =========================================
+       RESULTS
+    ========================================= */
 
     .results {
-      margin-top: 24px;
-      padding-top: 19px;
+      margin-top: 16px;
 
-      border-top: 1px solid var(--stone-light);
+      padding-top: 15px;
 
-      color: var(--forest);
-
-      font-size: 14px;
-      line-height: 1.6;
-
-      max-height: none;
-      overflow: visible;
+      border-top:
+        1px solid var(--line);
     }
 
-    .results h2 {
-      margin: 0 0 14px;
+    .results-label {
+      margin-bottom: 10px;
 
-      color: var(--forest-soft);
+      color: var(--green);
 
-      font-size: 10.5px;
+      font-size: 10px;
       font-weight: 600;
-      letter-spacing: 0.17em;
+
+      letter-spacing: 0.2em;
+
       text-transform: uppercase;
     }
 
     .results-content {
-      white-space: normal;
+      color: var(--muted);
+
+      font-size: 13px;
+
+      line-height: 1.5;
     }
 
     .results-content:not(.results-empty) {
       display: grid;
 
-      grid-template-columns:
-        repeat(2, minmax(0, 1fr));
+      grid-template-columns: 1fr;
 
-      gap: 14px;
-    }
-
-    .results-empty {
-      color: #928c84;
+      gap: 10px;
     }
 
     .product-card {
-      min-height: 220px;
+      padding: 14px;
 
-      display: flex;
-      flex-direction: column;
+      border:
+        1px solid var(--line);
 
-      padding: 18px;
+      border-radius: 14px;
 
-      border: 1px solid var(--stone-light);
-      border-radius: 18px;
-
-      background:
-        linear-gradient(
-          145deg,
-          #ffffff,
-          #fffdf9
-        );
-
-      box-shadow:
-        0 10px 26px rgba(76, 62, 43, 0.08);
+      background: white;
     }
 
     .product-card h3 {
-      margin: 0 0 8px;
+      margin:
+        0
+        0
+        5px;
 
-      color: var(--forest);
+      color: var(--green);
 
       font-family:
         "Playfair Display",
         Georgia,
         serif;
 
-      font-size: 19px;
-      line-height: 1.35;
+      font-size: 17px;
+      font-weight: 600;
+
+      line-height: 1.25;
     }
 
     .product-card .price {
-      margin: 0 0 8px;
+      margin:
+        0
+        0
+        5px;
 
       color: var(--gold-deep);
 
@@ -717,847 +800,750 @@
     }
 
     .product-card .reason {
-      margin: 0 0 12px;
+      margin:
+        0
+        0
+        10px;
 
-      color: var(--charcoal);
-
-      font-size: 0.92rem;
-      line-height: 1.55;
+      color: #62625c;
     }
 
     .product-card .links {
-      margin-top: auto;
+      display: flex;
 
-      padding-top: 8px;
+      flex-wrap: wrap;
+
+      gap: 8px;
     }
 
-    .product-card a,
-    .product-link {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
+    .product-link,
+    .product-card a {
+      display: inline-block;
 
-      padding: 9px 15px;
+      padding:
+        8px
+        11px;
 
-      border-radius: 12px;
+      border-radius: 9px;
 
-      background: var(--forest);
+      background: var(--green);
 
-      color: #ffffff !important;
+      color: white !important;
+
+      font-size: 11px;
+      font-weight: 600;
 
       text-decoration: none;
-
-      font-size: 13px;
-      font-weight: 600;
     }
 
-    .product-card a:hover,
-    .product-link:hover {
-      background: var(--forest-soft);
+    /* =========================================
+       COMPACT INSPIRATION
+    ========================================= */
+
+    .proof {
+      width: 100%;
+      max-width: 1440px;
+
+      margin:
+        17px
+        auto
+        0;
+
+      padding:
+        0
+        42px;
+
+      display: grid;
+
+      grid-template-columns:
+        210px
+        1fr;
+
+      gap: 18px;
+
+      align-items: stretch;
     }
 
-    /* ---------------- SIGNATURE ---------------- */
-
-    .about-line {
-      margin: 24px 0 0;
-
-      color: var(--muted);
-
-      text-align: center;
-
-      font-size: 12px;
-    }
-
-    .about-line span {
-      margin-left: 4px;
-
-      color: var(--forest-soft);
-    }
-
-    /* ---------------- STORY SECTION ---------------- */
-
-    .story-section {
-      padding: 56px 6px 14px;
-    }
-
-    .section-heading {
+    .proof-copy {
       display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
+      flex-direction: column;
+      justify-content: center;
 
-      gap: 24px;
-
-      margin-bottom: 22px;
+      padding:
+        13px
+        4px;
     }
 
-    .section-eyebrow {
-      margin-bottom: 6px;
-
-      color: var(--gold-deep);
-
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
+    .proof-copy
+    .eyebrow {
+      margin-bottom: 5px;
     }
 
-    .section-title {
+    .proof-copy h2 {
       margin: 0;
 
-      color: var(--forest);
+      color: var(--green);
 
       font-family:
         "Playfair Display",
         Georgia,
         serif;
 
-      font-size: clamp(34px, 4vw, 50px);
+      font-size: 29px;
 
       line-height: 1.04;
     }
 
-    .section-copy {
-      max-width: 440px;
-
-      margin: 8px 0 0;
-
-      color: var(--charcoal);
-
-      font-size: 14px;
-      line-height: 1.6;
-    }
-
-    .scribble {
-      color: var(--gold-deep);
-
-      font-family:
-        "Caveat",
-        cursive;
-
-      font-size: 26px;
-
-      transform: rotate(-2deg);
-    }
-
-    /* ---------------- EDITORIAL GRID ---------------- */
-
-    .editorial-grid {
-      display: grid;
-
-      grid-template-columns:
-        1.15fr 0.85fr 0.85fr;
-
-      gap: 15px;
-    }
-
-    .editorial-card {
-      position: relative;
-      overflow: hidden;
-
-      min-height: 260px;
-
-      border: 1px solid var(--stone-light);
-      border-radius: 21px;
-
-      background: var(--paper);
-
-      box-shadow:
-        0 12px 30px rgba(76, 62, 43, 0.07);
-    }
-
-    .editorial-card.photo {
-      min-height: 330px;
-
-      background:
-        linear-gradient(
-          to top,
-          rgba(16, 42, 34, 0.66),
-          rgba(16, 42, 34, 0.04)
-        ),
-        url("/og-image.jpg") center / cover no-repeat;
-    }
-
-    .photo-copy {
-      position: absolute;
-
-      left: 24px;
-      right: 24px;
-      bottom: 23px;
-
-      color: white;
-    }
-
-    .photo-copy small {
-      display: block;
-
-      margin-bottom: 6px;
-
-      font-size: 10px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-    }
-
-    .photo-copy h3 {
-      margin: 0;
-
-      font-family:
-        "Playfair Display",
-        Georgia,
-        serif;
-
-      font-size: 30px;
-      line-height: 1.05;
-    }
-
-    .idea-card {
-      display: flex;
-      flex-direction: column;
-
-      justify-content: space-between;
-
-      padding: 24px;
-    }
-
-    .idea-icon {
-      width: 45px;
-      height: 45px;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      border-radius: 50%;
-
-      background: var(--blush-soft);
-
-      font-size: 20px;
-    }
-
-    .idea-card:nth-child(3) .idea-icon {
-      background: var(--sage-soft);
-    }
-
-    .idea-card h3 {
-      margin: 22px 0 8px;
-
-      font-family:
-        "Playfair Display",
-        Georgia,
-        serif;
-
-      font-size: 24px;
-      line-height: 1.1;
-    }
-
-    .idea-card p {
-      margin: 0;
-
-      color: var(--charcoal);
-
-      font-size: 13px;
-      line-height: 1.55;
-    }
-
-    .idea-link {
-      display: inline-flex;
-
-      margin-top: 22px;
-
-      color: var(--forest);
-
-      font-size: 12px;
-      font-weight: 600;
-
-      text-decoration: none;
-    }
-
-    .idea-link:hover {
-      color: var(--gold-deep);
-    }
-
-    /* ---------------- CATEGORIES ---------------- */
-
-    .category-section {
-      padding: 42px 6px 50px;
-    }
-
-    .category-row {
-      display: grid;
-
-      grid-template-columns:
-        repeat(6, minmax(0, 1fr));
-
-      gap: 11px;
-
-      margin-top: 20px;
-    }
-
-    .category {
-      display: flex;
-      flex-direction: column;
-
-      align-items: center;
-      justify-content: center;
-
-      gap: 8px;
-
-      min-height: 105px;
-
-      padding: 12px 8px;
-
-      border: 1px solid var(--stone-light);
-      border-radius: 18px;
-
-      background: rgba(255,255,255,0.58);
-
-      text-decoration: none;
-
-      color: var(--forest);
-
-      text-align: center;
-
-      font-size: 11.5px;
-      font-weight: 500;
-
-      transition:
-        transform 0.15s ease,
-        background 0.15s ease;
-    }
-
-    .category:hover {
-      transform: translateY(-2px);
-
-      background: #ffffff;
-    }
-
-    .category-icon {
-      width: 42px;
-      height: 42px;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      border-radius: 50%;
-
-      background: var(--blush-soft);
-
-      font-size: 18px;
-    }
-
-    .category:nth-child(2n) .category-icon {
-      background: var(--sage-soft);
-    }
-
-    /* ---------------- FINAL BRAND STRIP ---------------- */
-
-    .brand-story {
-      overflow: hidden;
-
-      display: grid;
-
-      grid-template-columns:
-        0.8fr 1.2fr;
-
-      border: 1px solid var(--stone-light);
-      border-radius: 26px;
-
-      background:
-        linear-gradient(
-          115deg,
-          rgba(223, 231, 223, 0.78),
-          rgba(255, 253, 249, 0.96)
-        );
-
-      margin: 4px 6px 46px;
-    }
-
-    .brand-photo {
-      min-height: 290px;
-
-      background:
-        linear-gradient(
-          rgba(16, 42, 34, 0.08),
-          rgba(16, 42, 34, 0.08)
-        ),
-        url("/og-image.jpg") center / cover no-repeat;
-    }
-
-    .brand-story-copy {
-      padding: 42px 46px;
-
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-
-    .brand-story-copy h2 {
-      margin: 6px 0 12px;
-
-      font-family:
-        "Playfair Display",
-        Georgia,
-        serif;
-
-      font-size: clamp(32px, 4vw, 46px);
-
-      line-height: 1.05;
-    }
-
-    .brand-story-copy p {
-      max-width: 550px;
-
-      margin: 0;
-
-      color: var(--charcoal);
-
-      font-size: 14px;
-      line-height: 1.7;
-    }
-
-    .brand-story-copy .handwritten {
-      margin-top: 18px;
-
-      font-size: 25px;
-    }
-
-    /* ---------------- FOOTER ---------------- */
-
-    footer {
-      padding: 8px 20px 32px;
+    .proof-copy p {
+      margin:
+        7px
+        0
+        0;
 
       color: var(--muted);
 
-      text-align: center;
-
       font-size: 12px;
-      line-height: 1.8;
+
+      line-height: 1.45;
     }
 
-    footer a {
-      color: var(--forest);
+    .tiles {
+      display: grid;
 
-      text-decoration: none;
+      grid-template-columns:
+        repeat(
+          4,
+          minmax(0, 1fr)
+        );
+
+      gap: 11px;
     }
 
-    footer a:hover {
-      color: var(--gold-deep);
+    .tile {
+      position: relative;
+
+      overflow: hidden;
+
+      min-height: 142px;
+
+      border-radius: 17px;
+
+      background: #ddd;
+
+      box-shadow:
+        0 8px 24px
+        rgba(44, 47, 42, 0.08);
     }
 
-    /* ---------------- TABLET ---------------- */
+    .tile:nth-child(1) {
+      background:
+        url("https://images.unsplash.com/photo-1602173574767-37ac01994b2a?auto=format&fit=crop&w=700&q=80")
+        center /
+        cover
+        no-repeat;
+    }
 
-    @media (max-width: 940px) {
-      .site-header {
-        justify-content: center;
+    .tile:nth-child(2) {
+      background:
+        url("https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&w=700&q=80")
+        center /
+        cover
+        no-repeat;
+    }
+
+    .tile:nth-child(3) {
+      background:
+        url("https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=700&q=80")
+        center /
+        cover
+        no-repeat;
+    }
+
+    .tile:nth-child(4) {
+      background:
+        url("https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=700&q=80")
+        center /
+        cover
+        no-repeat;
+    }
+
+    .tile::after {
+      content: "";
+
+      position: absolute;
+
+      inset:
+        35%
+        0
+        0;
+
+      background:
+        linear-gradient(
+          transparent,
+          rgba(10, 32, 26, 0.78)
+        );
+    }
+
+    .tile span {
+      position: absolute;
+
+      z-index: 2;
+
+      left: 14px;
+      bottom: 13px;
+
+      color: white;
+
+      font-family:
+        "Playfair Display",
+        Georgia,
+        serif;
+
+      font-size: 17px;
+      font-weight: 600;
+    }
+
+    /* =========================================
+       FOOTER
+    ========================================= */
+
+    footer {
+      width: 100%;
+      max-width: 1440px;
+
+      margin:
+        13px
+        auto
+        0;
+
+      padding:
+        14px
+        42px
+        22px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 20px;
+
+      color: var(--muted);
+
+      font-size: 11.5px;
+    }
+
+    .footer-links {
+      display: flex;
+
+      gap: 16px;
+
+      color: var(--green);
+    }
+
+    /* =========================================
+       TABLET
+    ========================================= */
+
+    @media (
+      max-width: 980px
+    ) {
+
+      .shell {
+        padding:
+          0
+          20px;
       }
 
-      .mini-logo {
+      header {
+        height: auto;
+
+        padding:
+          17px
+          0
+          11px;
+
+        flex-wrap: wrap;
+      }
+
+      .header-note {
         display: none;
       }
 
       .top-nav {
+        order: 3;
+
+        width: 100%;
+
         justify-content: center;
-      }
-
-      .hero-grid {
-        grid-template-columns: 1fr;
-
-        gap: 30px;
-      }
-
-      .request-note {
-        display: none;
-      }
-
-      .editorial-grid {
-        grid-template-columns: 1.2fr 1fr;
-      }
-
-      .editorial-grid .editorial-card:last-child {
-        grid-column: 1 / -1;
-      }
-
-      .category-row {
-        grid-template-columns:
-          repeat(3, minmax(0, 1fr));
-      }
-    }
-
-    /* ---------------- MOBILE ---------------- */
-
-    @media (max-width: 680px) {
-      .site-header {
-        padding: 12px 8px 5px;
-      }
-
-      .top-nav {
-        gap: 13px;
-      }
-
-      .top-nav a {
-        font-size: 11.5px;
-      }
-
-      .page {
-        padding: 8px 10px 34px;
-      }
-
-      .brand-mark {
-        margin-bottom: 10px;
-
-        font-size: 9.5px;
       }
 
       .hero {
-        padding: 26px 17px 22px;
+        min-height: 0;
+
+        max-height: none;
+
+        grid-template-columns:
+          1fr;
 
         border-radius: 24px;
       }
 
+      .hero-photo {
+        display: none;
+      }
+
+      .intro {
+        padding:
+          36px
+          28px
+          21px;
+      }
+
+      h1 {
+        font-size: 57px;
+      }
+
+      .finder-wrap {
+        padding:
+          0
+          28px
+          28px;
+      }
+
+      .finder {
+        max-height: none;
+
+        overflow: visible;
+      }
+
+      .proof {
+        padding:
+          0
+          20px;
+
+        grid-template-columns:
+          1fr;
+      }
+
+      .proof-copy {
+        text-align: center;
+      }
+
+    }
+
+    /* =========================================
+       MOBILE
+    ========================================= */
+
+    @media (
+      max-width: 640px
+    ) {
+
+      .shell {
+        padding:
+          0
+          13px;
+      }
+
+      header {
+        justify-content: center;
+      }
+
+      .brand {
+        width: 100%;
+
+        justify-content: center;
+      }
+
+      .brand-name {
+        font-size: 29px;
+      }
+
+      .top-nav {
+        justify-content: flex-start;
+
+        gap: 16px;
+
+        overflow-x: auto;
+
+        padding:
+          2px
+          5px
+          5px;
+
+        font-size: 12px;
+
+        white-space: nowrap;
+      }
+
+      .hero {
+        border-radius: 21px;
+      }
+
+      .intro {
+        padding:
+          26px
+          18px
+          17px;
+      }
+
       .eyebrow {
-        font-size: 9.5px;
+        margin-bottom: 10px;
 
-        margin-bottom: 8px;
+        font-size: 9px;
       }
 
-      .hero-title {
-        font-size: clamp(43px, 13vw, 58px);
+      h1 {
+        font-size: 47px;
 
-        margin-bottom: 14px;
+        line-height: 1;
       }
 
-      .hero-copy {
-        font-size: 14.5px;
-        line-height: 1.58;
-      }
-
-      .handwritten {
+      .lead {
         margin-top: 14px;
+
+        font-size: 14px;
+
+        line-height: 1.53;
+      }
+
+      .scribble {
+        margin:
+          12px
+          0
+          13px;
 
         font-size: 22px;
       }
 
       .benefits {
-        margin-top: 18px;
-
         grid-template-columns:
-          repeat(2, minmax(0, 1fr));
+          repeat(
+            4,
+            minmax(0, 1fr)
+          );
+
+        gap: 5px;
+      }
+
+      .benefit {
+        font-size: 9px;
+      }
+
+      .benefit-icon {
+        width: 35px;
+        height: 35px;
+
+        margin-bottom: 5px;
+
+        font-size: 15px;
+      }
+
+      .finder-wrap {
+        padding:
+          0
+          13px
+          17px;
+      }
+
+      .finder {
+        padding:
+          18px
+          14px;
+
+        border-radius: 18px;
+      }
+
+      .finder-title {
+        margin-bottom: 12px;
+      }
+
+      .two {
+        grid-template-columns:
+          1fr;
+      }
+
+      input {
+        height: 46px;
+      }
+
+      #submit {
+        height: 50px;
+      }
+
+      .proof {
+        margin-top: 13px;
+
+        padding:
+          0
+          13px;
 
         gap: 7px;
       }
 
-      .benefit {
-        min-height: 48px;
-
-        padding: 8px;
-
-        font-size: 10.5px;
+      .proof-copy {
+        padding:
+          6px
+          8px;
       }
 
-      .benefit-icon {
-        width: 27px;
-        height: 27px;
-
-        font-size: 12px;
+      .proof-copy h2 {
+        font-size: 26px;
       }
 
-      .hero-grid {
-        gap: 22px;
+      .proof-copy p {
+        display: none;
       }
 
-      .micro-copy {
-        font-size: 9.5px;
-      }
-
-      .card {
-        padding: 16px 13px;
-
-        border-radius: 19px;
-      }
-
-      .row {
-        grid-template-columns: 1fr;
-      }
-
-      .input {
-        padding: 12px 13px;
-      }
-
-      .button-row {
-        align-items: stretch;
-      }
-
-      .btn-primary {
-        width: 100%;
-      }
-
-      .button-note {
-        max-width: none;
-
-        text-align: center;
-      }
-
-      .results-content:not(.results-empty) {
-        grid-template-columns: 1fr;
-      }
-
-      .product-card {
-        min-height: 0;
-      }
-
-      .about-line span {
-        display: block;
-
-        margin-top: 3px;
-        margin-left: 0;
-      }
-
-      .story-section {
-        padding-top: 42px;
-      }
-
-      .section-heading {
-        align-items: flex-start;
-        flex-direction: column;
+      .tiles {
+        grid-template-columns:
+          repeat(
+            2,
+            minmax(0, 1fr)
+          );
 
         gap: 8px;
       }
 
-      .scribble {
-        font-size: 22px;
+      .tile {
+        min-height: 108px;
       }
 
-      .editorial-grid {
-        grid-template-columns: 1fr;
+      .tile span {
+        left: 10px;
+        bottom: 9px;
+
+        font-size: 14px;
       }
 
-      .editorial-grid .editorial-card:last-child {
-        grid-column: auto;
+      footer {
+        padding:
+          17px
+          17px
+          27px;
+
+        flex-direction: column;
+
+        text-align: center;
       }
 
-      .editorial-card.photo {
-        min-height: 280px;
+      .footer-links {
+        flex-wrap: wrap;
+
+        justify-content: center;
       }
 
-      .category-row {
-        grid-template-columns:
-          repeat(2, minmax(0, 1fr));
-      }
-
-      .brand-story {
-        grid-template-columns: 1fr;
-      }
-
-      .brand-photo {
-        min-height: 200px;
-      }
-
-      .brand-story-copy {
-        padding: 29px 22px;
-      }
     }
 
-    @media (max-width: 390px) {
-      .benefits {
-        grid-template-columns: 1fr;
-      }
-
-      .top-nav {
-        gap: 9px;
-      }
-
-      .top-nav a {
-        font-size: 10.5px;
-      }
-    }
   </style>
 </head>
 
 <body>
 
   <!-- Impact verification -->
-  <div style="font-size:0; height:0; overflow:hidden;">
-    Impact-Site-Verification: f235e672-2c7a-462f-94e1-22ab97d41578
+  <div
+    style="
+      font-size:0;
+      height:0;
+      overflow:hidden;
+    "
+  >
+    Impact-Site-Verification:
+    f235e672-2c7a-462f-94e1-22ab97d41578
   </div>
 
-  <header class="site-header">
+  <div class="shell">
 
-    <a class="mini-logo" href="/">
+    <header>
 
-      <svg
-        class="mini-bow"
-        viewBox="0 0 64 44"
-        aria-hidden="true"
+      <a
+        class="brand"
+        href="/"
+        aria-label="Gift Lane home"
       >
-        <path
-          d="M31 22C23 3 4 4 5 16c1 10 14 11 26 6Z"
-          fill="none"
-          stroke="#c69a4b"
-          stroke-width="3"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        />
 
-        <path
-          d="M33 22C41 3 60 4 59 16c-1 10-14 11-26 6Z"
-          fill="none"
-          stroke="#c69a4b"
-          stroke-width="3"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        />
+        <span
+          class="bow"
+          aria-hidden="true"
+        >
+          <span class="bow-left"></span>
+          <span class="bow-right"></span>
+          <span class="bow-tail-left"></span>
+          <span class="bow-tail-right"></span>
+        </span>
 
-        <path
-          d="M32 22L23 40"
-          fill="none"
-          stroke="#c69a4b"
-          stroke-width="3"
-          stroke-linecap="round"
-        />
+        <span class="brand-name">
+          Gift Lane
+        </span>
 
-        <path
-          d="M32 22L42 40"
-          fill="none"
-          stroke="#c69a4b"
-          stroke-width="3"
-          stroke-linecap="round"
-        />
-      </svg>
+      </a>
 
-      <span class="mini-logo-mark">
-        Gift Lane
-      </span>
+      <nav
+        class="top-nav"
+        aria-label="Main navigation"
+      >
 
-    </a>
+        <a href="#gift-finder">
+          Find a Gift
+        </a>
 
-    <nav class="top-nav">
-      <a href="#gift-finder">Find a Gift</a>
-      <a href="/blog.html">Gift Guides</a>
-      <a href="/blog.html">Blog</a>
-      <a href="/about.html">About</a>
-    </nav>
+        <a href="/blog.html">
+          Gift Guides
+        </a>
 
-  </header>
+        <a href="/blog.html">
+          Blog
+        </a>
 
-  <main class="page">
+        <a href="/about.html">
+          About
+        </a>
 
-    <div class="brand-mark">
-      <span class="brand-dot"></span>
-      LIVE · GIFT CONCIERGE
-    </div>
+      </nav>
 
-    <section
-      class="hero"
-      id="gift-finder"
-    >
+      <div class="header-note">
+        ♡ Good gifting, brighter days
+      </div>
 
-      <div class="hero-grid">
+    </header>
 
-        <div>
+  </div>
+
+  <main>
+
+    <div class="shell">
+
+      <section
+        class="hero"
+        id="gift-finder"
+      >
+
+        <div class="hero-photo"></div>
+
+        <div class="intro">
 
           <div class="eyebrow">
             Personalised gift ideas, in seconds
           </div>
 
-          <h1 class="hero-title">
-            <span class="line">Tell us a little.</span>
-            <span class="line">Jude finds the rest.</span>
+          <h1>
+            Tell us a little.<br>
+            Jude finds the rest.
           </h1>
 
-          <p class="hero-copy">
+          <p class="lead">
             Thoughtful, practical and genuinely useful gift ideas
             from real stores. Tell Jude who you’re shopping for,
             the occasion and your budget — she’ll do the searching.
           </p>
 
-          <div class="handwritten">
+          <div class="scribble">
             Because good gifting should feel easy.
           </div>
 
           <div class="benefits">
 
             <div class="benefit">
-              <span class="benefit-icon">♡</span>
-              <span>Personalised recommendations</span>
+
+              <div class="benefit-icon">
+                ♡
+              </div>
+
+              Personalised<br>
+              ideas
+
             </div>
 
             <div class="benefit">
-              <span class="benefit-icon">⌕</span>
-              <span>Real products from real stores</span>
+
+              <div class="benefit-icon">
+                ⌕
+              </div>
+
+              Real products<br>
+              real stores
+
             </div>
 
             <div class="benefit">
-              <span class="benefit-icon">$</span>
-              <span>For every budget</span>
+
+              <div class="benefit-icon">
+                $
+              </div>
+
+              Every<br>
+              budget
+
             </div>
 
             <div class="benefit">
-              <span class="benefit-icon">↗</span>
-              <span>Clear places to shop</span>
+
+              <div class="benefit-icon">
+                ↗
+              </div>
+
+              Clear places<br>
+              to shop
+
             </div>
 
           </div>
 
         </div>
 
-        <div class="request-column">
+        <div class="finder-wrap">
 
-          <div class="request-note">
-            Find the perfect gift
-          </div>
+          <section
+            class="finder"
+            aria-label="Gift finder"
+          >
 
-          <div class="micro-copy">
-            Start your request
-          </div>
+            <div class="finder-title">
 
-          <div class="card">
+              <strong>
+                Start your request
+              </strong>
 
-            <label
-              class="field-label"
-              for="recipient"
-            >
+              <span class="live">
+                Live gift concierge
+              </span>
+
+            </div>
+
+            <label for="recipient">
               Who is this for?
             </label>
 
             <input
               id="recipient"
-              class="input"
               type="text"
               placeholder="e.g. my sister, 32, new mum, loves spa days"
             />
 
-            <div class="row">
+            <div class="two">
 
               <div>
 
-                <label
-                  class="field-label"
-                  for="occasion"
-                >
+                <label for="occasion">
                   Occasion
                 </label>
 
                 <input
                   id="occasion"
-                  class="input"
                   type="text"
-                  placeholder="e.g. birthday, Christmas, baby shower"
+                  placeholder="e.g. birthday, Christmas"
                 />
 
               </div>
 
               <div>
 
-                <label
-                  class="field-label"
-                  for="budget"
-                >
+                <label for="budget">
                   Budget (AUD)
                 </label>
 
                 <input
                   id="budget"
-                  class="input"
                   type="text"
                   placeholder="e.g. $80–$120"
                 />
@@ -1566,260 +1552,114 @@
 
             </div>
 
-            <div class="button-row">
+            <button
+              id="submit"
+              type="button"
+            >
+              ✦ &nbsp;
+              Curate Gifts
+              &nbsp; →
+            </button>
 
-              <button
-                id="submit"
-                class="btn-primary"
-              >
-                <span
-                  class="icon"
-                  aria-hidden="true"
-                >
-                  ✦
-                </span>
-
-                Curate gifts
-              </button>
-
-              <div class="button-note">
-                No sign-up. No fuss. Five thoughtful ideas with clear places to shop.
-              </div>
-
-            </div>
+            <p class="micro">
+              No sign-up. No fuss.
+              Five thoughtful ideas
+              with clear places to shop.
+            </p>
 
             <div
-              class="results"
               id="results"
+              class="results"
             >
 
-              <h2>
+              <div class="results-label">
                 Suggestions
-              </h2>
+              </div>
 
-              <div class="results-content results-empty">
-                Your personalised ideas will appear here in a few seconds.
+              <div
+                class="
+                  results-content
+                  results-empty
+                "
+              >
+                Your personalised ideas
+                will appear here
+                in a few seconds.
               </div>
 
             </div>
 
-          </div>
+          </section>
 
         </div>
 
-      </div>
+      </section>
 
-      <p class="about-line">
-        Designed by Jude. Inspired by a busy mum.
-        <span>Chosen with intention.</span>
-      </p>
+    </div>
 
-    </section>
+    <!-- small personality / inspiration strip -->
 
-    <section class="story-section">
+    <section
+      class="proof"
+      aria-label="Gift inspiration"
+    >
 
-      <div class="section-heading">
+      <div class="proof-copy">
 
-        <div>
-
-          <div class="section-eyebrow">
-            Inspiration without the endless scrolling
-          </div>
-
-          <h2 class="section-title">
-            Real ideas. Real life.
-          </h2>
-
-          <p class="section-copy">
-            From small birthday wins to the present they’ll talk
-            about for years — Gift Lane is here for all of it.
-          </p>
-
-        </div>
-
-        <div class="scribble">
-          A little inspiration goes a long way
-        </div>
-
-      </div>
-
-      <div class="editorial-grid">
-
-        <article class="editorial-card photo">
-
-          <div class="photo-copy">
-
-            <small>
-              The Gift Lane way
-            </small>
-
-            <h3>
-              Thoughtful doesn’t have to mean expensive.
-            </h3>
-
-          </div>
-
-        </article>
-
-        <article class="editorial-card idea-card">
-
-          <div>
-
-            <div class="idea-icon">
-              ♡
-            </div>
-
-            <h3>
-              The person who has everything
-            </h3>
-
-            <p>
-              Give Jude the awkward ones. The impossible husband,
-              the fussy teenager, the mother-in-law who needs nothing.
-            </p>
-
-          </div>
-
-          <a
-            class="idea-link"
-            href="#gift-finder"
-          >
-            Ask Jude →
-          </a>
-
-        </article>
-
-        <article class="editorial-card idea-card">
-
-          <div>
-
-            <div class="idea-icon">
-              $
-            </div>
-
-            <h3>
-              Brilliant gifts at every budget
-            </h3>
-
-            <p>
-              A clever $25 Target find matters just as much as
-              the beautiful $400 present. Good gifting is choosing well.
-            </p>
-
-          </div>
-
-          <a
-            class="idea-link"
-            href="#gift-finder"
-          >
-            Find something good →
-          </a>
-
-        </article>
-
-      </div>
-
-    </section>
-
-    <section class="category-section">
-
-      <div class="section-heading">
-
-        <div>
-
-          <div class="section-eyebrow">
-            Need somewhere to start?
-          </div>
-
-          <h2 class="section-title">
-            Find a gift for…
-          </h2>
-
-        </div>
-
-      </div>
-
-      <div class="category-row">
-
-        <a
-          class="category"
-          href="#gift-finder"
-        >
-          <span class="category-icon">♡</span>
-          For her
-        </a>
-
-        <a
-          class="category"
-          href="#gift-finder"
-        >
-          <span class="category-icon">⌚</span>
-          For him
-        </a>
-
-        <a
-          class="category"
-          href="#gift-finder"
-        >
-          <span class="category-icon">☆</span>
-          For kids
-        </a>
-
-        <a
-          class="category"
-          href="#gift-finder"
-        >
-          <span class="category-icon">⌂</span>
-          Home lovers
-        </a>
-
-        <a
-          class="category"
-          href="#gift-finder"
-        >
-          <span class="category-icon">♨</span>
-          Foodies
-        </a>
-
-        <a
-          class="category"
-          href="#gift-finder"
-        >
-          <span class="category-icon">✦</span>
-          Experiences
-        </a>
-
-      </div>
-
-    </section>
-
-    <section class="brand-story">
-
-      <div
-        class="brand-photo"
-        role="img"
-        aria-label="Gift Lane gifting inspiration"
-      ></div>
-
-      <div class="brand-story-copy">
-
-        <div class="section-eyebrow">
-          More than just gifts
+        <div class="eyebrow">
+          Real ideas. Real life.
         </div>
 
         <h2>
-          Good gifting is about knowing the person.
+          A little inspiration.
         </h2>
 
         <p>
-          Gift Lane combines a little human common sense with a lot
-          of searching. Whether you’re spending $20 or $500, Jude
-          helps narrow the internet down to ideas that actually make sense.
+          Not a catalogue.
+          Just a glimpse of
+          the kinds of people
+          Jude can help you shop for.
         </p>
 
-        <div class="handwritten">
-          Real products. Real stores. Real inspiration.
-        </div>
+      </div>
+
+      <div class="tiles">
+
+        <a
+          class="tile"
+          href="#gift-finder"
+        >
+          <span>
+            For her
+          </span>
+        </a>
+
+        <a
+          class="tile"
+          href="#gift-finder"
+        >
+          <span>
+            For kids
+          </span>
+        </a>
+
+        <a
+          class="tile"
+          href="#gift-finder"
+        >
+          <span>
+            For him
+          </span>
+        </a>
+
+        <a
+          class="tile"
+          href="#gift-finder"
+        >
+          <span>
+            For foodies
+          </span>
+        </a>
 
       </div>
 
@@ -1828,25 +1668,31 @@
   </main>
 
   <footer>
-    © 2026 Gift Lane • Designed with love by Jude<br>
 
-    <a href="/privacy.html">
-      Privacy Policy
-    </a>
+    <div>
+      © 2026 Gift Lane
+      • Designed with love by Jude
+    </div>
 
-    •
+    <div class="footer-links">
 
-    <a href="/affiliates.html">
-      Affiliate Disclosure
-    </a>
+      <a href="/privacy.html">
+        Privacy Policy
+      </a>
 
-    •
+      <a href="/affiliates.html">
+        Affiliate Disclosure
+      </a>
 
-    <a href="mailto:concierge@giftlane.au">
-      Contact
-    </a>
+      <a href="mailto:concierge@giftlane.au">
+        Contact
+      </a>
+
+    </div>
+
   </footer>
 
+  <!-- Working Gift Lane curation -->
   <script
     type="module"
     src="/frontend-curate.js"
