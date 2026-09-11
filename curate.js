@@ -1,7 +1,7 @@
 // =============================
 // Gift Lane – Unified Server
 // Website + /curate API
-// Australia-first gift discovery
+// Worldwide local gift discovery
 // =============================
 
 import express from "express";
@@ -41,7 +41,7 @@ const AFFILIATES = {
     vibe: ["trendy", "premium", "european"],
   },
 
-   "Primeful": {
+  "Primeful": {
     brand: "Hero of My Book",
     homepage: "https://heroofmybook.com",
     affiliate:
@@ -58,7 +58,8 @@ const AFFILIATES = {
       "sentimental",
       "educational",
     ],
-     
+  },
+
   "Sylvox TV": {
     brand: "Sylvox TV",
     homepage: "https://www.sylvoxtv.com.au",
@@ -92,12 +93,24 @@ const client = new OpenAI({
 // Budget parsing
 // -----------------------------
 function parseBudget(raw) {
-  if (!raw) return { min: null, max: null, raw: null };
+  if (!raw) {
+    return {
+      min: null,
+      max: null,
+      raw: null,
+    };
+  }
 
   const str = String(raw).replace(/,/g, "");
   const matches = str.match(/\d+(\.\d+)?/g);
 
-  if (!matches) return { min: null, max: null, raw };
+  if (!matches) {
+    return {
+      min: null,
+      max: null,
+      raw,
+    };
+  }
 
   const nums = matches.map(Number);
   const first = nums[0];
@@ -112,16 +125,28 @@ function parseBudget(raw) {
   }
 
   if (/under|below|less than|up to|upto/i.test(str)) {
-    return { min: null, max: first, raw };
+    return {
+      min: null,
+      max: first,
+      raw,
+    };
   }
 
   if (/over|more than|at least|from/i.test(str)) {
-    return { min: first, max: null, raw };
+    return {
+      min: first,
+      max: null,
+      raw,
+    };
   }
 
   // A plain number means "budget up to this amount"
   // rather than "product must cost exactly this amount".
-  return { min: null, max: first, raw };
+  return {
+    min: null,
+    max: first,
+    raw,
+  };
 }
 
 // -----------------------------
@@ -190,13 +215,16 @@ function detectAffiliateBrand({
   ) {
     return "Primeful";
   }
+
   return null;
 }
 
 function affiliateLinkFor(brandKey) {
   const affiliate = AFFILIATES?.[brandKey];
 
-  if (!affiliate?.affiliate) return null;
+  if (!affiliate?.affiliate) {
+    return null;
+  }
 
   return {
     label: affiliate.brand,
@@ -208,11 +236,19 @@ function affiliateLinkFor(brandKey) {
 // -----------------------------
 // Prompt
 // -----------------------------
-function buildGiftPrompt(recipient, occasion, budget) {
+function buildGiftPrompt(
+  recipient,
+  occasion,
+  budget,
+  country
+) {
   const parsedBudget = parseBudget(budget);
 
+  const destination =
+    String(country || "Australia").trim() || "Australia";
+
   let budgetInstruction =
-    `The customer's stated budget is ${budget}.`;
+    `The customer's stated budget is ${budget} in the normal local currency used in ${destination}.`;
 
   if (
     parsedBudget.max != null &&
@@ -230,16 +266,22 @@ Never exceed the stated maximum unless clearly labelled as slightly over budget.
     parsedBudget.max != null
   ) {
     budgetInstruction += `
-Prefer products inside the stated range of AUD $${parsedBudget.min}–$${parsedBudget.max}.`;
+Prefer products inside the customer's stated budget range of ${parsedBudget.min}–${parsedBudget.max} in the normal local currency used in ${destination}.`;
   }
 
   const affiliatePartnerContext =
     buildAffiliatePartnerContext();
 
   return `
-You are Jude, Gift Lane's gift concierge.
+You are Jude, Gift Lane's worldwide gift concierge.
 
-Your job is to find genuinely good, CURRENT gift ideas for Australians.
+Gift Lane is an Australian company, but people anywhere in the world can use it.
+
+Your job is to find genuinely good, CURRENT gift ideas that are appropriate
+for the country where the gift will be delivered.
+
+DELIVERY DESTINATION:
+${destination}
 
 Recipient:
 ${recipient}
@@ -249,6 +291,23 @@ ${occasion}
 
 ${budgetInstruction}
 
+LOCAL SHOPPING PRINCIPLE:
+
+The delivery destination determines the shopping market.
+
+For this request, prioritise products that are practical to buy and deliver
+to ${destination}.
+
+Use the normal local currency for ${destination} when presenting prices.
+
+Do NOT default to Australian retailers, AUD pricing or Australian availability
+unless the delivery destination is Australia.
+
+Do NOT default to US retailers or USD pricing unless the delivery destination
+is the United States.
+
+Apply the same principle to every country.
+
 APPROVED GIFT LANE AFFILIATE PARTNERS:
 
 ${affiliatePartnerContext}
@@ -256,15 +315,20 @@ ${affiliatePartnerContext}
 AFFILIATE PRIORITY RULE:
 
 Gift Lane's approved affiliate partners should receive priority consideration
-when they have products that genuinely suit this shopper.
+when they have products that genuinely suit this shopper AND are realistically
+available for delivery to ${destination}.
 
 This means:
 
 - First consider whether any approved affiliate partner has a genuinely strong
-  product for this recipient, occasion and budget.
+  product for this recipient, occasion, budget and delivery destination.
+
+- Before recommending an affiliate partner, make sure that retailer or brand
+  can reasonably serve customers in ${destination}.
 
 - If an affiliate-partner product and a non-affiliate product are both strong,
-  comparable matches, prefer the affiliate-partner product.
+  comparable matches and both are suitable for ${destination}, prefer the
+  affiliate-partner product.
 
 - An affiliate product does NOT need to be the absolute cheapest option.
 
@@ -272,8 +336,8 @@ This means:
   It must still be a genuinely good gift.
 
 - A non-affiliate product should still be recommended where it is materially
-  better, more relevant, better value, more appropriate, or fills a gap that
-  affiliate partners do not cover.
+  better, more relevant, better value, more appropriate, easier to obtain in
+  ${destination}, or fills a gap that affiliate partners do not cover.
 
 - Do not fill all five positions with affiliate products unless those five
   genuinely represent the strongest and most useful selection.
@@ -282,20 +346,24 @@ SEARCH RULES:
 
 1. Search the live web before choosing products.
 
-2. Australia comes first.
-Prioritise:
-- Australian retailers
-- Australian brand websites
-- products priced in AUD
-- products currently available to Australian customers
+2. LOCAL FIRST.
 
-3. International retailers are allowed only when:
+Prioritise:
+- retailers based in or serving ${destination}
+- brand websites appropriate for customers in ${destination}
+- products priced in the normal local currency of ${destination}
+- products currently available to customers in ${destination}
+- practical delivery to ${destination}
+
+3. International retailers are allowed when:
 - the product is genuinely excellent
-- it ships to Australia
-- there is no obviously better Australian option
+- it reliably ships to ${destination}
+- delivery is practical
+- it offers something meaningfully worthwhile compared with local options
 
 4. Search relevant approved affiliate partners as part of the gift discovery
-process whenever their categories plausibly match the request.
+process whenever their categories plausibly match the request AND they can
+serve the delivery destination.
 
 5. After considering relevant affiliate partners, search the wider web so the
 customer still receives a strong, varied set of recommendations.
@@ -323,8 +391,15 @@ Do not return five near-identical products.
 - quality
 - budget
 - variety
-- Australian availability
+- local availability in ${destination}
+- practical delivery
 - affiliate-partner preference where appropriate
+
+12. Price notes must make the currency clear.
+Use the normal local currency for ${destination}.
+For example, use AUD for Australia, USD for the United States,
+NZD for New Zealand, GBP for the United Kingdom, and the appropriate
+local currency for other destinations.
 
 Return EXACTLY 5 gift suggestions.
 
@@ -341,12 +416,12 @@ Use exactly this structure:
       "title": "Specific real product",
       "retailer": "Retailer or brand",
       "why": "A concise, human explanation of why this is a good fit.",
-      "price_note": "Approx AUD price",
+      "price_note": "Approx price with currency",
       "url": "https://actual-shopping-url"
     }
   ]
 }
-`.trim();
+  `.trim();
 }
 
 // -----------------------------
@@ -354,7 +429,12 @@ Use exactly this structure:
 // -----------------------------
 app.post("/curate", async (req, res) => {
   try {
-    const { demographic, occasion, budget } = req.body;
+    const {
+      demographic,
+      occasion,
+      budget,
+      country,
+    } = req.body;
 
     if (!demographic || !occasion || !budget) {
       return res.status(400).json({
@@ -362,10 +442,14 @@ app.post("/curate", async (req, res) => {
       });
     }
 
+    const destination =
+      String(country || "Australia").trim() || "Australia";
+
     const prompt = buildGiftPrompt(
       demographic,
       occasion,
-      budget
+      budget,
+      destination
     );
 
     const response = await client.responses.create({
@@ -443,7 +527,7 @@ app.post("/curate", async (req, res) => {
           };
         }
 
-        // Jude now considers affiliate partners DURING curation.
+        // Jude considers affiliate partners DURING curation.
         // If the chosen product belongs to an approved affiliate,
         // replace the ordinary shopping link with the tracked link.
         const brandKey = detectAffiliateBrand({
