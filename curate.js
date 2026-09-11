@@ -41,6 +41,24 @@ const AFFILIATES = {
     vibe: ["trendy", "premium", "european"],
   },
 
+   "Primeful": {
+    brand: "Hero of My Book",
+    homepage: "https://heroofmybook.com",
+    affiliate:
+      "https://www.awin1.com/cread.php?awinmid=130555&awinaffid=2689862&ued=https%3A%2F%2Fheroofmybook.com",
+    category: [
+      "children",
+      "books",
+      "personalised gifts",
+      "kids gifts",
+    ],
+    vibe: [
+      "personalised",
+      "creative",
+      "sentimental",
+      "educational",
+    ],
+     
   "Sylvox TV": {
     brand: "Sylvox TV",
     homepage: "https://www.sylvoxtv.com.au",
@@ -165,6 +183,13 @@ function detectAffiliateBrand({
     return "Sylvox TV";
   }
 
+  if (
+    text.includes("hero of my book") ||
+    text.includes("heroofmybook.com") ||
+    text.includes("primeful")
+  ) {
+    return "Primeful";
+  }
   return null;
 }
 
