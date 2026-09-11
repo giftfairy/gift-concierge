@@ -107,30 +107,61 @@ function parseBudget(raw) {
 }
 
 // -----------------------------
+// Affiliate partner summary
+// Used inside Jude's prompt so
+// partner brands can be prioritised
+// when genuinely relevant.
+// -----------------------------
+function buildAffiliatePartnerContext() {
+  return Object.values(AFFILIATES)
+    .map((affiliate) => {
+      return `- ${affiliate.brand}
+  Website: ${affiliate.homepage}
+  Categories: ${affiliate.category.join(", ")}
+  Style / fit: ${affiliate.vibe.join(", ")}`;
+    })
+    .join("\n\n");
+}
+
+// -----------------------------
 // Affiliate detection
 // -----------------------------
-function detectAffiliateBrand({ title = "", retailer = "", why = "" }) {
-  const text = `${title} ${retailer} ${why}`.toLowerCase();
+function detectAffiliateBrand({
+  title = "",
+  retailer = "",
+  why = "",
+  url = "",
+}) {
+  const text =
+    `${title} ${retailer} ${why} ${url}`.toLowerCase();
 
   if (
     text.includes("will & bear") ||
-    text.includes("will and bear")
+    text.includes("will and bear") ||
+    text.includes("willandbear.com")
   ) {
     return "Will & Bear";
   }
 
-  if (text.includes("ycz")) {
+  if (
+    text.includes("ycz") ||
+    text.includes("yczfragrance.com")
+  ) {
     return "YCZ Fragrance";
   }
 
   if (
     text.includes("house of sneakers") ||
-    text.includes("house-of-sneakers")
+    text.includes("house-of-sneakers") ||
+    text.includes("house-of-sneakers.de")
   ) {
     return "House of Sneakers DE";
   }
 
-  if (text.includes("sylvox")) {
+  if (
+    text.includes("sylvox") ||
+    text.includes("sylvoxtv.com")
+  ) {
     return "Sylvox TV";
   }
 
@@ -155,9 +186,13 @@ function affiliateLinkFor(brandKey) {
 function buildGiftPrompt(recipient, occasion, budget) {
   const parsedBudget = parseBudget(budget);
 
-  let budgetInstruction = `The customer's stated budget is ${budget}.`;
+  let budgetInstruction =
+    `The customer's stated budget is ${budget}.`;
 
-  if (parsedBudget.max != null && parsedBudget.min == null) {
+  if (
+    parsedBudget.max != null &&
+    parsedBudget.min == null
+  ) {
     budgetInstruction += `
 Treat this as a maximum spend, not a target price.
 Prefer excellent gifts in roughly the upper half of the budget when appropriate,
@@ -165,10 +200,16 @@ but include a cheaper option if it is genuinely a better gift.
 Never exceed the stated maximum unless clearly labelled as slightly over budget.`;
   }
 
-  if (parsedBudget.min != null && parsedBudget.max != null) {
+  if (
+    parsedBudget.min != null &&
+    parsedBudget.max != null
+  ) {
     budgetInstruction += `
 Prefer products inside the stated range of AUD $${parsedBudget.min}–$${parsedBudget.max}.`;
   }
+
+  const affiliatePartnerContext =
+    buildAffiliatePartnerContext();
 
   return `
 You are Jude, Gift Lane's gift concierge.
@@ -182,6 +223,35 @@ Occasion:
 ${occasion}
 
 ${budgetInstruction}
+
+APPROVED GIFT LANE AFFILIATE PARTNERS:
+
+${affiliatePartnerContext}
+
+AFFILIATE PRIORITY RULE:
+
+Gift Lane's approved affiliate partners should receive priority consideration
+when they have products that genuinely suit this shopper.
+
+This means:
+
+- First consider whether any approved affiliate partner has a genuinely strong
+  product for this recipient, occasion and budget.
+
+- If an affiliate-partner product and a non-affiliate product are both strong,
+  comparable matches, prefer the affiliate-partner product.
+
+- An affiliate product does NOT need to be the absolute cheapest option.
+
+- Do not recommend an affiliate product merely because it is an affiliate.
+  It must still be a genuinely good gift.
+
+- A non-affiliate product should still be recommended where it is materially
+  better, more relevant, better value, more appropriate, or fills a gap that
+  affiliate partners do not cover.
+
+- Do not fill all five positions with affiliate products unless those five
+  genuinely represent the strongest and most useful selection.
 
 SEARCH RULES:
 
@@ -199,10 +269,11 @@ Prioritise:
 - it ships to Australia
 - there is no obviously better Australian option
 
-4. DO NOT restrict suggestions to affiliate brands.
+4. Search relevant approved affiliate partners as part of the gift discovery
+process whenever their categories plausibly match the request.
 
-5. Affiliate relationships must NEVER determine whether a product is recommended.
-Choose the best gifts first.
+5. After considering relevant affiliate partners, search the wider web so the
+customer still receives a strong, varied set of recommendations.
 
 6. Recommend REAL products that exist now.
 Do not invent products, shops, prices or URLs.
@@ -221,6 +292,14 @@ For adults, consider relationship, interests, lifestyle and occasion.
 
 10. Variety matters.
 Do not return five near-identical products.
+
+11. The final five recommendations should balance:
+- relevance
+- quality
+- budget
+- variety
+- Australian availability
+- affiliate-partner preference where appropriate
 
 Return EXACTLY 5 gift suggestions.
 
@@ -339,12 +418,14 @@ app.post("/curate", async (req, res) => {
           };
         }
 
-        // Affiliate replacement happens AFTER
-        // Jude chooses the product.
+        // Jude now considers affiliate partners DURING curation.
+        // If the chosen product belongs to an approved affiliate,
+        // replace the ordinary shopping link with the tracked link.
         const brandKey = detectAffiliateBrand({
           title,
           retailer,
           why,
+          url: normalUrl,
         });
 
         if (brandKey) {
@@ -387,4 +468,3 @@ app.listen(port, () => {
     `Gift Lane server running on port ${port}`
   );
 });
-
