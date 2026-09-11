@@ -3,324 +3,570 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>About – Gift Lane</title>
+
+  <title>About Gift Lane</title>
+
   <meta
     name="description"
-    content="The story behind Gift Lane – a calm gifting concierge for busy humans who still care about thoughtful presents."
+    content="Meet Gift Lane, the Australian-founded worldwide gift concierge helping people find thoughtful gifts from real stores."
   />
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-D78BMLRNT2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-D78BMLRNT2');
+  </script>
 
   <style>
     :root {
-      --navy-bg: #050b18;
-      --navy-main: #0f172a;
-      --gold-light: #fff5dd;
-      --gold-mid: #f6d58d;
-      --gold-deep: #d9a446;
-      --text-main: #f9fafb;
-      --text-muted: #9ca3af;
+      --cream: #f7f3eb;
+      --cream-light: #fffdf8;
+      --green: #183c32;
+      --green-soft: #34594d;
+      --gold: #c79a4a;
+      --gold-light: #e4c98d;
+      --text: #24332e;
+      --muted: #6d756f;
+      --border: #ded8cb;
     }
 
     * {
       box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
-        "Segoe UI", sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
-      min-height: 100vh;
-      background:
-        radial-gradient(circle at top left, #1f2937 0, transparent 55%),
-        radial-gradient(circle at bottom right, #020617 0, transparent 55%),
-        var(--navy-bg);
-      color: var(--text-main);
+      margin: 0;
+      background: var(--cream);
+      color: var(--text);
+      font-family:
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .shell {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    header {
+      border-bottom: 1px solid var(--border);
+      background: rgba(247, 243, 235, 0.96);
+    }
+
+    .header-inner {
+      min-height: 92px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+    }
+
+    .brand {
+      text-decoration: none;
+      color: var(--green);
+      display: flex;
+      align-items: center;
+      gap: 11px;
+    }
+
+    .brand-icon {
+      color: var(--gold);
+      font-size: 26px;
+      line-height: 1;
+    }
+
+    .brand-text {
       display: flex;
       flex-direction: column;
     }
 
-    header {
-      padding: 16px 20px 6px;
-      border-bottom: 1px solid rgba(148, 163, 184, 0.25);
-      backdrop-filter: blur(10px);
-      position: sticky;
-      top: 0;
-      z-index: 10;
+    .brand-name {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 31px;
+      line-height: 1;
+      font-weight: 600;
+      letter-spacing: -0.02em;
     }
 
-    .nav-inner {
-      max-width: 1050px;
-      margin: 0 auto;
+    .brand-tagline {
+      margin-top: 6px;
+      font-size: 9px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    nav {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-    }
-
-    .brand {
-      font-family: "Playfair Display", "Times New Roman", serif;
-      font-size: 22px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      background: linear-gradient(120deg, #fff6dd, #f9dc96, #e2aa4f);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      white-space: nowrap;
+      gap: 28px;
     }
 
     nav a {
-      color: var(--gold-mid);
       text-decoration: none;
-      font-size: 13px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      margin-left: 18px;
-      white-space: nowrap;
+      color: var(--green);
+      font-size: 14px;
+      font-weight: 600;
     }
 
     nav a:hover {
-      text-decoration: underline;
+      color: var(--gold);
     }
 
-    .page {
-      flex: 1;
-      padding: 32px 16px 40px;
-    }
-
-    .page-inner {
-      max-width: 900px;
-      margin: 0 auto;
-    }
-
-    .pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
+    .tag {
+      border: 1px solid var(--border);
       border-radius: 999px;
-      border: 1px solid rgba(248, 250, 252, 0.22);
-      padding: 5px 12px;
-      font-size: 11px;
-      letter-spacing: 0.16em;
+      padding: 10px 15px;
+      font-size: 12px;
+      color: var(--green-soft);
+      white-space: nowrap;
+      background: rgba(255, 255, 255, 0.42);
+    }
+
+    main {
+      padding: 72px 0 88px;
+    }
+
+    .eyebrow {
       text-transform: uppercase;
-      color: var(--text-muted);
-      margin-bottom: 14px;
-    }
-
-    .pill-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 999px;
-      background: radial-gradient(circle at 30% 30%, #a3e635, #4ade80);
+      letter-spacing: 0.18em;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--gold);
+      margin-bottom: 17px;
     }
 
     h1 {
-      font-family: "Playfair Display", serif;
-      font-size: clamp(30px, 4vw, 40px);
-      margin-bottom: 8px;
+      font-family: Georgia, "Times New Roman", serif;
+      color: var(--green);
+      font-size: clamp(42px, 6vw, 68px);
+      line-height: 1.03;
+      letter-spacing: -0.035em;
+      margin: 0;
+      max-width: 820px;
+      font-weight: 500;
     }
 
-    .meta-line {
-      font-size: 13px;
-      color: var(--text-muted);
-      margin-bottom: 22px;
+    .intro {
+      font-size: 18px;
+      line-height: 1.75;
+      color: var(--green-soft);
+      max-width: 720px;
+      margin: 25px 0 46px;
     }
 
-    .card {
-      background:
-        radial-gradient(circle at top left,#1e293b 0,#020617 70%);
-      border-radius: 24px;
-      padding: 24px 20px;
-      box-shadow:
-        0 24px 60px rgba(0,0,0,0.85),
-        0 0 0 1px rgba(148,163,184,0.35);
+    .story-card {
+      background: var(--cream-light);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: 0 18px 45px rgba(48, 55, 47, 0.06);
     }
 
-    .card section + section {
-      margin-top: 18px;
-      padding-top: 16px;
-      border-top: 1px solid rgba(148, 163, 184, 0.35);
+    .story-section {
+      padding: 34px 38px;
+    }
+
+    .story-section + .story-section {
+      border-top: 1px solid var(--border);
     }
 
     h2 {
-      font-size: 18px;
-      margin-bottom: 6px;
+      font-family: Georgia, "Times New Roman", serif;
+      color: var(--green);
+      font-size: 27px;
+      line-height: 1.25;
+      margin: 0 0 13px;
+      font-weight: 500;
     }
 
     p {
-      font-size: 14px;
-      line-height: 1.7;
-      color: #e5e7eb;
-      margin-bottom: 8px;
+      margin: 0 0 13px;
+      color: #46534d;
+      font-size: 16px;
+      line-height: 1.75;
+    }
+
+    p:last-child {
+      margin-bottom: 0;
     }
 
     ul {
-      margin: 4px 0 10px 18px;
-      padding-left: 0;
+      padding-left: 21px;
+      margin: 13px 0 0;
     }
 
     li {
-      font-size: 14px;
-      line-height: 1.6;
-      color: #e5e7eb;
-    }
-
-    a {
-      color: var(--gold-mid);
-    }
-
-    a:hover {
-      text-decoration: underline;
+      margin: 8px 0;
+      color: #46534d;
     }
 
     .highlight {
-      background: linear-gradient(
-        120deg,
-        rgba(250, 250, 249, 0.03),
-        rgba(248, 250, 252, 0.06)
-      );
+      margin-top: 21px;
+      padding: 22px 24px;
       border-radius: 18px;
-      padding: 14px 16px;
-      border: 1px solid rgba(148, 163, 184, 0.35);
-      margin-top: 10px;
+      background: #f1eadc;
+      border-left: 4px solid var(--gold);
+    }
+
+    .highlight p {
+      color: var(--green);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 18px;
+      line-height: 1.6;
+    }
+
+    .cta {
+      margin-top: 46px;
+      background: var(--green);
+      border-radius: 28px;
+      padding: 38px;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 25px;
+    }
+
+    .cta h2 {
+      color: white;
+      margin-bottom: 8px;
+    }
+
+    .cta p {
+      color: rgba(255, 255, 255, 0.78);
+      margin: 0;
+    }
+
+    .cta a {
+      flex: 0 0 auto;
+      background: var(--gold);
+      color: #18261f;
+      text-decoration: none;
+      padding: 13px 20px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .cta a:hover {
+      filter: brightness(1.04);
     }
 
     footer {
-      border-top: 1px solid rgba(148, 163, 184, 0.3);
-      padding: 20px;
+      border-top: 1px solid var(--border);
+      padding: 30px 0 34px;
+      color: var(--muted);
       font-size: 12px;
-      color: var(--text-muted);
-      text-align: center;
     }
 
-    footer a {
-      color: var(--gold-mid);
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
       text-decoration: none;
     }
 
-    footer a:hover {
+    .footer-links a:hover {
+      color: var(--green);
       text-decoration: underline;
     }
 
-    @media (max-width: 720px) {
-      .nav-inner {
+    @media (max-width: 820px) {
+      .header-inner {
+        min-height: auto;
+        padding: 18px 0;
+        flex-wrap: wrap;
+      }
+
+      nav {
+        order: 3;
+        width: 100%;
+        gap: 20px;
+        overflow-x: auto;
+        padding-bottom: 3px;
+      }
+
+      .tag {
+        display: none;
+      }
+
+      main {
+        padding-top: 48px;
+      }
+
+      .story-section {
+        padding: 27px 23px;
+      }
+
+      .cta {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 29px 25px;
+      }
+
+      .footer-inner {
         flex-direction: column;
         align-items: flex-start;
       }
-      nav {
-        width: 100%;
-        overflow-x: auto;
-        padding-bottom: 4px;
+    }
+
+    @media (max-width: 520px) {
+      .shell {
+        width: min(100% - 28px, 1180px);
       }
+
+      .brand-name {
+        font-size: 27px;
+      }
+
+      nav {
+        gap: 17px;
+      }
+
       nav a {
-        margin: 0 12px 0 0;
+        font-size: 13px;
+        white-space: nowrap;
+      }
+
+      h1 {
+        font-size: 43px;
+      }
+
+      .intro {
+        font-size: 16px;
       }
     }
   </style>
 </head>
+
 <body>
+
   <header>
-    <div class="nav-inner">
-      <div class="brand">Gift Lane</div>
-      <nav>
-        <a href="/">Home</a>
+    <div class="shell header-inner">
+
+      <a class="brand" href="/">
+        <span class="brand-icon">🎀</span>
+
+        <span class="brand-text">
+          <span class="brand-name">Gift Lane</span>
+          <span class="brand-tagline">Gifts made easy</span>
+        </span>
+      </a>
+
+      <nav aria-label="Main navigation">
+        <a href="/#gift-finder">Find a Gift</a>
+        <a href="/blog.html">Gift Guides</a>
+        <a href="/blog.html">Blog</a>
         <a href="/about.html">About</a>
-        <a href="/blog.html">Blog & Guides</a>
-        <a href="/privacy.html">Privacy</a>
-        <a href="/affiliates.html">Affiliate Disclosure</a>
       </nav>
+
+      <div class="tag">
+        ♡ Good gifting, brighter days
+      </div>
+
     </div>
   </header>
 
-  <main class="page">
-    <div class="page-inner">
-      <div class="pill">
-        <span class="pill-dot"></span>
+  <main>
+    <div class="shell">
+
+      <div class="eyebrow">
         About Gift Lane
       </div>
 
-      <h1>Beautifully considered gifting for busy humans</h1>
-      <p class="meta-line">
-        Gift Lane is a calm little corner of the internet that helps you find
-        presents that feel like you actually know the person.
+      <h1>
+        Good gifting should feel easy.
+      </h1>
+
+      <p class="intro">
+        Gift Lane is an Australian-founded, worldwide gift concierge built for
+        people who want to give something thoughtful without spending hours
+        searching for it.
       </p>
 
-      <div class="card">
-        <section>
-          <h2>Born from “I don’t know what to buy”</h2>
+      <div class="story-card">
+
+        <section class="story-section">
+          <h2>Born from “I have no idea what to buy”</h2>
+
           <p>
-            Gift Lane was created by a busy mum who loves thoughtful gifting but
-            doesn’t always have the time (or brain space) to scroll through a
-            million tabs looking for “the one”.
+            Gift Lane started with a very normal problem: wanting to give good
+            gifts, but not always having the time or brain space to search
+            through endless stores, tabs and generic gift lists.
           </p>
+
           <p>
-            Instead of another overwhelming online store, Gift Lane acts like a
-            personal gifting concierge. You tell us who it’s for, what you’re
-            celebrating, and your budget. The concierge does the thinking.
+            So we built Jude — a gift concierge that does the searching for you.
+            Tell Jude a little about the person you’re shopping for, the
+            occasion, your budget and where the gift is going, and Jude will
+            curate real ideas from real stores.
           </p>
         </section>
 
-        <section>
-          <h2>How the concierge works</h2>
+        <section class="story-section">
+          <h2>One concierge. Wherever you’re shopping.</h2>
+
           <p>
-            Behind the scenes, Gift Lane combines human-written prompts with
-            powerful AI to generate curated suggestions tailored to:
+            Gift Lane was built in Australia, but gifting doesn’t stop at the
+            border.
           </p>
-          <ul>
-            <li>Who you’re buying for (their stage of life, vibe, and interests)</li>
-            <li>The occasion (big milestone or little moment)</li>
-            <li>Your budget and how far you want it to stretch</li>
-          </ul>
+
+          <p>
+            If your gift is going to Australia, Jude looks for options suitable
+            for Australia. If it’s going to the United States, New Zealand, the
+            UK or somewhere else entirely, Jude adjusts the search to that
+            destination.
+          </p>
+
           <div class="highlight">
             <p>
-              The goal: ideas that feel realistic, well-chosen and
-              actually deliverable in Australia &mdash; not fantasy Pinterest
-              boards or US-only unicorns.
+              The goal is simple: useful recommendations that make sense for the
+              person, the budget and the place the gift actually needs to go.
             </p>
           </div>
         </section>
 
-        <section>
+        <section class="story-section">
+          <h2>How Jude works</h2>
+
+          <p>
+            Jude searches for gifts based on things that actually matter:
+          </p>
+
+          <ul>
+            <li>who you’re buying for and what they’re into</li>
+            <li>the occasion</li>
+            <li>your budget</li>
+            <li>the country where the gift will be delivered</li>
+            <li>current products, retailers and availability</li>
+          </ul>
+
+          <p>
+            The more useful detail you give Jude, the more personalised the
+            recommendations can become.
+          </p>
+        </section>
+
+        <section class="story-section">
           <h2>We’re not a store</h2>
+
           <p>
-            Gift Lane doesn’t hold stock or ship anything. Think of it as
-            the friend who always has a good idea and sends you links.
-            Sometimes those links are affiliate links (you can read more in our
-            <a href="/affiliates.html">Affiliate Disclosure</a>), but the
-            suggestion has to earn its place first.
+            Gift Lane doesn’t hold stock or ship products. Think of Jude as the
+            friend who always seems to know what to buy — and sends you somewhere
+            useful to get it.
+          </p>
+
+          <p>
+            Some retailers we recommend are affiliate partners. When a relevant
+            affiliate partner has a genuinely strong option, Jude may give that
+            partner priority over a comparable non-partner option.
+          </p>
+
+          <p>
+            But being an affiliate does not automatically earn a recommendation.
+            If another product is materially better for the person, budget or
+            destination, Jude can still recommend it.
+          </p>
+
+          <p>
+            You can read more in our
+            <a href="/affiliates.html">Affiliate Disclosure</a>.
           </p>
         </section>
 
-        <section>
-          <h2>Made for real life, not perfection</h2>
+        <section class="story-section">
+          <h2>Built for real life</h2>
+
           <p>
-            Life is full and messy. Gift Lane is designed to feel like a deep
-            breath in the middle of that – a quick way to get from “I have no
-            idea” to “That’s perfect, done.”
+            Gift Lane isn’t about perfect Pinterest presents or making gifting
+            more complicated than it needs to be.
           </p>
+
           <p>
-            Whether you’re shopping from the school pickup line, between
-            meetings, or at 11:47 pm the night before a birthday, the concierge
-            is quietly waiting for you.
+            It’s for the birthday you suddenly remembered, the impossible-to-buy-for
+            dad, the child who is obsessed with one very specific thing, the
+            overseas relative, the Christmas list that somehow became enormous,
+            and all the everyday moments in between.
+          </p>
+
+          <p>
+            You tell Jude about the human. Jude does the hunting.
           </p>
         </section>
 
-        <section>
+        <section class="story-section">
           <h2>Say hello</h2>
+
           <p>
-            Ideas, feedback or collaboration enquiries are always welcome.
-            You can reach the human behind Gift Lane at
-            <a href="mailto:concierge@giftlane.au">concierge@giftlane.au</a>.
+            Feedback, ideas, retailer partnerships and collaboration enquiries
+            are always welcome.
+          </p>
+
+          <p>
+            Email us at
+            <a href="mailto:concierge@giftlane.au">
+              concierge@giftlane.au
+            </a>.
           </p>
         </section>
+
       </div>
+
+      <section class="cta">
+        <div>
+          <h2>Someone impossible to buy for?</h2>
+          <p>Give Jude a go. A few details is all it takes.</p>
+        </div>
+
+        <a href="/#gift-finder">
+          Find a Gift →
+        </a>
+      </section>
+
     </div>
   </main>
 
   <footer>
-    © 2025 Gift Lane • Designed with love by Jude ·
-    <a href="/privacy.html">Privacy</a> ·
-    <a href="/affiliates.html">Affiliate Disclosure</a>
+    <div class="shell footer-inner">
+
+      <div>
+        © 2026 Gift Lane • Designed with love by Jude
+      </div>
+
+      <div class="footer-links">
+        <a href="/privacy.html">Privacy Policy</a>
+        <a href="/affiliates.html">Affiliate Disclosure</a>
+        <a href="mailto:concierge@giftlane.au">Contact</a>
+      </div>
+
+    </div>
   </footer>
+
 </body>
 </html>
