@@ -18,10 +18,10 @@ btn?.addEventListener("click", async () => {
   const budget = document.getElementById("budget")?.value.trim();
   const country = document.getElementById("country")?.value.trim();
 
-  if (!demographic || !occasion || !budget) {
-    alert("Tell me who it’s for, the occasion, and your budget first.");
-    return;
-  }
+  if (!demographic || !occasion || !budget || !country) {
+  alert("Tell me who it’s for, the occasion, your budget, and where the gift is going.");
+  return;
+}
 
   setLoading();
 
@@ -52,7 +52,7 @@ btn?.addEventListener("click", async () => {
       card.className = "product-card";
 
       const linksHtml =
-        product.links.length > 0
+  Array.isArray(product.links) && product.links.length > 0
           ? product.links
               .map(
                 (l) =>
