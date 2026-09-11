@@ -20,16 +20,27 @@
     gtag('config', 'G-D78BMLRNT2');
   </script>
 
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@500;600&display=swap"
+    rel="stylesheet"
+  />
+
   <style>
     :root {
-      --cream: #f7f3eb;
+      --cream: #f7f2e9;
       --cream-light: #fffdf8;
-      --green: #183c32;
-      --green-soft: #34594d;
-      --gold: #c79a4a;
+      --green: #123d32;
+      --green-soft: #245649;
+      --gold: #c9973e;
+      --gold-light: #e4c98d;
+      --gold-deep: #b47f27;
       --text: #24332e;
-      --muted: #6d756f;
-      --border: #ded8cb;
+      --muted: #77766f;
+      --border: #e6ded2;
+      --line: #e6ded2;
     }
 
     * {
@@ -45,6 +56,7 @@
       background: var(--cream);
       color: var(--text);
       font-family:
+        "Inter",
         system-ui,
         -apple-system,
         BlinkMacSystemFont,
@@ -58,83 +70,112 @@
     }
 
     .shell {
-      width: min(1180px, calc(100% - 40px));
+      width: 100%;
+      max-width: 1440px;
       margin: 0 auto;
+      padding: 0 42px;
     }
 
     header {
-      border-bottom: 1px solid var(--border);
-      background: rgba(247, 243, 235, 0.96);
-    }
-
-    .header-inner {
-      min-height: 92px;
+      min-height: 76px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 30px;
+      gap: 24px;
     }
 
     .brand {
-      text-decoration: none;
-      color: var(--green);
       display: flex;
       align-items: center;
       gap: 11px;
-    }
-
-    .brand-icon {
-      color: var(--gold);
-      font-size: 26px;
-      line-height: 1;
-    }
-
-    .brand-text {
-      display: flex;
-      flex-direction: column;
+      color: var(--green);
+      white-space: nowrap;
+      text-decoration: none;
     }
 
     .brand-name {
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: 31px;
-      line-height: 1;
+      font-family:
+        "Playfair Display",
+        Georgia,
+        serif;
+      font-size: 34px;
       font-weight: 600;
-      letter-spacing: -0.02em;
+      line-height: 1;
     }
 
-    .brand-tagline {
-      margin-top: 6px;
-      font-size: 9px;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--muted);
+    /* Bow logo */
+    .bow {
+      width: 40px;
+      height: 30px;
+      position: relative;
+      display: inline-block;
+      flex: 0 0 auto;
     }
 
-    nav {
+    .bow-left,
+    .bow-right {
+      position: absolute;
+      top: 2px;
+      width: 21px;
+      height: 16px;
+      border: 2px solid var(--gold);
+      border-radius: 60% 60% 55% 20%;
+    }
+
+    .bow-left {
+      left: 0;
+      transform: rotate(28deg);
+    }
+
+    .bow-right {
+      right: 0;
+      transform: scaleX(-1) rotate(28deg);
+    }
+
+    .bow-tail-left,
+    .bow-tail-right {
+      position: absolute;
+      top: 15px;
+      width: 2px;
+      height: 15px;
+      background: var(--gold);
+    }
+
+    .bow-tail-left {
+      left: 18px;
+      transform: rotate(24deg);
+    }
+
+    .bow-tail-right {
+      right: 18px;
+      transform: rotate(-24deg);
+    }
+
+    .top-nav {
       display: flex;
       align-items: center;
-      gap: 28px;
-    }
-
-    nav a {
-      text-decoration: none;
+      gap: 30px;
       color: var(--green);
       font-size: 14px;
-      font-weight: 600;
+      font-weight: 500;
     }
 
-    nav a:hover {
-      color: var(--gold);
+    .top-nav a {
+      text-decoration: none;
     }
 
-    .tag {
-      border: 1px solid var(--border);
+    .top-nav a:hover {
+      color: var(--gold-deep);
+    }
+
+    .header-note {
+      padding: 9px 14px;
+      border: 1px solid var(--line);
       border-radius: 999px;
-      padding: 10px 15px;
+      background: rgba(255, 255, 255, 0.55);
+      color: var(--green);
       font-size: 12px;
-      color: var(--green-soft);
       white-space: nowrap;
-      background: rgba(255,255,255,0.42);
     }
 
     main {
@@ -151,7 +192,11 @@
     }
 
     h1 {
-      font-family: Georgia, "Times New Roman", serif;
+      font-family:
+        "Playfair Display",
+        Georgia,
+        "Times New Roman",
+        serif;
       color: var(--green);
       font-size: clamp(42px, 6vw, 68px);
       line-height: 1.03;
@@ -174,7 +219,7 @@
       border: 1px solid var(--border);
       border-radius: 28px;
       overflow: hidden;
-      box-shadow: 0 18px 45px rgba(48,55,47,0.06);
+      box-shadow: 0 18px 45px rgba(48, 55, 47, 0.06);
     }
 
     .policy-section {
@@ -186,7 +231,11 @@
     }
 
     h2 {
-      font-family: Georgia, "Times New Roman", serif;
+      font-family:
+        "Playfair Display",
+        Georgia,
+        "Times New Roman",
+        serif;
       color: var(--green);
       font-size: 25px;
       line-height: 1.3;
@@ -247,22 +296,25 @@
       text-decoration: underline;
     }
 
-    @media (max-width: 820px) {
-      .header-inner {
-        min-height: auto;
-        padding: 18px 0;
+    @media (max-width: 980px) {
+      .shell {
+        padding: 0 20px;
+      }
+
+      header {
+        height: auto;
+        padding: 18px 0 12px;
         flex-wrap: wrap;
       }
 
-      nav {
+      .top-nav {
         order: 3;
         width: 100%;
+        justify-content: center;
         gap: 20px;
-        overflow-x: auto;
-        padding-bottom: 3px;
       }
 
-      .tag {
+      .header-note {
         display: none;
       }
 
@@ -280,22 +332,30 @@
       }
     }
 
-    @media (max-width: 520px) {
+    @media (max-width: 640px) {
       .shell {
-        width: min(100% - 28px, 1180px);
+        padding: 0 14px;
+      }
+
+      header {
+        justify-content: center;
+      }
+
+      .brand {
+        width: 100%;
+        justify-content: center;
       }
 
       .brand-name {
-        font-size: 27px;
+        font-size: 29px;
       }
 
-      nav {
-        gap: 17px;
-      }
-
-      nav a {
+      .top-nav {
         font-size: 13px;
-        white-space: nowrap;
+        gap: 17px;
+        overflow: auto;
+        justify-content: flex-start;
+        padding: 2px 6px 5px;
       }
 
       h1 {
@@ -311,31 +371,45 @@
 
 <body>
 
-  <header>
-    <div class="shell header-inner">
+  <div class="shell">
+    <header>
 
-      <a class="brand" href="/">
-        <span class="brand-icon" aria-hidden="true">౨ৎ</span>
+      <a
+        class="brand"
+        href="/"
+        aria-label="Gift Lane home"
+      >
+        <span
+          class="bow"
+          aria-hidden="true"
+        >
+          <span class="bow-left"></span>
+          <span class="bow-right"></span>
+          <span class="bow-tail-left"></span>
+          <span class="bow-tail-right"></span>
+        </span>
 
-        <span class="brand-text">
-          <span class="brand-name">Gift Lane</span>
-          <span class="brand-tagline">Gifts made easy</span>
+        <span class="brand-name">
+          Gift Lane
         </span>
       </a>
 
-      <nav aria-label="Main navigation">
+      <nav
+        class="top-nav"
+        aria-label="Main navigation"
+      >
         <a href="/#gift-finder">Find a Gift</a>
         <a href="/blog.html">Gift Guides</a>
         <a href="/blog.html">Blog</a>
         <a href="/about.html">About</a>
       </nav>
 
-      <div class="tag">
+      <div class="header-note">
         ♡ Good gifting, brighter days
       </div>
 
-    </div>
-  </header>
+    </header>
+  </div>
 
   <main>
     <div class="shell">
