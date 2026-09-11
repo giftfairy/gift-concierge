@@ -3,277 +3,487 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Affiliate Disclosure – Gift Lane</title>
-  <meta name="description" content="Affiliate disclosure for Gift Lane – how affiliate links work on this site." />
 
-  <!-- Uses the same styling pattern as privacy.html -->
+  <title>Affiliate Disclosure – Gift Lane</title>
+
+  <meta
+    name="description"
+    content="Gift Lane Affiliate Disclosure – how affiliate links and partner recommendations work."
+  />
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-D78BMLRNT2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-D78BMLRNT2');
+  </script>
+
   <style>
     :root {
-      --navy-bg: #050b18;
-      --navy-main: #0f172a;
-      --gold-light: #fff5dd;
-      --gold-mid: #f6d58d;
-      --gold-deep: #d9a446;
-      --text-main: #f9fafb;
-      --text-muted: #9ca3af;
+      --cream: #f7f3eb;
+      --cream-light: #fffdf8;
+      --green: #183c32;
+      --green-soft: #34594d;
+      --gold: #c79a4a;
+      --text: #24332e;
+      --muted: #6d756f;
+      --border: #ded8cb;
     }
 
     * {
       box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
-        "Segoe UI", sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
-      min-height: 100vh;
-      background:
-        radial-gradient(circle at top left, #1f2937 0, transparent 55%),
-        radial-gradient(circle at bottom right, #020617 0, transparent 55%),
-        var(--navy-bg);
-      color: var(--text-main);
+      margin: 0;
+      background: var(--cream);
+      color: var(--text);
+      font-family:
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .shell {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    header {
+      border-bottom: 1px solid var(--border);
+      background: rgba(247, 243, 235, 0.96);
+    }
+
+    .header-inner {
+      min-height: 92px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+    }
+
+    .brand {
+      text-decoration: none;
+      color: var(--green);
+      display: flex;
+      align-items: center;
+      gap: 11px;
+    }
+
+    .brand-icon {
+      color: var(--gold);
+      font-size: 26px;
+      line-height: 1;
+    }
+
+    .brand-text {
       display: flex;
       flex-direction: column;
     }
 
-    header {
-      padding: 16px 20px 6px;
-      border-bottom: 1px solid rgba(148, 163, 184, 0.25);
-      backdrop-filter: blur(10px);
-      position: sticky;
-      top: 0;
-      z-index: 10;
+    .brand-name {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 31px;
+      line-height: 1;
+      font-weight: 600;
+      letter-spacing: -0.02em;
     }
 
-    .nav-inner {
-      max-width: 1050px;
-      margin: 0 auto;
+    .brand-tagline {
+      margin-top: 6px;
+      font-size: 9px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    nav {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-    }
-
-    .brand {
-      font-family: "Playfair Display", "Times New Roman", serif;
-      font-size: 22px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      background: linear-gradient(120deg,#fff6dd,#f9dc96,#e2aa4f);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      white-space: nowrap;
+      gap: 28px;
     }
 
     nav a {
-      color: var(--gold-mid);
       text-decoration: none;
-      font-size: 13px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      margin-left: 18px;
-      white-space: nowrap;
+      color: var(--green);
+      font-size: 14px;
+      font-weight: 600;
     }
 
     nav a:hover {
-      text-decoration: underline;
+      color: var(--gold);
     }
 
-    .page {
-      flex: 1;
-      padding: 32px 16px 40px;
-    }
-
-    .page-inner {
-      max-width: 900px;
-      margin: 0 auto;
-    }
-
-    .pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
+    .tag {
+      border: 1px solid var(--border);
       border-radius: 999px;
-      border: 1px solid rgba(248, 250, 252, 0.22);
-      padding: 5px 12px;
-      font-size: 11px;
-      letter-spacing: 0.16em;
+      padding: 10px 15px;
+      font-size: 12px;
+      color: var(--green-soft);
+      white-space: nowrap;
+      background: rgba(255,255,255,0.42);
+    }
+
+    main {
+      padding: 72px 0 88px;
+    }
+
+    .eyebrow {
       text-transform: uppercase;
-      color: var(--text-muted);
-      margin-bottom: 14px;
-    }
-
-    .pill-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 999px;
-      background: radial-gradient(circle at 30% 30%, #fb923c, #facc15);
+      letter-spacing: 0.18em;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--gold);
+      margin-bottom: 17px;
     }
 
     h1 {
-      font-family: "Playfair Display", serif;
-      font-size: clamp(30px, 4vw, 40px);
-      margin-bottom: 8px;
+      font-family: Georgia, "Times New Roman", serif;
+      color: var(--green);
+      font-size: clamp(42px, 6vw, 68px);
+      line-height: 1.03;
+      letter-spacing: -0.035em;
+      margin: 0;
+      max-width: 850px;
+      font-weight: 500;
     }
 
-    .meta-line {
-      font-size: 13px;
-      color: var(--text-muted);
-      margin-bottom: 22px;
+    .intro {
+      font-size: 18px;
+      line-height: 1.75;
+      color: var(--green-soft);
+      max-width: 720px;
+      margin: 25px 0 46px;
     }
 
-    .card {
-      background:
-        radial-gradient(circle at top left,#1e293b 0,#020617 70%);
-      border-radius: 24px;
-      padding: 24px 20px;
-      box-shadow:
-        0 24px 60px rgba(0,0,0,0.85),
-        0 0 0 1px rgba(148,163,184,0.35);
+    .policy-card {
+      background: var(--cream-light);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: 0 18px 45px rgba(48,55,47,0.06);
     }
 
-    .card section + section {
-      margin-top: 18px;
-      padding-top: 16px;
-      border-top: 1px solid rgba(148, 163, 184, 0.35);
+    .policy-section {
+      padding: 32px 38px;
+    }
+
+    .policy-section + .policy-section {
+      border-top: 1px solid var(--border);
     }
 
     h2 {
-      font-size: 17px;
-      margin-bottom: 6px;
+      font-family: Georgia, "Times New Roman", serif;
+      color: var(--green);
+      font-size: 25px;
+      line-height: 1.3;
+      margin: 0 0 12px;
+      font-weight: 500;
     }
 
     p {
-      font-size: 14px;
-      line-height: 1.7;
-      color: #e5e7eb;
-      margin-bottom: 8px;
+      margin: 0 0 13px;
+      color: #46534d;
+      font-size: 16px;
+      line-height: 1.75;
     }
 
-    a { color: var(--gold-mid); }
-    a:hover { text-decoration: underline; }
+    p:last-child {
+      margin-bottom: 0;
+    }
+
+    .note {
+      margin-top: 20px;
+      padding: 20px 22px;
+      border-radius: 18px;
+      background: #f1eadc;
+      border-left: 4px solid var(--gold);
+    }
+
+    .note p {
+      color: var(--green);
+      margin: 0;
+    }
 
     footer {
-      border-top: 1px solid rgba(148, 163, 184, 0.3);
-      padding: 20px;
+      border-top: 1px solid var(--border);
+      padding: 30px 0 34px;
+      color: var(--muted);
       font-size: 12px;
-      color: var(--text-muted);
-      text-align: center;
     }
 
-    footer a {
-      color: var(--gold-mid);
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
       text-decoration: none;
     }
 
-    footer a:hover {
+    .footer-links a:hover {
+      color: var(--green);
       text-decoration: underline;
     }
 
-    @media (max-width: 720px) {
-      .nav-inner {
+    @media (max-width: 820px) {
+      .header-inner {
+        min-height: auto;
+        padding: 18px 0;
+        flex-wrap: wrap;
+      }
+
+      nav {
+        order: 3;
+        width: 100%;
+        gap: 20px;
+        overflow-x: auto;
+        padding-bottom: 3px;
+      }
+
+      .tag {
+        display: none;
+      }
+
+      main {
+        padding-top: 48px;
+      }
+
+      .policy-section {
+        padding: 27px 23px;
+      }
+
+      .footer-inner {
         flex-direction: column;
         align-items: flex-start;
       }
-      nav {
-        width: 100%;
-        overflow-x: auto;
-        padding-bottom: 4px;
+    }
+
+    @media (max-width: 520px) {
+      .shell {
+        width: min(100% - 28px, 1180px);
       }
+
+      .brand-name {
+        font-size: 27px;
+      }
+
+      nav {
+        gap: 17px;
+      }
+
       nav a {
-        margin: 0 12px 0 0;
+        font-size: 13px;
+        white-space: nowrap;
+      }
+
+      h1 {
+        font-size: 43px;
+      }
+
+      .intro {
+        font-size: 16px;
       }
     }
   </style>
 </head>
+
 <body>
+
   <header>
-    <div class="nav-inner">
-      <div class="brand">Gift Lane</div>
-      <nav>
-        <a href="/">Home</a>
+    <div class="shell header-inner">
+
+      <a class="brand" href="/">
+        <span class="brand-icon">🎀</span>
+
+        <span class="brand-text">
+          <span class="brand-name">Gift Lane</span>
+          <span class="brand-tagline">Gifts made easy</span>
+        </span>
+      </a>
+
+      <nav aria-label="Main navigation">
+        <a href="/#gift-finder">Find a Gift</a>
+        <a href="/blog.html">Gift Guides</a>
+        <a href="/blog.html">Blog</a>
         <a href="/about.html">About</a>
-        <a href="/blog.html">Blog & Guides</a>
-        <a href="/privacy.html">Privacy</a>
-        <a href="/affiliates.html">Affiliate Disclosure</a>
       </nav>
+
+      <div class="tag">
+        ♡ Good gifting, brighter days
+      </div>
+
     </div>
   </header>
 
-  <main class="page">
-    <div class="page-inner">
-      <div class="pill">
-        <span class="pill-dot"></span>
+  <main>
+    <div class="shell">
+
+      <div class="eyebrow">
         Affiliate Disclosure
       </div>
 
-      <h1>How affiliate links work on Gift Lane</h1>
-      <p class="meta-line">We believe in being upfront about how this site earns money.</p>
+      <h1>
+        How affiliate links work on Gift Lane.
+      </h1>
 
-      <div class="card">
-        <section>
-          <h2>1. What are affiliate links?</h2>
+      <p class="intro">
+        Gift Lane is free to use. Some of the retailers we recommend are
+        affiliate partners, which helps support the cost of running and
+        improving the service.
+      </p>
+
+      <div class="policy-card">
+
+        <section class="policy-section">
+          <h2>1. What is an affiliate link?</h2>
+
           <p>
-            Some products recommended on Gift Lane use affiliate links. This means
-            if you click a link and go on to make a purchase, the retailer may
-            pay Gift Lane a small commission for the referral.
+            Some links on Gift Lane are affiliate links.
           </p>
+
           <p>
-            This commission comes from the retailer, not from you. The price you
-            pay is exactly the same as if you went to the site directly.
+            If you click one of these links and later make a purchase, the
+            retailer or affiliate network may pay Gift Lane a commission for
+            referring you.
+          </p>
+
+          <p>
+            This commission is paid by the retailer and does not normally
+            increase the price you pay.
           </p>
         </section>
 
-        <section>
-          <h2>2. Why we use them</h2>
+        <section class="policy-section">
+          <h2>2. Why we use affiliate partnerships</h2>
+
           <p>
-            Affiliate income helps keep Gift Lane running and allows us to keep
-            building better tools, guides, and ideas for time-poor humans who
-            still want their gifts to feel considered.
+            Affiliate income helps cover the costs of operating Gift Lane,
+            including the technology used to search for products and generate
+            recommendations.
+          </p>
+
+          <p>
+            It also allows Gift Lane to remain free for people using Jude to
+            find gift ideas.
           </p>
         </section>
 
-        <section>
-          <h2>3. How it affects our recommendations</h2>
+        <section class="policy-section">
+          <h2>3. How affiliate partners affect recommendations</h2>
+
           <p>
-            Recommendations are driven by what feels thoughtful, realistic and
-            appropriate for the person and budget you describe. We won’t suggest
-            something purely because it has an affiliate program.
+            Jude’s curation logic gives approved affiliate partners priority
+            consideration when they have products that are genuinely relevant
+            to the person, occasion, budget and delivery destination.
           </p>
+
           <p>
-            In some cases, we may link to multiple retailers so you can choose
-            the store, shipping and pricing that works best for you.
+            That does not mean an affiliate product automatically gets
+            recommended.
+          </p>
+
+          <p>
+            A non-affiliate product may still be recommended when it is a
+            materially better fit, offers better value, is more appropriate for
+            the recipient, or fills a gap that an affiliate partner cannot.
+          </p>
+
+          <div class="note">
+            <p>
+              Put simply: partnerships can influence which strong options get
+              considered first, but suitability still matters.
+            </p>
+          </div>
+        </section>
+
+        <section class="policy-section">
+          <h2>4. Availability and pricing</h2>
+
+          <p>
+            Gift Lane does not control retailer pricing, stock levels, shipping
+            costs, delivery times or product availability.
+          </p>
+
+          <p>
+            These can change after a recommendation is generated, so you should
+            always check the retailer’s website before purchasing.
           </p>
         </section>
 
-        <section>
-          <h2>4. Third-party tracking</h2>
+        <section class="policy-section">
+          <h2>5. Third-party tracking</h2>
+
           <p>
-            When you click an affiliate link, a cookie may be placed in your
-            browser by the retailer or affiliate network so they can recognise
-            that Gift Lane referred you. We don’t see your payment details or
-            account information.
+            When you click an affiliate link, the retailer or affiliate network
+            may place a cookie or use similar tracking technology to recognise
+            that Gift Lane referred you.
+          </p>
+
+          <p>
+            This allows the retailer or network to attribute an eligible
+            purchase to Gift Lane.
+          </p>
+
+          <p>
+            Gift Lane does not receive your card details or retailer account
+            password when you make a purchase.
           </p>
         </section>
 
-        <section>
-          <h2>5. Questions</h2>
+        <section class="policy-section">
+          <h2>6. Questions</h2>
+
           <p>
-            If you have any questions about affiliate links on Gift Lane, you
-            can email us at
-            <a href="mailto:concierge@giftlane.au">concierge@giftlane.au</a>.
+            If you have a question about affiliate links, retailer partnerships
+            or how recommendations work, email
+            <a href="mailto:concierge@giftlane.au">
+              concierge@giftlane.au
+            </a>.
           </p>
         </section>
+
       </div>
+
     </div>
   </main>
 
   <footer>
-    © 2025 Gift Lane • Designed with love by Jude ·
-    <a href="/privacy.html">Privacy</a> ·
-    <a href="/affiliates.html">Affiliate Disclosure</a>
+    <div class="shell footer-inner">
+
+      <div>
+        © 2026 Gift Lane • Designed with love by Jude
+      </div>
+
+      <div class="footer-links">
+        <a href="/privacy.html">Privacy Policy</a>
+        <a href="/affiliates.html">Affiliate Disclosure</a>
+        <a href="mailto:concierge@giftlane.au">Contact</a>
+      </div>
+
+    </div>
   </footer>
+
 </body>
 </html>
