@@ -16,6 +16,7 @@ btn?.addEventListener("click", async () => {
   const demographic = document.getElementById("recipient")?.value.trim();
   const occasion = document.getElementById("occasion")?.value.trim();
   const budget = document.getElementById("budget")?.value.trim();
+  const country = document.getElementById("country")?.value.trim();
 
   if (!demographic || !occasion || !budget) {
     alert("Tell me who it’s for, the occasion, and your budget first.");
@@ -28,7 +29,7 @@ btn?.addEventListener("click", async () => {
     const response = await fetch(API_URL, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ demographic, occasion, budget }),
+      body: JSON.stringify({ demographic, occasion, budget, country }),
     });
 
     if (!response.ok) {
