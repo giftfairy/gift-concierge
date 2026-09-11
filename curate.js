@@ -19,8 +19,19 @@ const AFFILIATES = {
     homepage: "https://willandbear.com.au",
     affiliate:
       "https://www.awin1.com/cread.php?awinmid=119813&awinaffid=2689862&ued=https%3A%2F%2Fwillandbear.com.au",
-    category: ["fashion", "accessories", "gifts"],
-    vibe: ["premium", "sustainable", "travel"],
+    category: [
+      "fashion",
+      "accessories",
+      "hats",
+      "travel",
+      "gifts",
+    ],
+    vibe: [
+      "premium",
+      "sustainable",
+      "outdoors",
+      "travel",
+    ],
   },
 
   "YCZ Fragrance": {
@@ -28,8 +39,17 @@ const AFFILIATES = {
     homepage: "https://yczfragrance.com",
     affiliate:
       "https://www.awin1.com/cread.php?awinmid=121156&awinaffid=2689862&ued=https%3A%2F%2Fyczfragrance.com",
-    category: ["beauty", "fragrance", "gifts"],
-    vibe: ["luxury", "sensual", "modern"],
+    category: [
+      "beauty",
+      "fragrance",
+      "perfume",
+      "gifts",
+    ],
+    vibe: [
+      "luxury",
+      "sensual",
+      "modern",
+    ],
   },
 
   "House of Sneakers DE": {
@@ -37,59 +57,170 @@ const AFFILIATES = {
     homepage: "https://house-of-sneakers.de/en",
     affiliate:
       "https://www.awin1.com/cread.php?awinmid=114336&awinaffid=2689862&ued=https%3A%2F%2Fhouse-of-sneakers.de%2Fen",
-    category: ["fashion", "sneakers", "streetwear"],
-    vibe: ["trendy", "premium", "european"],
-  },
-
-  "Primeful": {
-    brand: "Hero of My Book",
-    homepage: "https://heroofmybook.com",
-    affiliate:
-      "https://www.awin1.com/cread.php?awinmid=130555&awinaffid=2689862&ued=https%3A%2F%2Fheroofmybook.com",
     category: [
-      "children",
-      "books",
-      "personalised gifts",
-      "kids gifts",
+      "fashion",
+      "sneakers",
+      "streetwear",
+      "shoes",
     ],
     vibe: [
-      "personalised",
-      "creative",
-      "sentimental",
-      "educational",
+      "trendy",
+      "premium",
+      "streetwear",
+      "european",
     ],
   },
 
   "BrickZoneHub": {
-  brand: "BrickZoneHub",
-  homepage: "https://brickzonehub.co.uk",
-  affiliate:
-    "https://www.awin1.com/cread.php?awinmid=121692&awinaffid=2689862&ued=https%3A%2F%2Fbrickzonehub.co.uk",
-  category: [
-    "LEGO",
-    "collectibles",
-    "display cases",
-    "display stands",
-    "light kits",
-    "gifts for adults",
-  ],
-  vibe: [
-    "collector",
-    "LEGO fan",
-    "F1",
-    "Star Wars",
-    "Harry Potter",
-    "display",
-  ],
-},
- 
+    brand: "BrickZoneHub",
+    homepage: "https://brickzonehub.co.uk",
+    affiliate:
+      "https://www.awin1.com/cread.php?awinmid=121692&awinaffid=2689862&ued=https%3A%2F%2Fbrickzonehub.co.uk",
+    category: [
+      "LEGO",
+      "collectibles",
+      "display cases",
+      "display stands",
+      "light kits",
+      "gifts for adults",
+    ],
+    vibe: [
+      "collector",
+      "LEGO fan",
+      "F1",
+      "Star Wars",
+      "Harry Potter",
+      "display",
+    ],
+  },
+
+  "EverLeakProof": {
+    brand: "EverLeakProof",
+    homepage: "https://www.everleakproof.com",
+    affiliate:
+      "https://www.awin1.com/cread.php?awinmid=121298&awinaffid=2689862&ued=https%3A%2F%2Fwww.everleakproof.com",
+    category: [
+      "leakproof underwear",
+      "practical gifts",
+      "wellness",
+      "travel essentials",
+      "reusable products",
+    ],
+    vibe: [
+      "practical",
+      "comfortable",
+      "useful",
+      "everyday",
+    ],
+  },
+
+  "Fang Accessories": {
+    brand: "Fang Accessories",
+    homepage: "https://fangaccessories.com",
+    affiliate:
+      "https://www.awin1.com/cread.php?awinmid=128369&awinaffid=2689862&ued=https%3A%2F%2Ffangaccessories.com",
+    category: [
+      "jewellery",
+      "jewelry",
+      "necklaces",
+      "bracelets",
+      "earrings",
+      "rings",
+      "gemstones",
+      "crystals",
+    ],
+    vibe: [
+      "stylish",
+      "sentimental",
+      "spiritual",
+      "handmade",
+      "giftable",
+    ],
+  },
+
+  "GoWithGuide": {
+    brand: "GoWithGuide",
+    homepage: "https://gowithguide.com",
+    affiliate:
+      "https://www.awin1.com/cread.php?awinmid=87121&awinaffid=2689862&ued=https%3A%2F%2Fgowithguide.com",
+    category: [
+      "travel",
+      "experiences",
+      "private tours",
+      "local guides",
+      "experience gifts",
+    ],
+    vibe: [
+      "experiential",
+      "travel",
+      "adventure",
+      "memorable",
+      "personalised",
+    ],
+  },
+
+  "Primeful": {
+    brand: "Primeful",
+    homepage: "https://www.primeful.co",
+    affiliate:
+      "https://www.awin1.com/cread.php?awinmid=130555&awinaffid=2689862&ued=https%3A%2F%2Fwww.primeful.co",
+    category: [
+      "slackline",
+      "outdoor activities",
+      "family activities",
+      "fitness",
+      "backyard games",
+      "active gifts",
+    ],
+    vibe: [
+      "active",
+      "family",
+      "outdoors",
+      "fun",
+      "adventurous",
+    ],
+  },
+
+  "Traverseon": {
+    brand: "Traverseon",
+    homepage: "https://traverseon.com",
+    affiliate:
+      "https://www.awin1.com/cread.php?awinmid=124816&awinaffid=2689862&ued=https%3A%2F%2Ftraverseon.com",
+    category: [
+      "camping",
+      "outdoor gear",
+      "car camping",
+      "camping accessories",
+      "coolers",
+      "portable power",
+      "tents",
+      "travel gear",
+      "pet travel",
+    ],
+    vibe: [
+      "outdoors",
+      "camping",
+      "adventure",
+      "practical",
+      "road trip",
+    ],
+  },
+
   "Sylvox TV": {
     brand: "Sylvox TV",
     homepage: "https://www.sylvoxtv.com.au",
     affiliate:
       "https://www.awin1.com/cread.php?awinmid=115797&awinaffid=2689862&ued=https%3A%2F%2Fwww.sylvoxtv.com.au",
-    category: ["electronics", "TV", "home entertainment"],
-    vibe: ["modern", "techy", "giftable"],
+    category: [
+      "electronics",
+      "TV",
+      "home entertainment",
+    ],
+    vibe: [
+      "modern",
+      "techy",
+      "giftable",
+    ],
   },
 };
 
@@ -225,27 +356,58 @@ function detectAffiliateBrand({
   }
 
   if (
+    text.includes("brickzonehub") ||
+    text.includes("brick zone hub") ||
+    text.includes("brickzonehub.co.uk")
+  ) {
+    return "BrickZoneHub";
+  }
+
+  if (
+    text.includes("everleakproof") ||
+    text.includes("ever leakproof") ||
+    text.includes("everleakproof.com")
+  ) {
+    return "EverLeakProof";
+  }
+
+  if (
+    text.includes("fang accessories") ||
+    text.includes("fangaccessories") ||
+    text.includes("fangaccessories.com")
+  ) {
+    return "Fang Accessories";
+  }
+
+  if (
+    text.includes("gowithguide") ||
+    text.includes("go with guide") ||
+    text.includes("gowithguide.com")
+  ) {
+    return "GoWithGuide";
+  }
+
+  if (
+    text.includes("primeful") ||
+    text.includes("primeful.co")
+  ) {
+    return "Primeful";
+  }
+
+  if (
+    text.includes("traverseon") ||
+    text.includes("traverseon.com")
+  ) {
+    return "Traverseon";
+  }
+
+  if (
     text.includes("sylvox") ||
     text.includes("sylvoxtv.com")
   ) {
     return "Sylvox TV";
   }
 
-  if (
-    text.includes("hero of my book") ||
-    text.includes("heroofmybook.com") ||
-    text.includes("primeful")
-  ) {
-    return "Primeful";
-  }
-
-  if (
-  text.includes("brickzonehub") ||
-  text.includes("brick zone hub") ||
-  text.includes("brickzonehub.co.uk")
-) {
-  return "BrickZoneHub";
-}
   return null;
 }
 
