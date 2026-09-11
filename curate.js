@@ -60,6 +60,29 @@ const AFFILIATES = {
     ],
   },
 
+  "BrickZoneHub": {
+  brand: "BrickZoneHub",
+  homepage: "https://brickzonehub.co.uk",
+  affiliate:
+    "https://www.awin1.com/cread.php?awinmid=121692&awinaffid=2689862&ued=https%3A%2F%2Fbrickzonehub.co.uk",
+  category: [
+    "LEGO",
+    "collectibles",
+    "display cases",
+    "display stands",
+    "light kits",
+    "gifts for adults",
+  ],
+  vibe: [
+    "collector",
+    "LEGO fan",
+    "F1",
+    "Star Wars",
+    "Harry Potter",
+    "display",
+  ],
+},
+ 
   "Sylvox TV": {
     brand: "Sylvox TV",
     homepage: "https://www.sylvoxtv.com.au",
@@ -216,6 +239,13 @@ function detectAffiliateBrand({
     return "Primeful";
   }
 
+  if (
+  text.includes("brickzonehub") ||
+  text.includes("brick zone hub") ||
+  text.includes("brickzonehub.co.uk")
+) {
+  return "BrickZoneHub";
+}
   return null;
 }
 
