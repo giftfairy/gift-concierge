@@ -206,6 +206,91 @@ const AFFILIATES = {
     ],
   },
 
+    "Foemina": {
+    brand: "Foemina",
+    homepage: "https://foemina.com",
+    affiliate:
+      "https://t.cfjump.com/94542/t/93906",
+    category: [
+      "fashion",
+      "womens fashion",
+      "clothing",
+      "accessories",
+      "gifts for women",
+    ],
+    vibe: [
+      "stylish",
+      "fashion",
+      "modern",
+      "feminine",
+    ],
+  },
+
+  "Gift Card Store": {
+    brand: "Gift Card Store",
+    homepage: "https://giftcardstore.com.au",
+    affiliate:
+      "https://t.cfjump.com/94542/t/62126",
+    category: [
+      "gift cards",
+      "prepaid cards",
+      "last minute gifts",
+      "gifts for hard to buy for people",
+      "flexible gifts",
+    ],
+    vibe: [
+      "practical",
+      "flexible",
+      "easy",
+      "last minute",
+    ],
+  },
+
+  "Laurastar": {
+    brand: "Laurastar",
+    homepage: "https://www.laurastar.com.au",
+    affiliate:
+      "https://t.cfjump.com/94542/t/94133",
+    category: [
+      "home",
+      "home appliances",
+      "steamers",
+      "ironing",
+      "clothing care",
+      "premium home gifts",
+    ],
+    vibe: [
+      "premium",
+      "practical",
+      "home",
+      "luxury",
+    ],
+  },
+
+  "Mattel Shop": {
+    brand: "Mattel Shop",
+    homepage: "https://shop.mattel.com.au",
+    affiliate:
+      "https://t.cfjump.com/94542/t/93976",
+    category: [
+      "toys",
+      "kids gifts",
+      "children",
+      "Barbie",
+      "Hot Wheels",
+      "Fisher-Price",
+      "games",
+      "collectibles",
+    ],
+    vibe: [
+      "fun",
+      "playful",
+      "family",
+      "kids",
+      "collectible",
+    ],
+  },
+  
   "Sylvox TV": {
     brand: "Sylvox TV",
     homepage: "https://www.sylvoxtv.com.au",
@@ -401,6 +486,34 @@ function detectAffiliateBrand({
     return "Traverseon";
   }
 
+  if (
+    text.includes("foemina") ||
+    text.includes("foemina.com")
+  ) {
+    return "Foemina";
+  }
+
+  if (
+    text.includes("gift card store") ||
+    text.includes("giftcardstore.com.au")
+  ) {
+    return "Gift Card Store";
+  }
+
+  if (
+    text.includes("laurastar") ||
+    text.includes("laurastar.com.au")
+  ) {
+    return "Laurastar";
+  }
+
+  if (
+    text.includes("mattel shop") ||
+    text.includes("shop.mattel.com.au")
+  ) {
+    return "Mattel Shop";
+  }
+ 
   if (
     text.includes("sylvox") ||
     text.includes("sylvoxtv.com")
