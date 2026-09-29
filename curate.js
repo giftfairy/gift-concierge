@@ -290,6 +290,187 @@ const AFFILIATES = {
       "collectible",
     ],
   },
+
+    "Betty Basics": {
+    brand: "Betty Basics",
+    homepage: "https://bettybasics.com.au",
+    affiliate:
+      "https://t.cfjump.com/94542/t/93140",
+    category: [
+      "fashion",
+      "womens fashion",
+      "clothing",
+      "casual wear",
+      "gifts for women",
+    ],
+    vibe: [
+      "comfortable",
+      "casual",
+      "affordable",
+      "everyday",
+    ],
+  },
+
+  "Flo & Frankie": {
+    brand: "Flo & Frankie",
+    homepage: "https://floandfrankie.com.au",
+    affiliate:
+      "https://t.cfjump.com/94542/t/94014",
+    category: [
+      "fashion",
+      "womens fashion",
+      "accessories",
+      "beauty",
+      "homewares",
+      "gifts for women",
+    ],
+    vibe: [
+      "stylish",
+      "curated",
+      "modern",
+      "giftable",
+    ],
+  },
+
+  "Frankie and Co": {
+    brand: "Frankie and Co",
+    homepage: "https://frankieandco.com.au",
+    affiliate:
+      "https://t.cfjump.com/94542/t/93659",
+    category: [
+      "fashion",
+      "womens fashion",
+      "clothing",
+      "accessories",
+      "gifts for women",
+    ],
+    vibe: [
+      "modern",
+      "effortless",
+      "casual",
+      "stylish",
+    ],
+  },
+
+  "Lilly Pilly Collection": {
+    brand: "Lilly Pilly Collection",
+    homepage: "https://www.lillypillycollection.com",
+    affiliate:
+      "https://t.cfjump.com/94542/t/94093",
+    category: [
+      "fashion",
+      "womens fashion",
+      "clothing",
+      "accessories",
+      "gifts for women",
+    ],
+    vibe: [
+      "relaxed",
+      "natural",
+      "timeless",
+      "feminine",
+    ],
+  },
+
+  "Lime Tree Kids": {
+    brand: "Lime Tree Kids",
+    homepage: "https://www.limetreekids.com.au",
+    affiliate:
+      "https://t.cfjump.com/94542/t/34279",
+    category: [
+      "toys",
+      "kids gifts",
+      "children",
+      "baby gifts",
+      "educational toys",
+      "products for mums",
+    ],
+    vibe: [
+      "playful",
+      "family",
+      "educational",
+      "useful",
+    ],
+  },
+
+  "Sass Clothing": {
+    brand: "Sass Clothing",
+    homepage: "https://sassclothing.com.au",
+    affiliate:
+      "https://t.cfjump.com/94542/t/93858",
+    category: [
+      "fashion",
+      "womens fashion",
+      "clothing",
+      "accessories",
+      "gifts for women",
+    ],
+    vibe: [
+      "affordable",
+      "trendy",
+      "feminine",
+      "everyday",
+    ],
+  },
+
+  "Summi Summi": {
+    brand: "Summi Summi",
+    homepage: "https://summisummi.com.au",
+    affiliate:
+      "https://t.cfjump.com/94542/t/92447",
+    category: [
+      "fashion",
+      "womens fashion",
+      "clothing",
+      "accessories",
+      "gifts for women",
+    ],
+    vibe: [
+      "colourful",
+      "creative",
+      "bold",
+      "Australian",
+    ],
+  },
+
+  "World Businesses For Sale": {
+    brand: "World Businesses For Sale",
+    homepage: "https://worldbusinessesforsale.com",
+    affiliate:
+      "https://www.awin1.com/cread.php?awinmid=116725&awinaffid=2689862&ued=https%3A%2F%2Fworldbusinessesforsale.com",
+    category: [
+      "business",
+      "entrepreneurship",
+      "business opportunities",
+      "investment",
+    ],
+    vibe: [
+      "entrepreneurial",
+      "professional",
+      "aspirational",
+      "unusual",
+    ],
+  },
+
+  "PDF Agile": {
+    brand: "PDF Agile",
+    homepage: "https://www.pdfagile.com",
+    affiliate:
+      "https://www.awin1.com/cread.php?awinmid=123770&awinaffid=2689862&ued=https%3A%2F%2Fwww.pdfagile.com",
+    category: [
+      "software",
+      "productivity",
+      "digital tools",
+      "work",
+      "study",
+    ],
+    vibe: [
+      "practical",
+      "digital",
+      "productive",
+      "professional",
+    ],
+  },
   
   "Sylvox TV": {
     brand: "Sylvox TV",
@@ -513,7 +694,73 @@ function detectAffiliateBrand({
   ) {
     return "Mattel Shop";
   }
- 
+
+    if (
+    text.includes("betty basics") ||
+    text.includes("bettybasics.com.au")
+  ) {
+    return "Betty Basics";
+  }
+
+  if (
+    text.includes("flo & frankie") ||
+    text.includes("flo and frankie") ||
+    text.includes("floandfrankie.com.au")
+  ) {
+    return "Flo & Frankie";
+  }
+
+  if (
+    text.includes("frankie and co") ||
+    text.includes("frankie & co") ||
+    text.includes("frankieandco.com.au")
+  ) {
+    return "Frankie and Co";
+  }
+
+  if (
+    text.includes("lilly pilly collection") ||
+    text.includes("lillypillycollection.com")
+  ) {
+    return "Lilly Pilly Collection";
+  }
+
+  if (
+    text.includes("lime tree kids") ||
+    text.includes("limetreekids.com.au")
+  ) {
+    return "Lime Tree Kids";
+  }
+
+  if (
+    text.includes("sass clothing") ||
+    text.includes("sassclothing.com.au")
+  ) {
+    return "Sass Clothing";
+  }
+
+  if (
+    text.includes("summi summi") ||
+    text.includes("summisummi.com.au")
+  ) {
+    return "Summi Summi";
+  }
+
+  if (
+    text.includes("world businesses for sale") ||
+    text.includes("worldbusinessesforsale.com")
+  ) {
+    return "World Businesses For Sale";
+  }
+
+  if (
+    text.includes("pdf agile") ||
+    text.includes("pdfagile") ||
+    text.includes("pdfagile.com")
+  ) {
+    return "PDF Agile";
+  }
+  
   if (
     text.includes("sylvox") ||
     text.includes("sylvoxtv.com")
