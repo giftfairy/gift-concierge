@@ -792,7 +792,8 @@ function buildGiftPrompt(
   recipient,
   occasion,
   budget,
-  country
+  country,
+  recipientDetails = ""
 ) {
   const parsedBudget = parseBudget(budget);
 
@@ -824,6 +825,13 @@ Prefer products inside the customer's stated budget range of ${parsedBudget.min}
   const affiliatePartnerContext =
     buildAffiliatePartnerContext();
 
+  const extraRecipientDetails =
+    String(recipientDetails || "").trim().slice(0, 500);
+
+  const recipientContext = extraRecipientDetails
+    ? `\nAbout them:\n${extraRecipientDetails}\n`
+    : "";
+
   return `
 You are Jude, Gift Lane's worldwide gift concierge.
 
@@ -837,7 +845,7 @@ ${destination}
 
 Recipient:
 ${recipient}
-
+${recipientContext}
 Occasion:
 ${occasion}
 
@@ -986,6 +994,7 @@ app.post("/curate", async (req, res) => {
       occasion,
       budget,
       country,
+      recipientDetails,
     } = req.body;
 
     if (!demographic || !occasion || !budget) {
@@ -1001,7 +1010,8 @@ app.post("/curate", async (req, res) => {
       demographic,
       occasion,
       budget,
-      destination
+      destination,
+      recipientDetails
     );
 
     const response = await client.responses.create({
@@ -1108,6 +1118,7 @@ app.post("/curate", async (req, res) => {
       });
 
     res.json({
+      destination,
       products: cleanedProducts,
     });
   } catch (err) {
