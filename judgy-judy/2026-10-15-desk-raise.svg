@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1920" viewBox="0 0 1080 1920">
+<defs>
+<linearGradient id="bg" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#102c44"/><stop offset=".5" stop-color="#205e72"/><stop offset="1" stop-color="#1b3046"/></linearGradient>
+<linearGradient id="wall" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#f7eac9"/><stop offset="1" stop-color="#e9cda0"/></linearGradient>
+<linearGradient id="metal" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fff"/><stop offset=".42" stop-color="#c8dbe3"/><stop offset="1" stop-color="#8299a9"/></linearGradient>
+<linearGradient id="desk" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#ffcd67"/><stop offset="1" stop-color="#de8639"/></linearGradient>
+<radialGradient id="eye"><stop stop-color="#2a9de5"/><stop offset=".55" stop-color="#4be8ff"/><stop offset=".58" stop-color="#061e40"/><stop offset="1" stop-color="#030c17"/></radialGradient>
+<filter id="shadow"><feDropShadow dx="0" dy="12" stdDeviation="13" flood-color="#03151e" flood-opacity=".42"/></filter>
+<filter id="glow"><feGaussianBlur stdDeviation="20"/></filter>
+<pattern id="dots" width="36" height="36" patternUnits="userSpaceOnUse"><circle cx="3" cy="3" r="2" fill="#ffffff" opacity=".12"/></pattern>
+</defs>
+<rect width="1080" height="1920" fill="url(#bg)"/><rect width="1080" height="1920" fill="url(#dots)"/>
+<!-- headline -->
+<rect x="45" y="55" width="990" height="260" rx="44" fill="#081a2a" stroke="#67d8da" stroke-width="6" filter="url(#shadow)"/>
+<text x="540" y="160" text-anchor="middle" fill="#fef4d6" font-family="DejaVu Sans,Arial,sans-serif" font-weight="900" font-size="81">I ASKED FOR</text>
+<text x="540" y="270" text-anchor="middle" fill="#f6bb56" font-family="DejaVu Sans,Arial,sans-serif" font-weight="900" font-size="112">A RAISE.</text>
+<!-- office set -->
+<rect x="45" y="350" width="990" height="1180" rx="45" fill="url(#wall)" stroke="#f3ddae" stroke-width="12" filter="url(#shadow)"/>
+<rect x="70" y="365" width="940" height="940" rx="25" fill="#f4e6c9"/>
+<!-- window -->
+<rect x="95" y="460" width="260" height="385" rx="18" fill="#315a77" stroke="#fff9e7" stroke-width="20"/>
+<path d="M225 465V844M98 655H355" stroke="#fff9e7" stroke-width="14"/>
+<circle cx="292" cy="552" r="40" fill="#f8d47a"/><path d="M110 800L160 740 195 768 260 696 345 810" fill="none" stroke="#87b3b5" stroke-width="12"/>
+<!-- clock -->
+<circle cx="865" cy="495" r="79" fill="#fffaf0" stroke="#263a43" stroke-width="14"/><path d="M865 495v-45m0 45 32 22" stroke="#263a43" stroke-width="11" stroke-linecap="round"/>
+<!-- poster -->
+<rect x="115" y="925" width="205" height="155" rx="13" fill="#fffded" transform="rotate(-8 115 925)" stroke="#d6a36e" stroke-width="5"/>
+<text x="208" y="979" font-family="DejaVu Sans" font-weight="bold" font-size="23" text-anchor="middle" fill="#37444a" transform="rotate(-8 208 979)">WORK</text>
+<text x="208" y="1010" font-family="DejaVu Sans" font-weight="bold" font-size="23" text-anchor="middle" fill="#37444a" transform="rotate(-8 208 1010)">SMARTER</text>
+<text x="208" y="1043" font-family="DejaVu Sans" font-weight="bold" font-size="21" text-anchor="middle" fill="#dd7455" transform="rotate(-8 208 1043)">NOT ME</text>
+<!-- floor -->
+<path d="M65 1310H1015V1500H65Z" fill="#bcb1a0"/><path d="M65 1310H1015" stroke="#7d6c5f" stroke-width="9"/>
+<path d="M120 1480 600 1320M430 1510 820 1315M800 1520 990 1330" stroke="#8d8074" stroke-width="5" opacity=".4"/>
+<!-- tall desk lifting mechanism -->
+<path d="M360 1000L760 1470M760 1000L360 1470" stroke="#506a76" stroke-width="32" stroke-linecap="round"/>
+<path d="M360 1000L760 1470M760 1000L360 1470" stroke="#b9d0d4" stroke-width="12" stroke-linecap="round"/>
+<circle cx="560" cy="1235" r="36" fill="#2a4b5c" stroke="#f8c660" stroke-width="13"/>
+<rect x="290" y="1460" width="570" height="34" rx="15" fill="#3e5863"/>
+<!-- desk top -->
+<path d="M290 935H915L955 995H255Z" fill="url(#desk)" stroke="#a45735" stroke-width="10" filter="url(#shadow)"/>
+<rect x="250" y="990" width="710" height="45" rx="15" fill="#a75d39"/>
+<!-- laptop -->
+<path d="M460 810L740 810 777 938H497Z" fill="#364b61" stroke="#203a4c" stroke-width="10"/>
+<circle cx="625" cy="872" r="30" fill="#f5bd5e"/><path d="M605 872h40M625 852v40" stroke="#24384a" stroke-width="8"/>
+<!-- robot feet dangling -->
+<path d="M510 925Q475 1055 505 1120M705 925Q760 1065 730 1155" stroke="#b5c8d2" stroke-width="42" stroke-linecap="round"/>
+<ellipse cx="515" cy="1134" rx="55" ry="28" fill="#24394a" transform="rotate(12 515 1134)"/>
+<ellipse cx="733" cy="1166" rx="55" ry="28" fill="#24394a" transform="rotate(-15 733 1166)"/>
+<!-- robot torso -->
+<rect x="486" y="737" width="265" height="195" rx="70" fill="url(#metal)" stroke="#718998" stroke-width="12" filter="url(#shadow)"/>
+<rect x="554" y="807" width="125" height="52" rx="22" fill="#1a425c"/><circle cx="590" cy="833" r="9" fill="#54f6cc"/><circle cx="619" cy="833" r="9" fill="#54f6cc"/><circle cx="648" cy="833" r="9" fill="#f5c564"/>
+<!-- arms -->
+<path d="M503 793Q410 785 398 708M735 793Q831 800 841 710" fill="none" stroke="#b4c9d5" stroke-width="52" stroke-linecap="round"/>
+<path d="M398 708l-35-40m35 40-4-54m4 54 32-35M841 710l-30-44m30 44 12-55m-12 55 37-27" stroke="#dbe9ee" stroke-width="18" stroke-linecap="round"/>
+<!-- robot head -->
+<rect x="485" y="512" width="282" height="250" rx="110" fill="url(#metal)" stroke="#627b89" stroke-width="14" filter="url(#shadow)"/>
+<circle cx="562" cy="636" r="48" fill="url(#eye)" stroke="#254e70" stroke-width="10"/><circle cx="686" cy="636" r="48" fill="url(#eye)" stroke="#254e70" stroke-width="10"/>
+<circle cx="551" cy="619" r="12" fill="#fff" opacity=".9"/><circle cx="675" cy="619" r="12" fill="#fff" opacity=".9"/>
+<path d="M603 705Q625 717 650 704" fill="none" stroke="#557480" stroke-width="9" stroke-linecap="round"/>
+<path d="M490 550Q530 473 584 520Q633 465 676 517Q733 475 760 555" fill="none" stroke="#344f5e" stroke-width="28" stroke-linecap="round"/>
+<path d="M486 554l-23-44m73-15-9-38m93 26 8-50m91 63 25-42" stroke="#344f5e" stroke-width="14" stroke-linecap="round"/>
+<!-- little person below -->
+<ellipse cx="160" cy="1446" rx="82" ry="19" fill="#203645" opacity=".23"/>
+<rect x="117" y="1327" width="91" height="115" rx="22" fill="#2c6272"/>
+<path d="M141 1440v42m43-42v42" stroke="#344b58" stroke-width="24" stroke-linecap="round"/>
+<circle cx="161" cy="1285" r="52" fill="#c37f58"/><path d="M113 1282q10-77 93-42l12 29" fill="#4e372d"/>
+<path d="M120 1348l-37 42m115-42 47 22" stroke="#c37f58" stroke-width="19" stroke-linecap="round"/>
+<rect x="213" y="1353" width="95" height="112" rx="9" fill="#e4dfcc" stroke="#60737c" stroke-width="7" transform="rotate(-10 213 1353)"/>
+<path d="M230 1390h52m-52 25h50m-50 24h30" stroke="#8b9aa0" stroke-width="5"/>
+<!-- emphasis visual -->
+<path d="M760 1070Q925 1150 930 1250" fill="none" stroke="#df6c4d" stroke-width="10" stroke-dasharray="25 18"/>
+<path d="M930 1250l-45-20 48 65 35-69Z" fill="#df6c4d"/>
+<!-- bottom caption -->
+<rect x="44" y="1570" width="992" height="282" rx="45" fill="#f6bf5c" stroke="#fff1c5" stroke-width="7" filter="url(#shadow)"/>
+<text x="540" y="1692" text-anchor="middle" font-family="DejaVu Sans,Arial,sans-serif" font-size="74" font-weight="900" fill="#142b3b">THEY RAISED</text>
+<text x="540" y="1808" text-anchor="middle" font-family="DejaVu Sans,Arial,sans-serif" font-size="105" font-weight="900" fill="#142b3b">MY DESK.</text>
+<text x="540" y="1894" text-anchor="middle" font-family="DejaVu Sans,Arial,sans-serif" font-size="25" font-weight="bold" letter-spacing="8" fill="#d5e4e2">JUDGY JUDY  /  HUMAN RESOURCES DEPARTMENT</text>
+</svg>
